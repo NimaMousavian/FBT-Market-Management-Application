@@ -1,8 +1,9 @@
 #include "Customer.h"
 
-Customer::Customer(int id, string city, string address, int phone)
+Customer::Customer(string f_name, string l_name, int a, int id, int cu_id, string city, string address, int phone)
+    :Human(f_name, l_name, a, id)
 {
-    this->customer_ID = id;
+    this->customer_ID = cu_id;
     this->city = city;
     this->address = address;
     this->phone_number = phone;

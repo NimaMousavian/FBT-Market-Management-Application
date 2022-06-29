@@ -1,9 +1,10 @@
 #pragma once
 
+#include "Human.h"
 #include <string>
 using namespace std;
 
-class Customer
+class Customer : public Human
 {
 private:
     int customer_ID;
@@ -11,7 +12,7 @@ private:
     string address;
     int phone_number;
 public:
-    Customer(int, string, string, int);
+    Customer(string, string, int, int, int, string, string, int);
 
     void set_customer_id(int);
     void set_city(string);

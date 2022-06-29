@@ -2,10 +2,11 @@
 #include <iostream>
 using namespace std;
 
-Employee::Employee(string role, int id, int salary)
+Employee::Employee(string f_name, string l_name, int a, int id,string role, int em_id, int salary)
+    :Human(f_name,l_name,a,id)
 {
     this->role = role;
-    this->employee_ID = id;
+    this->employee_ID = em_id;
     this->salary = salary;
     return;
 }
