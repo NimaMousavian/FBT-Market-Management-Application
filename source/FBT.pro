@@ -1,8 +1,10 @@
 QT       += core gui
+QT += network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++11
+
 
 # You can make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.
@@ -22,6 +24,7 @@ HEADERS += \
     Customer.h \
     Employee.h \
     Human.h \
+    client2.h \
     home.h \
     login_page.h \
     mainwindow.h \
