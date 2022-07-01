@@ -18,7 +18,6 @@ public:
     explicit Home(QMainWindow*, QWidget *parent = nullptr);
     ~Home();
 
-    void set_mainwindow(QMainWindow*);
 
 private slots:
 

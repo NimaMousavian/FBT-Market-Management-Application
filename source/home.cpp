@@ -19,6 +19,7 @@ Home::Home(QMainWindow * mw,QWidget *parent) :
     ui->setupUi(this);
     this->mainWindow = mw;
 
+
     ui->label->setAlignment(Qt::AlignCenter);
 
     //----------------- set icons ---------------------
@@ -69,12 +70,6 @@ Home::~Home()
     delete ui;
 }
 
-void Home::set_mainwindow(QMainWindow *mw)
-{
-    this->mainWindow = mw;
-    return;
-}
-
 
 
 
@@ -83,7 +78,6 @@ void Home::on_login_push_clicked()
     Login_page *loginPage = new Login_page(this->mainWindow);
     this->close();
     mainWindow->setCentralWidget(loginPage);
-    mainWindow->setFixedSize(QSize(570,500));
 }
 
 
