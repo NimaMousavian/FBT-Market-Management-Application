@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>570</width>
-    <height>500</height>
+    <width>1000</width>
+    <height>725</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,15 +16,15 @@
   <widget class="QComboBox" name="comboBox">
    <property name="geometry">
     <rect>
-     <x>170</x>
-     <y>40</y>
-     <width>111</width>
-     <height>31</height>
+     <x>370</x>
+     <y>80</y>
+     <width>241</width>
+     <height>41</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <pointsize>11</pointsize>
+     <pointsize>15</pointsize>
     </font>
    </property>
    <item>
@@ -46,54 +46,26 @@
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>20</y>
+     <x>190</x>
+     <y>70</y>
      <width>121</width>
      <height>61</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <pointsize>17</pointsize>
+     <pointsize>22</pointsize>
     </font>
    </property>
    <property name="text">
     <string>Login as:</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label_2">
-   <property name="geometry">
-    <rect>
-     <x>200</x>
-     <y>110</y>
-     <width>111</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>15</pointsize>
-    </font>
-   </property>
-   <property name="text">
-    <string>Username:</string>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="lineEdit">
-   <property name="geometry">
-    <rect>
-     <x>200</x>
-     <y>160</y>
-     <width>161</width>
-     <height>31</height>
-    </rect>
-   </property>
-  </widget>
   <widget class="QLabel" name="label_3">
    <property name="geometry">
     <rect>
-     <x>200</x>
-     <y>220</y>
+     <x>370</x>
+     <y>360</y>
      <width>121</width>
      <height>41</height>
     </rect>
@@ -107,23 +79,28 @@
     <string>Password:</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit_2">
+  <widget class="QLineEdit" name="password_le">
    <property name="geometry">
     <rect>
-     <x>200</x>
-     <y>270</y>
-     <width>161</width>
-     <height>31</height>
+     <x>370</x>
+     <y>410</y>
+     <width>241</width>
+     <height>41</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <pointsize>15</pointsize>
+    </font>
+   </property>
   </widget>
-  <widget class="QPushButton" name="ok_push">
+  <widget class="QPushButton" name="login_push">
    <property name="geometry">
     <rect>
-     <x>220</x>
-     <y>360</y>
-     <width>111</width>
-     <height>41</height>
+     <x>370</x>
+     <y>550</y>
+     <width>231</width>
+     <height>71</height>
     </rect>
    </property>
    <property name="font">
@@ -141,8 +118,8 @@
   <widget class="QPushButton" name="back_push">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>450</y>
+     <x>30</x>
+     <y>660</y>
      <width>81</width>
      <height>31</height>
     </rect>
@@ -157,6 +134,39 @@
    </property>
    <property name="text">
     <string>Back</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>370</x>
+     <y>200</y>
+     <width>111</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>15</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Username:</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="username_le">
+   <property name="geometry">
+    <rect>
+     <x>370</x>
+     <y>250</y>
+     <width>241</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>15</pointsize>
+    </font>
    </property>
   </widget>
  </widget>
