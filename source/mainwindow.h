@@ -17,5 +17,9 @@ public:
 
 private:
     Ui::MainWindow *ui;
+
+public slots:
+    void display_error(QString);
+    void display_info(QString);
 };
 #endif // MAINWINDOW_H
