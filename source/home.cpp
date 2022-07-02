@@ -12,7 +12,7 @@
 #include <fstream>
 using namespace std;
 
-Home::Home(QMainWindow * mw,QWidget *parent) :
+Home::Home(MainWindow * mw,QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Home)
 {

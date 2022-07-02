@@ -2,7 +2,7 @@
 #include "ui_login_page.h"
 #include "home.h"
 
-Login_page::Login_page(QMainWindow *mw,QWidget *parent) :
+Login_page::Login_page(MainWindow *mw,QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Login_page)
 {

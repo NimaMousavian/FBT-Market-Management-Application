@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QMainWindow>
+#include "mainwindow.h"
 
 namespace Ui {
 class Home;
@@ -13,9 +14,9 @@ class Home : public QWidget
     Q_OBJECT
 
 private:
-    QMainWindow * mainWindow;
+    MainWindow * mainWindow;
 public:
-    explicit Home(QMainWindow*, QWidget *parent = nullptr);
+    explicit Home(MainWindow*, QWidget *parent = nullptr);
     ~Home();
 
 
