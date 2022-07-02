@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QMainWindow>
+#include "mainwindow.h"
 
 namespace Ui {
 class Sign_up_page;
@@ -13,7 +14,7 @@ class Sign_up_page : public QWidget
     Q_OBJECT
 
 public:
-    explicit Sign_up_page(QMainWindow *,QWidget *parent = nullptr);
+    explicit Sign_up_page(MainWindow *,QWidget *parent = nullptr);
     ~Sign_up_page();
 
 private slots:
@@ -23,7 +24,7 @@ private slots:
 
 private:
     Ui::Sign_up_page *ui;
-    QMainWindow *mainwindow;
+    MainWindow *mainwindow;
 };
 
 #endif // SIGN_UP_PAGE_H
