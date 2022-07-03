@@ -15,9 +15,14 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+    void customer_window();
+    void set_customer_window_ui();
 private:
     Ui::MainWindow *ui;
 
+signals:
+    void throw_error(QString);
+    void throw_info(QString);
 public slots:
     void display_error(QString);
     void display_info(QString);
