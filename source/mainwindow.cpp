@@ -7,6 +7,8 @@
 #include <QLineEdit>
 #include <QGroupBox>
 #include <QVBoxLayout>
+#include <QHBoxLayout>
+#include <QPushButton>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -36,58 +38,179 @@ MainWindow::~MainWindow()
 void MainWindow::customer_window()
 {
     set_customer_window_ui();
+
 }
 
 void MainWindow::set_customer_window_ui()
 {
-    QLineEdit * search_le = new QLineEdit;
-    search_le->setPlaceholderText(tr("Search by Name"));
+    //--------------- vegetable and food table ----------------
+    QLineEdit * searchLe = new QLineEdit;
+    searchLe->setPlaceholderText(tr("Search by Name"));
+    QPushButton * searchPush = new QPushButton("Search");
+    searchPush->setStyleSheet("color: red");
+    QHBoxLayout * searchLayout = new QHBoxLayout;
+    searchLayout->addWidget(searchLe);
+    searchLayout->addWidget(searchPush);
 
-
-
-    QTableWidget * table = new QTableWidget;
-    table->setEditTriggers(QAbstractItemView::NoEditTriggers);  // disable in-place editing
-    table->setSelectionBehavior(QAbstractItemView::SelectRows);  // only rows can be selected, not columns or sells
-    table->setSelectionMode(QAbstractItemView::SingleSelection);  // disable selection of multiple rows
-    table->setColumnCount(4);  // assign the number of columns in the table
+    customerVandFTable = new QTableWidget;
+    customerVandFTable->setEditTriggers(QAbstractItemView::NoEditTriggers);  // disable in-place editing
+    customerVandFTable->setSelectionBehavior(QAbstractItemView::SelectRows);  // only rows can be selected, not columns or sells
+    customerVandFTable->setSelectionMode(QAbstractItemView::SingleSelection);  // disable selection of multiple rows
+    customerVandFTable->setColumnCount(4);  // assign the number of columns in the table
     QStringList s;
     s << tr("Name") << tr("Manufacturer") << tr("Price") << tr("Expiry Date") ;
-    table->setHorizontalHeaderLabels(s);
+    customerVandFTable->setHorizontalHeaderLabels(s);
 
     QVBoxLayout *l = new QVBoxLayout;
-    l->addWidget(search_le);
-    l->addWidget(table);
+    l->addLayout(searchLayout);
+    l->addWidget(customerVandFTable);
     QGroupBox * gBox = new QGroupBox;
     gBox->setLayout(l);
 
-    QTableWidget * table2 = new QTableWidget;
-    QTableWidget * table3 = new QTableWidget;
-    QTableWidget * table4 = new QTableWidget;
-    QTableWidget * table5 = new QTableWidget;
+    //--------------- Dairy table ---------------------
 
-    QGroupBox * gBox2 = new QGroupBox;
+    QLineEdit * searchLe2 = new QLineEdit;
+    searchLe2->setPlaceholderText(tr("Search by Name"));
+    QPushButton * searchPush2 = new QPushButton("Search");
+    searchPush2->setStyleSheet("color: red");
+    QHBoxLayout * searchLayout2 = new QHBoxLayout;
+    searchLayout2->addWidget(searchLe2);
+    searchLayout2->addWidget(searchPush2);
+
+    customerDairyTable = new QTableWidget;
+    customerDairyTable->setEditTriggers(QAbstractItemView::NoEditTriggers);  // disable in-place editing
+    customerDairyTable->setSelectionBehavior(QAbstractItemView::SelectRows);  // only rows can be selected, not columns or sells
+    customerDairyTable->setSelectionMode(QAbstractItemView::SingleSelection);  // disable selection of multiple rows
+    customerDairyTable->setColumnCount(4);  // assign the number of columns in the table
+    QStringList s2;
+    s2 << tr("Name") << tr("Manufacturer") << tr("Price") << tr("Expiry Date") ;
+    customerDairyTable->setHorizontalHeaderLabels(s);
+
     QVBoxLayout *l2 = new QVBoxLayout;
-    l2->addWidget(search_le);
-    l2->addWidget(table2);
+    l2->addLayout(searchLayout2);
+    l2->addWidget(customerDairyTable);
+    QGroupBox * gBox2 = new QGroupBox;
     gBox2->setLayout(l2);
 
-    QTabWidget *category = new QTabWidget;
-    category->addTab(gBox, "Vegatable and Fruit");
-    category->addTab(gBox2,"Dairy");
-    category->addTab(table3,"Beverage");
-    category->addTab(table4,"Snack");
-    category->addTab(table5, "None-Food");
+    //-------------- Beverage table ---------------
 
-    QTabWidget *tabWidget = new QTabWidget;
-    tabWidget->setIconSize(QSize(24, 24));
-    tabWidget->addTab(category, QIcon("E:/FBT_project/f.b.t/icons/cash_register.png"), tr("Shop"));
-//    tabWidget->addTab(,"Cart");
-//    tabWidget->addTab(,"shop History");
+    QLineEdit * searchLe3 = new QLineEdit;
+    searchLe3->setPlaceholderText(tr("Search by Name"));
+    QPushButton * searchPush3 = new QPushButton("Search");
+    searchPush3->setStyleSheet("color: red");
+    QHBoxLayout * searchLayout3 = new QHBoxLayout;
+    searchLayout3->addWidget(searchLe3);
+    searchLayout3->addWidget(searchPush3);
+
+    customerBeverageTable = new QTableWidget;
+    customerBeverageTable->setEditTriggers(QAbstractItemView::NoEditTriggers);  // disable in-place editing
+    customerBeverageTable->setSelectionBehavior(QAbstractItemView::SelectRows);  // only rows can be selected, not columns or sells
+    customerBeverageTable->setSelectionMode(QAbstractItemView::SingleSelection);  // disable selection of multiple rows
+    customerBeverageTable->setColumnCount(4);  // assign the number of columns in the table
+    QStringList s3;
+    s3 << tr("Name") << tr("Manufacturer") << tr("Price") << tr("Expiry Date") ;
+    customerBeverageTable->setHorizontalHeaderLabels(s);
+
+    QVBoxLayout *l3 = new QVBoxLayout;
+    l3->addLayout(searchLayout3);
+    l3->addWidget(customerBeverageTable);
+    QGroupBox * gBox3 = new QGroupBox;
+    gBox3->setLayout(l3);
+
+    //---------------- Snack table --------------------
+
+    QLineEdit * searchLe4 = new QLineEdit;
+    searchLe4->setPlaceholderText(tr("Search by Name"));
+    QPushButton * searchPush4 = new QPushButton("Search");
+    searchPush4->setStyleSheet("color: red");
+    QHBoxLayout * searchLayout4 = new QHBoxLayout;
+    searchLayout4->addWidget(searchLe4);
+    searchLayout4->addWidget(searchPush4);
+
+    customerSnackTable = new QTableWidget;
+    customerSnackTable->setEditTriggers(QAbstractItemView::NoEditTriggers);  // disable in-place editing
+    customerSnackTable->setSelectionBehavior(QAbstractItemView::SelectRows);  // only rows can be selected, not columns or sells
+    customerSnackTable->setSelectionMode(QAbstractItemView::SingleSelection);  // disable selection of multiple rows
+    customerSnackTable->setColumnCount(4);  // assign the number of columns in the table
+    QStringList s4;
+    s4 << tr("Name") << tr("Manufacturer") << tr("Price") << tr("Expiry Date") ;
+    customerSnackTable->setHorizontalHeaderLabels(s);
+
+    QVBoxLayout *l4 = new QVBoxLayout;
+    l4->addLayout(searchLayout4);
+    l4->addWidget(customerSnackTable);
+    QGroupBox * gBox4 = new QGroupBox;
+    gBox4->setLayout(l4);
+
+    //------------------- None-Food table ------------------
+
+    QLineEdit * searchLe5 = new QLineEdit;
+    searchLe5->setPlaceholderText(tr("Search by Name"));
+    QPushButton * searchPush5 = new QPushButton("Search");
+    searchPush5->setStyleSheet("color: red");
+    QHBoxLayout * searchLayout5 = new QHBoxLayout;
+    searchLayout5->addWidget(searchLe5);
+    searchLayout5->addWidget(searchPush5);
+
+    customerNoneFoodTable = new QTableWidget;
+    customerNoneFoodTable->setEditTriggers(QAbstractItemView::NoEditTriggers);  // disable in-place editing
+    customerNoneFoodTable->setSelectionBehavior(QAbstractItemView::SelectRows);  // only rows can be selected, not columns or sells
+    customerNoneFoodTable->setSelectionMode(QAbstractItemView::SingleSelection);  // disable selection of multiple rows
+    customerNoneFoodTable->setColumnCount(4);  // assign the number of columns in the table
+    QStringList s5;
+    s5 << tr("Name") << tr("Manufacturer") << tr("Price") << tr("Expiry Date") ;
+    customerNoneFoodTable->setHorizontalHeaderLabels(s);
+
+    QVBoxLayout *l5 = new QVBoxLayout;
+    l5->addLayout(searchLayout5);
+    l5->addWidget(customerNoneFoodTable);
+    QGroupBox * gBox5 = new QGroupBox;
+    gBox5->setLayout(l5);
+
+    //--------------- Category tab ----------------------
+
+    customerCategoryTab = new QTabWidget;
+    customerCategoryTab->addTab(gBox, "Vegatable and Fruit");
+    customerCategoryTab->addTab(gBox2,"Dairy");
+    customerCategoryTab->addTab(gBox3,"Beverage");
+    customerCategoryTab->addTab(gBox4,"Snack");
+    customerCategoryTab->addTab(gBox5, "None-Food");
+
+    //--------------- Cart table --------------------
+
+    customerCartTable = new QTableWidget;
+    customerCartTable->setEditTriggers(QAbstractItemView::NoEditTriggers);  // disable in-place editing
+    customerCartTable->setSelectionBehavior(QAbstractItemView::SelectRows);  // only rows can be selected, not columns or sells
+    customerCartTable->setSelectionMode(QAbstractItemView::SingleSelection);  // disable selection of multiple rows
+    customerCartTable->setColumnCount(4);  // assign the number of columns in the table
+    QStringList s6;
+    s6 << tr("Name") << tr("Category") << tr("Manufacturer") << tr("Price") << tr("Expiry Date") ;
+    customerCartTable->setHorizontalHeaderLabels(s);
+    //add buttons to purchase
+
+    //------------------ Shop History ToolBox -------------
+
+    CustomerShopHistoryToolBox = new QToolBox;
+    // example
+    QTableWidget *t = new QTableWidget(1,4);
+    QPushButton *b = new QPushButton("ssss");
+    CustomerShopHistoryToolBox->addItem(b,"purchase 1");
+    CustomerShopHistoryToolBox->addItem(t,"purchase 2");
+
+
+
+    //----------------- Main Tab --------------------
+
+    customerMaintab = new QTabWidget;
+    customerMaintab->setIconSize(QSize(24, 24));
+    customerMaintab->addTab(customerCategoryTab, QIcon("E:/FBT_project/f.b.t/icons/cash_register.png"), tr("Shop"));
+    customerMaintab->addTab(customerCartTable,"Cart");
+    customerMaintab->addTab(CustomerShopHistoryToolBox,"shop History");
 //    tabWidget->addTab(, "Wallet");
 
 
 
-    this->setCentralWidget(tabWidget);
+    this->setCentralWidget(customerMaintab);
 }
 
 void MainWindow::display_error(QString msg)

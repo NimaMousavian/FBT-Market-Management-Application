@@ -3,6 +3,15 @@
 
 #include <QMainWindow>
 
+#include <QTableWidget>
+#include <QLineEdit>
+#include <QGroupBox>
+#include <QVBoxLayout>
+#include <QHBoxLayout>
+#include <QPushButton>
+#include <QToolBox>
+
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -19,6 +28,17 @@ public:
     void set_customer_window_ui();
 private:
     Ui::MainWindow *ui;
+
+    //-------------- Customer window objects ---------
+    QTabWidget * customerMaintab;
+    QTabWidget * customerCategoryTab;
+    QTableWidget * customerVandFTable;
+    QTableWidget * customerDairyTable;
+    QTableWidget * customerBeverageTable;
+    QTableWidget * customerSnackTable;
+    QTableWidget * customerNoneFoodTable;
+    QTableWidget * customerCartTable;
+    QToolBox * CustomerShopHistoryToolBox;
 
 signals:
     void throw_error(QString);
