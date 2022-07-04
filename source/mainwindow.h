@@ -10,6 +10,7 @@
 #include <QHBoxLayout>
 #include <QPushButton>
 #include <QToolBox>
+#include <QSpinBox>
 
 
 QT_BEGIN_NAMESPACE
@@ -38,7 +39,8 @@ private:
     QTableWidget * customerSnackTable;
     QTableWidget * customerNoneFoodTable;
     QTableWidget * customerCartTable;
-    QToolBox * CustomerShopHistoryToolBox;
+    QToolBox * customerShopHistoryToolBox;
+    QSpinBox * customerCredit;
 
 signals:
     void throw_error(QString);

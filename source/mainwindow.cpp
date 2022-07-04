@@ -13,6 +13,9 @@
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QPushButton>
+#include <QLCDNumber>
+#include <QLabel>
+#include <QSpinBox>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -196,12 +199,32 @@ void MainWindow::set_customer_window_ui()
 
     //------------------ Shop History ToolBox -------------
 
-    CustomerShopHistoryToolBox = new QToolBox;
+    customerShopHistoryToolBox = new QToolBox;
     // example
     QTableWidget *t = new QTableWidget(1,4);
     QPushButton *b = new QPushButton("ssss");
-    CustomerShopHistoryToolBox->addItem(b,"purchase 1");
-    CustomerShopHistoryToolBox->addItem(t,"purchase 2");
+    customerShopHistoryToolBox->addItem(b,"purchase 1");
+    customerShopHistoryToolBox->addItem(t,"purchase 2");
+
+    //------------------- wallet tab --------------------
+
+    customerCredit = new QSpinBox;
+    customerCredit->setStyleSheet("font-size: 30px;");
+    customerCredit->setReadOnly(true);
+    QLabel *lable = new QLabel("your current credit in wallet is:");
+    lable->setStyleSheet("font-size: 30px;");
+
+    QPushButton *p = new QPushButton("increas credit");
+    p->setStyleSheet("font-size: 20px;");
+
+    QVBoxLayout *v = new QVBoxLayout;
+    v->addWidget(lable);
+    v->addWidget(customerCredit);
+    v->addWidget(p);
+    v->setAlignment(Qt::AlignTop);
+
+    QGroupBox *walletGroup = new QGroupBox;
+    walletGroup->setLayout(v);
 
 
 
@@ -211,8 +234,8 @@ void MainWindow::set_customer_window_ui()
     customerMaintab->setIconSize(QSize(24, 24));
     customerMaintab->addTab(customerCategoryTab, QIcon("E:/FBT_project/f.b.t/icons/cash_register.png"), tr("Shop"));
     customerMaintab->addTab(customerCartTable,"Cart");
-    customerMaintab->addTab(CustomerShopHistoryToolBox,"shop History");
-//    tabWidget->addTab(, "Wallet");
+    customerMaintab->addTab(customerShopHistoryToolBox,"shop History");
+    customerMaintab->addTab(walletGroup, "Wallet");
 
 
 

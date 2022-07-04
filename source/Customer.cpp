@@ -20,6 +20,7 @@ Customer::Customer(string f_name, string l_name, int a, int id, string _username
     this->phone_number = phone;
     this->username = _username;
     this->password = _password;
+    this->wallet = 0;
     return;
 }
 
@@ -52,6 +53,12 @@ void Customer::set_username(string u)
     return;
 }
 
+void Customer::set_wallet(double w)
+{
+    this->wallet = w;
+    return;
+}
+
 int Customer::get_customer_id()
 {
     return this->customer_ID;
@@ -69,6 +76,11 @@ string Customer::get_address()
 string Customer::get_phone_number()
 {
     return this->phone_number;
+}
+
+double Customer::get_wallet()
+{
+    return this->wallet;
 }
 
 void Customer::sign_up()

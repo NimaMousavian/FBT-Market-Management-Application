@@ -13,6 +13,7 @@ private:
     string phone_number;
     string username;
     string password;
+    double wallet;
 public:
     Customer(string, string, int, int, string _username, string _password, string , string city = "", string address = "");
 
@@ -21,11 +22,13 @@ public:
     void set_address(string);
     void set_phone_number(string);
     void set_username(string);
+    void set_wallet(double);
 
     int get_customer_id();
     string get_city();
     string get_address();
     string get_phone_number();
+    double get_wallet();
 
     virtual void sign_up();
 };
