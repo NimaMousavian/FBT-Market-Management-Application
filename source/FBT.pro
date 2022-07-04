@@ -14,6 +14,7 @@ SOURCES += \
     Customer.cpp \
     Employee.cpp \
     Human.cpp \
+    employee_signup.cpp \
     home.cpp \
     login_page.cpp \
     main.cpp \
@@ -24,13 +25,14 @@ HEADERS += \
     Customer.h \
     Employee.h \
     Human.h \
-    client2.h \
+    employee_signup.h \
     home.h \
     login_page.h \
     mainwindow.h \
     sign_up_page.h
 
 FORMS += \
+    employee_signup.ui \
     home.ui \
     login_page.ui \
     mainwindow.ui \

@@ -73,23 +73,16 @@ string Customer::get_phone_number()
 
 void Customer::sign_up()
 {
-    if(mkdir("database"))
+    string path = "database/customers.dat";
+    ofstream file;
+    file.open(path, ios::app | ios::binary);
+    if (file)
     {
-        string path = "database/" + this->username + ".dat";
-        ofstream file;
-        file.open(path, ios::out | ios::binary);
-        if (file)
-        {
-            file.write((char*)this, sizeof (Customer));
-        }
-        else
-        {
-            //error: file can not be opened!
-        }
-        file.close();
+        file.write((char*)this, sizeof (Customer));
     }
     else
     {
-        //error: directory can not be opened!
+        //error: file can not be opened!
     }
+    file.close();
 }

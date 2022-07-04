@@ -1,6 +1,10 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "home.h"
+#include <bits/stdc++.h>
+#include <iostream>
+#include <sys/stat.h>
+#include <sys/types.h>
 #include <QMessageBox>
 #include <QAbstractButton>
 #include <QTableWidget>
@@ -15,6 +19,8 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    mkdir("database");
 
     connect(this, SIGNAL(throw_error), this,SLOT(display_error));
 

@@ -12,8 +12,10 @@ private:
     string role;
     int employee_ID;
     int salary;
+    string username;
+    string password;
 public:
-    Employee(string f_name, string l_name, int a, int, string, int em_id = 0, int salary = 0);
+    Employee(string f_name, string l_name, int a, int id, string username, string password, string role = "", int salary = 0);
     ~Employee();
 
     void set_role(string);
