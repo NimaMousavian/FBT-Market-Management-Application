@@ -94,3 +94,10 @@ void Home::on_sign_up_push_clicked()
     mainWindow->setCentralWidget(signUpPage);
 }
 
+
+void Home::on_about_push_clicked()
+{
+    this->close();
+    mainWindow->employee_window();
+}
+

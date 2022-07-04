@@ -27,6 +27,9 @@ public:
 
     void customer_window();
     void set_customer_window_ui();
+
+    void employee_window();
+    void set_employee_window_ui();
 private:
     Ui::MainWindow *ui;
 
@@ -42,11 +45,23 @@ private:
     QToolBox * customerShopHistoryToolBox;
     QSpinBox * customerCredit;
 
+    //-------------- Employee window widgets ---------------
+    QTabWidget * employeeMaintab;
+    QTabWidget * employeeCategoryTab;
+    QTableWidget * employeeVandFTable;
+    QTableWidget * employeeDairyTable;
+    QTableWidget * employeeBeverageTable;
+    QTableWidget * employeeSnackTable;
+    QTableWidget * employeeNoneFoodTable;
+    QPushButton *employeeAddProduct;
+
+
 signals:
     void throw_error(QString);
     void throw_info(QString);
 public slots:
     void display_error(QString);
     void display_info(QString);
+    void employeeAddProductslt();
 };
 #endif // MAINWINDOW_H

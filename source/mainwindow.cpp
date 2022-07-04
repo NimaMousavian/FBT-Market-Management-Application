@@ -16,6 +16,7 @@
 #include <QLCDNumber>
 #include <QLabel>
 #include <QSpinBox>
+#include <QDialog>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -242,6 +243,176 @@ void MainWindow::set_customer_window_ui()
     this->setCentralWidget(customerMaintab);
 }
 
+void MainWindow::employee_window()
+{
+    set_employee_window_ui();
+
+    connect(employeeAddProduct,&QPushButton::clicked, this, &MainWindow::employeeAddProductslt);
+}
+
+void MainWindow::set_employee_window_ui()
+{
+    //--------------- vegetable and food table ----------------
+    QLineEdit * searchLe = new QLineEdit;
+    searchLe->setPlaceholderText(tr("Search by Name"));
+    QPushButton * searchPush = new QPushButton("Search");
+    searchPush->setStyleSheet("color: red");
+    QHBoxLayout * searchLayout = new QHBoxLayout;
+    searchLayout->addWidget(searchLe);
+    searchLayout->addWidget(searchPush);
+
+    employeeVandFTable = new QTableWidget;
+    employeeVandFTable->setEditTriggers(QAbstractItemView::NoEditTriggers);  // disable in-place editing
+    employeeVandFTable->setSelectionBehavior(QAbstractItemView::SelectRows);  // only rows can be selected, not columns or sells
+    employeeVandFTable->setSelectionMode(QAbstractItemView::SingleSelection);  // disable selection of multiple rows
+    employeeVandFTable->setColumnCount(4);  // assign the number of columns in the table
+    QStringList s;
+    s << tr("Name") << tr("Manufacturer") << tr("Price") << tr("Expiry Date") ;
+    employeeVandFTable->setHorizontalHeaderLabels(s);
+
+    QVBoxLayout *l = new QVBoxLayout;
+    l->addLayout(searchLayout);
+    l->addWidget(employeeVandFTable);
+    QGroupBox * gBox = new QGroupBox;
+    gBox->setLayout(l);
+
+
+    //--------------- Dairy table ---------------------
+
+    QLineEdit * searchLe2 = new QLineEdit;
+    searchLe2->setPlaceholderText(tr("Search by Name"));
+    QPushButton * searchPush2 = new QPushButton("Search");
+    searchPush2->setStyleSheet("color: red");
+    QHBoxLayout * searchLayout2 = new QHBoxLayout;
+    searchLayout2->addWidget(searchLe2);
+    searchLayout2->addWidget(searchPush2);
+
+    employeeDairyTable = new QTableWidget;
+    employeeDairyTable->setEditTriggers(QAbstractItemView::NoEditTriggers);  // disable in-place editing
+    employeeDairyTable->setSelectionBehavior(QAbstractItemView::SelectRows);  // only rows can be selected, not columns or sells
+    employeeDairyTable->setSelectionMode(QAbstractItemView::SingleSelection);  // disable selection of multiple rows
+    employeeDairyTable->setColumnCount(4);  // assign the number of columns in the table
+    QStringList s2;
+    s2 << tr("Name") << tr("Manufacturer") << tr("Price") << tr("Expiry Date") ;
+    employeeDairyTable->setHorizontalHeaderLabels(s2);
+
+    QVBoxLayout *l2 = new QVBoxLayout;
+    l2->addLayout(searchLayout2);
+    l2->addWidget(employeeDairyTable);
+    QGroupBox * gBox2 = new QGroupBox;
+    gBox2->setLayout(l2);
+
+
+    //-------------- Beverage table ---------------
+
+    QLineEdit * searchLe3 = new QLineEdit;
+    searchLe3->setPlaceholderText(tr("Search by Name"));
+    QPushButton * searchPush3 = new QPushButton("Search");
+    searchPush3->setStyleSheet("color: red");
+    QHBoxLayout * searchLayout3 = new QHBoxLayout;
+    searchLayout3->addWidget(searchLe3);
+    searchLayout3->addWidget(searchPush3);
+
+    employeeBeverageTable = new QTableWidget;
+    employeeBeverageTable->setEditTriggers(QAbstractItemView::NoEditTriggers);  // disable in-place editing
+    employeeBeverageTable->setSelectionBehavior(QAbstractItemView::SelectRows);  // only rows can be selected, not columns or sells
+    employeeBeverageTable->setSelectionMode(QAbstractItemView::SingleSelection);  // disable selection of multiple rows
+    employeeBeverageTable->setColumnCount(4);  // assign the number of columns in the table
+    QStringList s3;
+    s3 << tr("Name") << tr("Manufacturer") << tr("Price") << tr("Expiry Date") ;
+    employeeBeverageTable->setHorizontalHeaderLabels(s3);
+
+    QVBoxLayout *l3 = new QVBoxLayout;
+    l3->addLayout(searchLayout3);
+    l3->addWidget(employeeBeverageTable);
+    QGroupBox * gBox3 = new QGroupBox;
+    gBox3->setLayout(l3);
+
+
+    //---------------- Snack table --------------------
+
+    QLineEdit * searchLe4 = new QLineEdit;
+    searchLe4->setPlaceholderText(tr("Search by Name"));
+    QPushButton * searchPush4 = new QPushButton("Search");
+    searchPush4->setStyleSheet("color: red");
+    QHBoxLayout * searchLayout4 = new QHBoxLayout;
+    searchLayout4->addWidget(searchLe4);
+    searchLayout4->addWidget(searchPush4);
+
+    employeeSnackTable = new QTableWidget;
+    employeeSnackTable->setEditTriggers(QAbstractItemView::NoEditTriggers);  // disable in-place editing
+    employeeSnackTable->setSelectionBehavior(QAbstractItemView::SelectRows);  // only rows can be selected, not columns or sells
+    employeeSnackTable->setSelectionMode(QAbstractItemView::SingleSelection);  // disable selection of multiple rows
+    employeeSnackTable->setColumnCount(4);  // assign the number of columns in the table
+    QStringList s4;
+    s4 << tr("Name") << tr("Manufacturer") << tr("Price") << tr("Expiry Date") ;
+    employeeSnackTable->setHorizontalHeaderLabels(s4);
+
+    QVBoxLayout *l4 = new QVBoxLayout;
+    l4->addLayout(searchLayout4);
+    l4->addWidget(employeeSnackTable);
+    QGroupBox * gBox4 = new QGroupBox;
+    gBox4->setLayout(l4);
+
+
+    //------------------- None-Food table ------------------
+
+    QLineEdit * searchLe5 = new QLineEdit;
+    searchLe5->setPlaceholderText(tr("Search by Name"));
+    QPushButton * searchPush5 = new QPushButton("Search");
+    searchPush5->setStyleSheet("color: red");
+    QHBoxLayout * searchLayout5 = new QHBoxLayout;
+    searchLayout5->addWidget(searchLe5);
+    searchLayout5->addWidget(searchPush5);
+
+    employeeNoneFoodTable = new QTableWidget;
+    employeeNoneFoodTable->setEditTriggers(QAbstractItemView::NoEditTriggers);  // disable in-place editing
+    employeeNoneFoodTable->setSelectionBehavior(QAbstractItemView::SelectRows);  // only rows can be selected, not columns or sells
+    employeeNoneFoodTable->setSelectionMode(QAbstractItemView::SingleSelection);  // disable selection of multiple rows
+    employeeNoneFoodTable->setColumnCount(4);  // assign the number of columns in the table
+    QStringList s5;
+    s5 << tr("Name") << tr("Manufacturer") << tr("Price") << tr("Expiry Date") ;
+    employeeNoneFoodTable->setHorizontalHeaderLabels(s5);
+
+    QVBoxLayout *l5 = new QVBoxLayout;
+    l5->addLayout(searchLayout5);
+    l5->addWidget(employeeNoneFoodTable);
+    QGroupBox * gBox5 = new QGroupBox;
+    gBox5->setLayout(l5);
+
+
+    //---------------- Category tab ---------------
+    employeeCategoryTab = new QTabWidget;
+    employeeCategoryTab->addTab(gBox, "Vegatable and Fruit");
+    employeeCategoryTab->addTab(gBox2,"Dairy");
+    employeeCategoryTab->addTab(gBox3,"Beverage");
+    employeeCategoryTab->addTab(gBox4,"Snack");
+    employeeCategoryTab->addTab(gBox5, "None-Food");
+
+
+    employeeAddProduct = new QPushButton("Add Product");
+    QPushButton *removeProduct = new QPushButton("Remove Product");
+    QHBoxLayout *hh = new QHBoxLayout;
+    hh->addWidget(employeeAddProduct);
+    hh->addWidget(removeProduct);
+    hh->setAlignment(Qt::AlignLeft);
+    QVBoxLayout *vv = new QVBoxLayout;
+    vv->addWidget(employeeCategoryTab);
+    vv->addLayout(hh);
+
+    QGroupBox *gg = new QGroupBox;
+    gg->setLayout(vv);
+
+
+    //------------- Main tab ------------
+    employeeMaintab = new QTabWidget;
+    employeeMaintab->addTab(gg, "Shop Products");
+
+
+    this->setCentralWidget(employeeMaintab);
+
+}
+
 void MainWindow::display_error(QString msg)
 {
     QMessageBox * box = new QMessageBox(QMessageBox::Critical, "Error", msg, QMessageBox::Ok);
@@ -260,5 +431,11 @@ void MainWindow::display_info(QString msg)
     box->show();
     connect(box,&QMessageBox::buttonClicked,box,&QMessageBox::deleteLater, Qt::QueuedConnection);
     return;
+}
+
+void MainWindow::employeeAddProductslt()
+{
+    QDialog *dialog = new QDialog;
+    dialog->show();
 }
 
