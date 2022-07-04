@@ -19,6 +19,7 @@ SOURCES += \
     login_page.cpp \
     main.cpp \
     mainwindow.cpp \
+    product.cpp \
     sign_up_page.cpp
 
 HEADERS += \
@@ -29,6 +30,7 @@ HEADERS += \
     home.h \
     login_page.h \
     mainwindow.h \
+    product.h \
     sign_up_page.h
 
 FORMS += \
