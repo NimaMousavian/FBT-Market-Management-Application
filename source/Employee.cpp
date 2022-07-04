@@ -48,3 +48,8 @@ int Employee::get_salary()
 {
     return this->salary;
 }
+
+void Employee::sign_up()
+{
+
+}
