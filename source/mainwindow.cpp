@@ -84,7 +84,7 @@ void MainWindow::set_customer_window_ui()
     customerDairyTable->setColumnCount(4);  // assign the number of columns in the table
     QStringList s2;
     s2 << tr("Name") << tr("Manufacturer") << tr("Price") << tr("Expiry Date") ;
-    customerDairyTable->setHorizontalHeaderLabels(s);
+    customerDairyTable->setHorizontalHeaderLabels(s2);
 
     QVBoxLayout *l2 = new QVBoxLayout;
     l2->addLayout(searchLayout2);
@@ -109,7 +109,7 @@ void MainWindow::set_customer_window_ui()
     customerBeverageTable->setColumnCount(4);  // assign the number of columns in the table
     QStringList s3;
     s3 << tr("Name") << tr("Manufacturer") << tr("Price") << tr("Expiry Date") ;
-    customerBeverageTable->setHorizontalHeaderLabels(s);
+    customerBeverageTable->setHorizontalHeaderLabels(s3);
 
     QVBoxLayout *l3 = new QVBoxLayout;
     l3->addLayout(searchLayout3);
@@ -134,7 +134,7 @@ void MainWindow::set_customer_window_ui()
     customerSnackTable->setColumnCount(4);  // assign the number of columns in the table
     QStringList s4;
     s4 << tr("Name") << tr("Manufacturer") << tr("Price") << tr("Expiry Date") ;
-    customerSnackTable->setHorizontalHeaderLabels(s);
+    customerSnackTable->setHorizontalHeaderLabels(s4);
 
     QVBoxLayout *l4 = new QVBoxLayout;
     l4->addLayout(searchLayout4);
@@ -159,7 +159,7 @@ void MainWindow::set_customer_window_ui()
     customerNoneFoodTable->setColumnCount(4);  // assign the number of columns in the table
     QStringList s5;
     s5 << tr("Name") << tr("Manufacturer") << tr("Price") << tr("Expiry Date") ;
-    customerNoneFoodTable->setHorizontalHeaderLabels(s);
+    customerNoneFoodTable->setHorizontalHeaderLabels(s5);
 
     QVBoxLayout *l5 = new QVBoxLayout;
     l5->addLayout(searchLayout5);
@@ -182,10 +182,10 @@ void MainWindow::set_customer_window_ui()
     customerCartTable->setEditTriggers(QAbstractItemView::NoEditTriggers);  // disable in-place editing
     customerCartTable->setSelectionBehavior(QAbstractItemView::SelectRows);  // only rows can be selected, not columns or sells
     customerCartTable->setSelectionMode(QAbstractItemView::SingleSelection);  // disable selection of multiple rows
-    customerCartTable->setColumnCount(4);  // assign the number of columns in the table
+    customerCartTable->setColumnCount(5);  // assign the number of columns in the table
     QStringList s6;
     s6 << tr("Name") << tr("Category") << tr("Manufacturer") << tr("Price") << tr("Expiry Date") ;
-    customerCartTable->setHorizontalHeaderLabels(s);
+    customerCartTable->setHorizontalHeaderLabels(s6);
     //add buttons to purchase
 
     //------------------ Shop History ToolBox -------------

@@ -68,13 +68,15 @@ void Sign_up_page::on_sign_push_clicked()
 //        shared_ptr<Customer> b;
 //        b->set_username(ui->username_le->text().toStdString());
 //        shared_ptr<Human> user = static_pointer_cast<Customer> (b);
-        mainwindow->display_error("signup");
+        //mainwindow->display_error("signup");
+        this->close();
+        mainwindow->customer_window();
 
         //b->sign_up();
         //user.operator=(shared_ptr<Customer> (cu));
         //user->sign_up();
-        //    Human * u = cu;
-        //    u->sign_up();
+//            Human * u = cu;
+//            u->sign_up();
     }
     catch(...)
     {

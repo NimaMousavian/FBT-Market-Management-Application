@@ -29,7 +29,7 @@ public:
 private:
     Ui::MainWindow *ui;
 
-    //-------------- Customer window objects ---------
+    //-------------- Customer window widgets ------------
     QTabWidget * customerMaintab;
     QTabWidget * customerCategoryTab;
     QTableWidget * customerVandFTable;
