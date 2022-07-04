@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 <!-- Written by QtCreator 4.15.0, 2022-06-29T04:23:11. -->
 =======
 <!-- Written by QtCreator 4.15.0, 2022-07-04T15:04:12. -->
+>>>>>>> Stashed changes
+=======
+<!-- Written by QtCreator 4.15.0, 2022-07-04T14:48:28. -->
 >>>>>>> Stashed changes
 <qtcreator>
  <data>
@@ -298,8 +302,9 @@
     <valuelist type="QVariantList" key="CustomOutputParsers"/>
     <value type="int" key="PE.EnvironmentAspect.Base">2</value>
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:E:/FBT_project/f.b.t/FBT.pro</value>
-    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">E:/FBT_project/f.b.t/FBT.pro</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">FBT2</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:E:/FBT_project/f.b.t/source/FBT.pro</value>
+    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">E:/FBT_project/f.b.t/source/FBT.pro</value>
     <value type="bool" key="RunConfiguration.UseCppDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
     <value type="bool" key="RunConfiguration.UseLibrarySearchPath">true</value>
