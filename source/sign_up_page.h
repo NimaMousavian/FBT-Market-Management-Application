@@ -22,6 +22,8 @@ private slots:
 
     void on_back_push_clicked();
 
+    void on_comboBox_currentIndexChanged(int index);
+
 private:
     Ui::Sign_up_page *ui;
     MainWindow *mainwindow;

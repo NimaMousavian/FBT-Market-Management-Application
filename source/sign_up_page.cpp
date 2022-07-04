@@ -4,6 +4,7 @@
 #include "Employee.h"
 #include "Customer.h"
 #include "mainwindow.h"
+#include "employee_signup.h"
 #include <memory>
 
 Sign_up_page::Sign_up_page(MainWindow *mw,QWidget *parent) :
@@ -90,6 +91,17 @@ void Sign_up_page::on_back_push_clicked()
 {
     this->close();
     mainwindow->setCentralWidget(new Home(this->mainwindow));
+    return;
+}
+
+
+void Sign_up_page::on_comboBox_currentIndexChanged(int index)
+{
+    if (index == 1)
+    {
+        this->close();
+        mainwindow->setCentralWidget(new Employee_signup(this->mainwindow));
+    }
     return;
 }
 
