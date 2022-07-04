@@ -22,4 +22,6 @@ public:
     string get_first_name();
     string get_last_name();
 
+    virtual void sign_up() = 0;
+
 };

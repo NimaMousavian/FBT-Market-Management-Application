@@ -23,4 +23,6 @@ public:
     string get_role();
     int get_employee_ID();
     int get_salary();
+
+    virtual void sign_up();
 };

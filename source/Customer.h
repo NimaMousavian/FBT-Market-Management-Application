@@ -10,17 +10,22 @@ private:
     int customer_ID;
     string city;
     string address;
-    int phone_number;
+    string phone_number;
+    string username;
+    string password;
 public:
-    Customer(string, string, int, int, int, string, string, int);
+    Customer(string, string, int, int, string _username, string _password, string , string city = "", string address = "");
 
     void set_customer_id(int);
     void set_city(string);
     void set_address(string);
-    void set_phone_number(int);
+    void set_phone_number(string);
+    void set_username(string);
 
     int get_customer_id();
     string get_city();
     string get_address();
-    int get_phone_number();
+    string get_phone_number();
+
+    virtual void sign_up();
 };
