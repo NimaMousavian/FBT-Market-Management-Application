@@ -11,6 +11,7 @@
 #include <QPushButton>
 #include <QToolBox>
 #include <QSpinBox>
+#include "product.h"
 
 
 QT_BEGIN_NAMESPACE
@@ -30,6 +31,9 @@ public:
 
     void employee_window();
     void set_employee_window_ui();
+
+    void employee_add_product();
+    void display_shop_product(QTableWidget*, QString);
 private:
     Ui::MainWindow *ui;
 
@@ -62,6 +66,6 @@ signals:
 public slots:
     void display_error(QString);
     void display_info(QString);
-    void employeeAddProductslt();
+    void employeeAddProductdialog();
 };
 #endif // MAINWINDOW_H

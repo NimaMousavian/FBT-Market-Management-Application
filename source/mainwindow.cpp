@@ -3,6 +3,7 @@
 #include "home.h"
 #include <bits/stdc++.h>
 #include <iostream>
+#include <fstream>
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <QMessageBox>
@@ -17,6 +18,15 @@
 #include <QLabel>
 #include <QSpinBox>
 #include <QDialog>
+#include "employee_add_product_dialog.h"
+#include <vector>
+#include <QJsonObject>
+#include <QJsonArray>
+#include <QJsonDocument>
+#include <QFile>
+#include <QtDebug>
+
+using namespace std;
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -48,6 +58,11 @@ MainWindow::~MainWindow()
 void MainWindow::customer_window()
 {
     set_customer_window_ui();
+    display_shop_product(customerVandFTable, "Vegetable and Fruit");
+    display_shop_product(customerDairyTable, "Dairy");
+    display_shop_product(customerBeverageTable, "Beverage");
+    display_shop_product(customerSnackTable, "Snack");
+    display_shop_product(customerNoneFoodTable, "None-Food");
 
 }
 
@@ -247,7 +262,13 @@ void MainWindow::employee_window()
 {
     set_employee_window_ui();
 
-    connect(employeeAddProduct,&QPushButton::clicked, this, &MainWindow::employeeAddProductslt);
+    connect(employeeAddProduct,&QPushButton::clicked, this, &MainWindow::employeeAddProductdialog);
+
+    display_shop_product(employeeVandFTable, "Vegetable and Fruit");
+    display_shop_product(employeeDairyTable, "Dairy");
+    display_shop_product(employeeBeverageTable, "Beverage");
+    display_shop_product(employeeSnackTable, "Snack");
+    display_shop_product(employeeNoneFoodTable, "None-Food");
 }
 
 void MainWindow::set_employee_window_ui()
@@ -413,6 +434,62 @@ void MainWindow::set_employee_window_ui()
 
 }
 
+void MainWindow::employee_add_product()
+{
+    QFile f("database/shopproducts.json");
+    f.open(QIODevice::ReadOnly);
+    QByteArray b = f.readAll();
+    QJsonDocument d = QJsonDocument::fromJson(b);
+    QJsonObject o = d.object();
+
+    foreach (QJsonValue x, o["Products"].toArray())
+    {
+        if(x["Category"].toString() == "Vegetable and Fruit")
+            display_shop_product(employeeVandFTable, "Vegetable and Fruit");
+        else if(x["Category"].toString() == "Dairy")
+            display_shop_product(employeeDairyTable, "Dairy");
+        else if(x["Category"].toString() == "Beverage")
+            display_shop_product(employeeBeverageTable, "Beverage");
+        else if(x["Category"].toString() == "Snack")
+            display_shop_product(employeeSnackTable, "Snack");
+        else if(x["Category"].toString() == "None-Food")
+            display_shop_product(employeeNoneFoodTable, "None-Food");
+    }
+
+
+}
+
+void MainWindow::display_shop_product(QTableWidget *table, QString category)
+{
+    QFile f("database/shopproducts.json");
+    f.open(QIODevice::ReadOnly);
+    QByteArray b = f.readAll();
+    QJsonDocument d = QJsonDocument::fromJson(b);
+    QJsonObject o = d.object();
+
+    int counter=0;
+    vector<Product> vec;
+
+    foreach (QJsonValue x, o["Products"].toArray())
+    {
+        if(x["Category"].toString() == category)
+            counter++;
+    }
+    table->setRowCount(counter);
+    counter = 0;
+    foreach (QJsonValue x, o["Products"].toArray())
+    {
+        if(x["Category"].toString() == category)
+        {
+            table->setItem(counter, 0, new QTableWidgetItem(x["Name"].toString()));
+            table->setItem(counter, 1, new QTableWidgetItem(x["Manufacturer"].toString()));
+            table->setItem(counter, 2, new QTableWidgetItem(QString::number(x["Price"].toInt())));
+            table->setItem(counter, 3, new QTableWidgetItem(x["Expiry date"].toString()));
+            counter++;
+        }
+    }
+}
+
 void MainWindow::display_error(QString msg)
 {
     QMessageBox * box = new QMessageBox(QMessageBox::Critical, "Error", msg, QMessageBox::Ok);
@@ -433,9 +510,9 @@ void MainWindow::display_info(QString msg)
     return;
 }
 
-void MainWindow::employeeAddProductslt()
+void MainWindow::employeeAddProductdialog()
 {
-    QDialog *dialog = new QDialog;
+    employee_add_product_dialog *dialog = new employee_add_product_dialog(this);
     dialog->show();
 }
 
