@@ -24,13 +24,13 @@ Home::Home(MainWindow * mw,QWidget *parent) :
 
     //----------------- set icons ---------------------
 
-    ui->exit_push->setIcon(QIcon("E:/C++_T2/FBT_Gui/icons/exit.png"));
+    ui->exit_push->setIcon(QIcon(":/exit.png"));
     ui->exit_push->setIconSize(QSize(40,40));
-    ui->about_push->setIcon(QIcon("E:/C++_T2/FBT_Gui/icons/about.png"));
+    ui->about_push->setIcon(QIcon(":/about.png"));
     ui->about_push->setIconSize(QSize(40,40));
-    ui->login_push->setIcon(QIcon("E:/C++_T2/FBT_Gui/icons/login2.png"));
+    ui->login_push->setIcon(QIcon(":/login2.png"));
     ui->login_push->setIconSize(QSize(50,50));
-    ui->sign_up_push->setIcon(QIcon("E:/C++_T2/FBT_Gui/icons/signup.png"));
+    ui->sign_up_push->setIcon(QIcon(":/signup.png"));
     ui->sign_up_push->setIconSize(QSize(60,60));
 
 

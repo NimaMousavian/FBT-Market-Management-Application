@@ -47,3 +47,55 @@ FORMS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES += \
+    ../icons/icons.qrc \
+    ../icons/icons.qrc \
+    ../images/images.qrc
+
+DISTFILES += \
+    ../icons/about.png \
+    ../icons/add.png \
+    ../icons/barcode.png \
+    ../icons/barcode_scanner.png \
+    ../icons/cancel.png \
+    ../icons/cash_register.png \
+    ../icons/category.png \
+    ../icons/clear.png \
+    ../icons/delivery.png \
+    ../icons/dollar.png \
+    ../icons/download.png \
+    ../icons/edit.png \
+    ../icons/english.png \
+    ../icons/exit.png \
+    ../icons/export.png \
+    ../icons/file.png \
+    ../icons/forgot_password.png \
+    ../icons/go back.png \
+    ../icons/help.png \
+    ../icons/import.png \
+    ../icons/language.png \
+    ../icons/login.png \
+    ../icons/login2.png \
+    ../icons/manual.png \
+    ../icons/nepali.png \
+    ../icons/ok.png \
+    ../icons/password.png \
+    ../icons/pos.png \
+    ../icons/print.png \
+    ../icons/product.png \
+    ../icons/receipt.png \
+    ../icons/remove.png \
+    ../icons/sales.png \
+    ../icons/search.png \
+    ../icons/signup.png \
+    ../icons/store.png \
+    ../icons/support.png \
+    ../icons/trolley.png \
+    ../icons/user_add.png \
+    ../icons/user_edit.png \
+    ../icons/user_menu.png \
+    ../icons/user_ok.png \
+    ../icons/user_remove.png \
+    ../icons/users.png \
+    ../icons/warehouse.png

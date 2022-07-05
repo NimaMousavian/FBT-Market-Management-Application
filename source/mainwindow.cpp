@@ -40,10 +40,10 @@ MainWindow::MainWindow(QWidget *parent)
 
     this->setWindowTitle("Hyper Market Manager System");
     this->setCentralWidget(new Home(this));
-    this->setWindowIcon(QIcon("E:\\C++_T2\\FBT_Gui\\icons\\store.png"));
+    this->setWindowIcon(QIcon(":/store.png"));
 
 
-    QPixmap bkgnd("E:/FBT_project/f.b.t/images/image2.jpg");
+    QPixmap bkgnd(":/image2.jpg");
     bkgnd = bkgnd.scaled(this->size(), Qt::IgnoreAspectRatio);
     QPalette palette;
     palette.setBrush(QPalette::Background, bkgnd);

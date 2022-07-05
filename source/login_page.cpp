@@ -11,8 +11,8 @@ Login_page::Login_page(MainWindow *mw,QWidget *parent) :
 
     //----------------- set push buttons icons ------------------
 
-    ui->back_push->setIcon(QIcon("E:/C++_T2/FBT_Gui/icons/go back.png"));
-    ui->login_push->setIcon(QIcon("E:/C++_T2/FBT_Gui/icons/login2.png"));
+    ui->back_push->setIcon(QIcon(":/go back.png"));
+    ui->login_push->setIcon(QIcon(":/login2.png"));
     ui->login_push->setIconSize(QSize(90,90));
 
     //----------------- set push buttons stylesheet -------------------

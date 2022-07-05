@@ -1,0 +1,50 @@
+<RCC>
+    <qresource prefix="/">
+        <file>about.png</file>
+        <file>add.png</file>
+        <file>barcode.png</file>
+        <file>barcode_scanner.png</file>
+        <file>cancel.png</file>
+        <file>cash_register.png</file>
+        <file>category.png</file>
+        <file>clear.png</file>
+        <file>delivery.png</file>
+        <file>dollar.png</file>
+        <file>download.png</file>
+        <file>edit.png</file>
+        <file>english.png</file>
+        <file>exit.png</file>
+        <file>export.png</file>
+        <file>file.png</file>
+        <file>forgot_password.png</file>
+        <file>go back.png</file>
+        <file>help.png</file>
+        <file>icons.qrc</file>
+        <file>import.png</file>
+        <file>language.png</file>
+        <file>login.png</file>
+        <file>login2.png</file>
+        <file>manual.png</file>
+        <file>nepali.png</file>
+        <file>ok.png</file>
+        <file>password.png</file>
+        <file>pos.png</file>
+        <file>print.png</file>
+        <file>product.png</file>
+        <file>receipt.png</file>
+        <file>remove.png</file>
+        <file>sales.png</file>
+        <file>search.png</file>
+        <file>signup.png</file>
+        <file>store.png</file>
+        <file>support.png</file>
+        <file>trolley.png</file>
+        <file>user_add.png</file>
+        <file>user_edit.png</file>
+        <file>user_menu.png</file>
+        <file>user_ok.png</file>
+        <file>user_remove.png</file>
+        <file>users.png</file>
+        <file>warehouse.png</file>
+    </qresource>
+</RCC>

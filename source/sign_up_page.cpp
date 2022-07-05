@@ -16,8 +16,8 @@ Sign_up_page::Sign_up_page(MainWindow *mw,QWidget *parent) :
 
     //----------------- set push buttons icons ------------------
 
-    ui->back_push->setIcon(QIcon("E:/C++_T2/FBT_Gui/icons/go back.png"));
-    ui->sign_push->setIcon(QIcon("E:/C++_T2/FBT_Gui/icons/signup.png"));
+    ui->back_push->setIcon(QIcon(":/go back.png"));
+    ui->sign_push->setIcon(QIcon(":/signup.png"));
     ui->sign_push->setIconSize(QSize(90,90));
 
     //----------------- set push buttons stylesheet -------------------
