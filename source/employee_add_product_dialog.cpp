@@ -23,6 +23,9 @@ void employee_add_product_dialog::on_pushButton_clicked()
 {
     //------------ controls before add ----------
 
+    if (ui->name_le->text().isEmpty() || ui->exp_le->text().isEmpty() || ui->manu_le->text().isEmpty() || ui->price_spin->value()==0)
+        mainwindow->display_error("Please fill out required fields.");
+
     //------------ add product ----------------
     QFile f("database/shopproducts.json");
     f.open(QIODevice::ReadOnly);

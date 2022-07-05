@@ -25,10 +25,10 @@
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>300</x>
-     <y>140</y>
-     <width>351</width>
-     <height>161</height>
+     <x>310</x>
+     <y>60</y>
+     <width>361</width>
+     <height>221</height>
     </rect>
    </property>
    <property name="font">
@@ -41,7 +41,13 @@
     <string notr="true"/>
    </property>
    <property name="text">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; color:#4b93ff;&quot;&gt;FBT Market&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="../images/images.qrc">:/photo_2022-07-05_02-07-49.jpg</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
    </property>
   </widget>
   <widget class="QPushButton" name="sign_up_push">
@@ -141,6 +147,9 @@
    </property>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="../images/images.qrc"/>
+  <include location="../images/images.qrc"/>
+ </resources>
  <connections/>
 </ui>

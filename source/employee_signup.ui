@@ -61,7 +61,7 @@
      <x>90</x>
      <y>340</y>
      <width>178</width>
-     <height>64</height>
+     <height>70</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_4">
@@ -73,7 +73,7 @@
        </font>
       </property>
       <property name="text">
-       <string>Last Name:</string>
+       <string>Last Name * :</string>
       </property>
      </widget>
     </item>
@@ -94,7 +94,7 @@
      <x>90</x>
      <y>180</y>
      <width>178</width>
-     <height>64</height>
+     <height>70</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -106,7 +106,7 @@
        </font>
       </property>
       <property name="text">
-       <string>First Nmae:</string>
+       <string>First Nmae * :</string>
       </property>
      </widget>
     </item>
@@ -130,7 +130,7 @@
      <x>90</x>
      <y>500</y>
      <width>181</width>
-     <height>64</height>
+     <height>70</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -142,7 +142,7 @@
        </font>
       </property>
       <property name="text">
-       <string>Age:</string>
+       <string>Age * :</string>
       </property>
      </widget>
     </item>
@@ -169,7 +169,7 @@
      <x>390</x>
      <y>270</y>
      <width>181</width>
-     <height>64</height>
+     <height>70</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_6">
@@ -181,7 +181,7 @@
        </font>
       </property>
       <property name="text">
-       <string>ID Number:</string>
+       <string>ID Number * :</string>
       </property>
      </widget>
     </item>
@@ -204,8 +204,8 @@
     <rect>
      <x>740</x>
      <y>500</y>
-     <width>178</width>
-     <height>64</height>
+     <width>185</width>
+     <height>70</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_10">
@@ -217,7 +217,7 @@
        </font>
       </property>
       <property name="text">
-       <string>Confirm Password:</string>
+       <string>Confirm Password * :</string>
       </property>
      </widget>
     </item>
@@ -238,7 +238,7 @@
      <x>740</x>
      <y>180</y>
      <width>178</width>
-     <height>64</height>
+     <height>70</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_8">
@@ -250,7 +250,7 @@
        </font>
       </property>
       <property name="text">
-       <string>Username:</string>
+       <string>Username * :</string>
       </property>
      </widget>
     </item>
@@ -271,7 +271,7 @@
      <x>740</x>
      <y>340</y>
      <width>178</width>
-     <height>64</height>
+     <height>70</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -283,7 +283,7 @@
        </font>
       </property>
       <property name="text">
-       <string>Password:</string>
+       <string>Password * :</string>
       </property>
      </widget>
     </item>
@@ -358,39 +358,6 @@
      <string>Employee</string>
     </property>
    </item>
-  </widget>
-  <widget class="QWidget" name="">
-   <property name="geometry">
-    <rect>
-     <x>390</x>
-     <y>450</y>
-     <width>181</width>
-     <height>71</height>
-    </rect>
-   </property>
-   <layout class="QVBoxLayout" name="verticalLayout_2">
-    <item>
-     <widget class="QLabel" name="label_5">
-      <property name="font">
-       <font>
-        <pointsize>15</pointsize>
-       </font>
-      </property>
-      <property name="text">
-       <string>Role:</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QComboBox" name="role_combo">
-      <property name="font">
-       <font>
-        <pointsize>13</pointsize>
-       </font>
-      </property>
-     </widget>
-    </item>
-   </layout>
   </widget>
  </widget>
  <resources/>

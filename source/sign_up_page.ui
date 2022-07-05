@@ -61,7 +61,7 @@
      <x>60</x>
      <y>270</y>
      <width>178</width>
-     <height>64</height>
+     <height>70</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_4">
@@ -73,7 +73,7 @@
        </font>
       </property>
       <property name="text">
-       <string>Last Name:</string>
+       <string>Last Name * :</string>
       </property>
      </widget>
     </item>
@@ -94,7 +94,7 @@
      <x>60</x>
      <y>400</y>
      <width>171</width>
-     <height>64</height>
+     <height>70</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -106,7 +106,7 @@
        </font>
       </property>
       <property name="text">
-       <string>Age:</string>
+       <string>Age * :</string>
       </property>
      </widget>
     </item>
@@ -133,7 +133,7 @@
      <x>360</x>
      <y>150</y>
      <width>178</width>
-     <height>64</height>
+     <height>70</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -165,8 +165,8 @@
     <rect>
      <x>730</x>
      <y>470</y>
-     <width>178</width>
-     <height>64</height>
+     <width>185</width>
+     <height>70</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_10">
@@ -178,7 +178,7 @@
        </font>
       </property>
       <property name="text">
-       <string>Confirm Password:</string>
+       <string>Confirm Password * :</string>
       </property>
      </widget>
     </item>
@@ -199,7 +199,7 @@
      <x>730</x>
      <y>150</y>
      <width>178</width>
-     <height>64</height>
+     <height>70</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_8">
@@ -211,7 +211,7 @@
        </font>
       </property>
       <property name="text">
-       <string>Username:</string>
+       <string>Username * :</string>
       </property>
      </widget>
     </item>
@@ -265,7 +265,7 @@
      <x>730</x>
      <y>310</y>
      <width>178</width>
-     <height>64</height>
+     <height>70</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -277,7 +277,7 @@
        </font>
       </property>
       <property name="text">
-       <string>Password:</string>
+       <string>Password * :</string>
       </property>
      </widget>
     </item>
@@ -298,7 +298,7 @@
      <x>360</x>
      <y>470</y>
      <width>178</width>
-     <height>64</height>
+     <height>70</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -331,7 +331,7 @@
      <x>60</x>
      <y>150</y>
      <width>178</width>
-     <height>64</height>
+     <height>70</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -343,7 +343,7 @@
        </font>
       </property>
       <property name="text">
-       <string>First Nmae:</string>
+       <string>First Nmae * :</string>
       </property>
      </widget>
     </item>
@@ -367,7 +367,7 @@
      <x>60</x>
      <y>530</y>
      <width>171</width>
-     <height>64</height>
+     <height>70</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_6">
@@ -379,7 +379,7 @@
        </font>
       </property>
       <property name="text">
-       <string>ID Number:</string>
+       <string>ID Number * :</string>
       </property>
      </widget>
     </item>

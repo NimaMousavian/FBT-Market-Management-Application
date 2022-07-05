@@ -1,7 +1,7 @@
 <RCC>
     <qresource prefix="/">
         <file>image2.jpg</file>
-        <file>image3.gif</file>
         <file>images.qrc</file>
+        <file>photo_2022-07-05_02-07-49.jpg</file>
     </qresource>
 </RCC>
