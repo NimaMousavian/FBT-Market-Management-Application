@@ -67,5 +67,6 @@ public slots:
     void display_error(QString);
     void display_info(QString);
     void employeeAddProductdialog();
+    void customerAddToCart(QTableWidget*);
 };
 #endif // MAINWINDOW_H

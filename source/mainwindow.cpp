@@ -25,6 +25,9 @@
 #include <QJsonDocument>
 #include <QFile>
 #include <QtDebug>
+#include <QModelIndexList>
+#include <QModelIndex>
+#include <QItemSelectionModel>
 
 using namespace std;
 
@@ -76,6 +79,11 @@ void MainWindow::set_customer_window_ui()
     QHBoxLayout * searchLayout = new QHBoxLayout;
     searchLayout->addWidget(searchLe);
     searchLayout->addWidget(searchPush);
+    QPushButton * addToCartPush = new QPushButton("Add to cart");
+    QHBoxLayout * addLayout = new QHBoxLayout;
+    addLayout->addWidget(addToCartPush);
+    addLayout->setAlignment(Qt::AlignLeft);
+    connect(addToCartPush,&QPushButton::clicked,this,[this]{customerAddToCart(customerVandFTable);});
 
     customerVandFTable = new QTableWidget;
     customerVandFTable->setEditTriggers(QAbstractItemView::NoEditTriggers);  // disable in-place editing
@@ -89,6 +97,7 @@ void MainWindow::set_customer_window_ui()
     QVBoxLayout *l = new QVBoxLayout;
     l->addLayout(searchLayout);
     l->addWidget(customerVandFTable);
+    l->addLayout(addLayout);
     QGroupBox * gBox = new QGroupBox;
     gBox->setLayout(l);
 
@@ -101,6 +110,12 @@ void MainWindow::set_customer_window_ui()
     QHBoxLayout * searchLayout2 = new QHBoxLayout;
     searchLayout2->addWidget(searchLe2);
     searchLayout2->addWidget(searchPush2);
+    QPushButton * addToCartPush2 = new QPushButton("Add to cart");
+    QHBoxLayout * addLayout2 = new QHBoxLayout;
+    addLayout2->addWidget(addToCartPush2);
+    addLayout2->setAlignment(Qt::AlignLeft);
+    connect(addToCartPush2,&QPushButton::clicked,this,[this]{customerAddToCart(customerDairyTable);});
+
 
     customerDairyTable = new QTableWidget;
     customerDairyTable->setEditTriggers(QAbstractItemView::NoEditTriggers);  // disable in-place editing
@@ -114,6 +129,7 @@ void MainWindow::set_customer_window_ui()
     QVBoxLayout *l2 = new QVBoxLayout;
     l2->addLayout(searchLayout2);
     l2->addWidget(customerDairyTable);
+    l2->addLayout(addLayout2);
     QGroupBox * gBox2 = new QGroupBox;
     gBox2->setLayout(l2);
 
@@ -126,6 +142,11 @@ void MainWindow::set_customer_window_ui()
     QHBoxLayout * searchLayout3 = new QHBoxLayout;
     searchLayout3->addWidget(searchLe3);
     searchLayout3->addWidget(searchPush3);
+    QPushButton * addToCartPush3 = new QPushButton("Add to cart");
+    QHBoxLayout * addLayout3 = new QHBoxLayout;
+    addLayout3->addWidget(addToCartPush3);
+    addLayout3->setAlignment(Qt::AlignLeft);
+    connect(addToCartPush3,&QPushButton::clicked,this,[this]{customerAddToCart(customerBeverageTable);});
 
     customerBeverageTable = new QTableWidget;
     customerBeverageTable->setEditTriggers(QAbstractItemView::NoEditTriggers);  // disable in-place editing
@@ -139,6 +160,7 @@ void MainWindow::set_customer_window_ui()
     QVBoxLayout *l3 = new QVBoxLayout;
     l3->addLayout(searchLayout3);
     l3->addWidget(customerBeverageTable);
+    l3->addLayout(addLayout3);
     QGroupBox * gBox3 = new QGroupBox;
     gBox3->setLayout(l3);
 
@@ -151,6 +173,11 @@ void MainWindow::set_customer_window_ui()
     QHBoxLayout * searchLayout4 = new QHBoxLayout;
     searchLayout4->addWidget(searchLe4);
     searchLayout4->addWidget(searchPush4);
+    QPushButton * addToCartPush4 = new QPushButton("Add to cart");
+    QHBoxLayout * addLayout4 = new QHBoxLayout;
+    addLayout4->addWidget(addToCartPush4);
+    addLayout4->setAlignment(Qt::AlignLeft);
+    connect(addToCartPush4,&QPushButton::clicked,this,[this]{customerAddToCart(customerSnackTable);});
 
     customerSnackTable = new QTableWidget;
     customerSnackTable->setEditTriggers(QAbstractItemView::NoEditTriggers);  // disable in-place editing
@@ -164,6 +191,7 @@ void MainWindow::set_customer_window_ui()
     QVBoxLayout *l4 = new QVBoxLayout;
     l4->addLayout(searchLayout4);
     l4->addWidget(customerSnackTable);
+    l4->addLayout(addLayout4);
     QGroupBox * gBox4 = new QGroupBox;
     gBox4->setLayout(l4);
 
@@ -176,6 +204,11 @@ void MainWindow::set_customer_window_ui()
     QHBoxLayout * searchLayout5 = new QHBoxLayout;
     searchLayout5->addWidget(searchLe5);
     searchLayout5->addWidget(searchPush5);
+    QPushButton * addToCartPush5 = new QPushButton("Add to cart");
+    QHBoxLayout * addLayout5 = new QHBoxLayout;
+    addLayout5->addWidget(addToCartPush5);
+    addLayout5->setAlignment(Qt::AlignLeft);
+    connect(addToCartPush5,&QPushButton::clicked,this,[this]{customerAddToCart(customerNoneFoodTable);});
 
     customerNoneFoodTable = new QTableWidget;
     customerNoneFoodTable->setEditTriggers(QAbstractItemView::NoEditTriggers);  // disable in-place editing
@@ -189,6 +222,7 @@ void MainWindow::set_customer_window_ui()
     QVBoxLayout *l5 = new QVBoxLayout;
     l5->addLayout(searchLayout5);
     l5->addWidget(customerNoneFoodTable);
+    l5->addLayout(addLayout5);
     QGroupBox * gBox5 = new QGroupBox;
     gBox5->setLayout(l5);
 
@@ -493,7 +527,8 @@ void MainWindow::display_shop_product(QTableWidget *table, QString category)
 void MainWindow::display_error(QString msg)
 {
     QMessageBox * box = new QMessageBox(QMessageBox::Critical, "Error", msg, QMessageBox::Ok);
-    box->button(QMessageBox::Ok)->setIcon(QIcon("E:/FBT_project/f.b.t/icons/ok.png"));
+    box->button(QMessageBox::Ok)->setIcon(QIcon(":/ok.png"));
+    box->setWindowIcon(QIcon(":/store.png"));
     box->setMinimumWidth(300);
     box->show();
     connect(box,&QMessageBox::buttonClicked,box,&QMessageBox::deleteLater, Qt::QueuedConnection);
@@ -502,8 +537,9 @@ void MainWindow::display_error(QString msg)
 
 void MainWindow::display_info(QString msg)
 {
-    QMessageBox * box = new QMessageBox(QMessageBox::Information, "Error", msg, QMessageBox::Ok);
-    box->button(QMessageBox::Ok)->setIcon(QIcon("E:/FBT_project/f.b.t/icons/ok.png"));
+    QMessageBox * box = new QMessageBox(QMessageBox::Information, "Information", msg, QMessageBox::Ok);
+    box->button(QMessageBox::Ok)->setIcon(QIcon(":/ok.png"));
+    box->setWindowIcon(QIcon(":/store.png"));
     box->setFixedSize(QSize(300,200));
     box->show();
     connect(box,&QMessageBox::buttonClicked,box,&QMessageBox::deleteLater, Qt::QueuedConnection);
@@ -514,5 +550,43 @@ void MainWindow::employeeAddProductdialog()
 {
     employee_add_product_dialog *dialog = new employee_add_product_dialog(this);
     dialog->show();
+}
+
+void MainWindow::customerAddToCart(QTableWidget* sourceTable)
+{
+    QString category;
+    if (sourceTable == customerVandFTable)
+        category = "Vagetable and Fruit";
+    else if (sourceTable == customerDairyTable)
+        category = "Dairy";
+    else if (sourceTable == customerBeverageTable)
+        category = "Beverage";
+    else if (sourceTable == customerSnackTable)
+        category = "Snack";
+    else if (sourceTable == customerNoneFoodTable)
+        category = "None-Food";
+
+    QItemSelectionModel  *s = sourceTable->selectionModel();
+    QModelIndexList  selectedRows = s->selectedRows();
+    if (selectedRows.size() > 0)
+    {
+        int row = selectedRows.first().row();
+        QString name = sourceTable->item(row, 0)->text();
+        QString manufacturer = sourceTable->item(row, 1)->text();
+        QString price = sourceTable->item(row, 2)->text();
+        QString expDate = sourceTable->item(row, 3)->text();
+        customerCartTable->insertRow(customerCartTable->rowCount());
+        customerCartTable->setItem(customerCartTable->rowCount()-1,0, new QTableWidgetItem(name));
+        customerCartTable->setItem(customerCartTable->rowCount()-1,1, new QTableWidgetItem(category));
+        customerCartTable->setItem(customerCartTable->rowCount()-1,2, new QTableWidgetItem(manufacturer));
+        customerCartTable->setItem(customerCartTable->rowCount()-1,3, new QTableWidgetItem(price));
+        customerCartTable->setItem(customerCartTable->rowCount()-1,4, new QTableWidgetItem(expDate));
+        sourceTable->clearSelection();
+    }
+    else
+    {
+        this->display_info("Please select a product!");
+    }
+    return;
 }
 
