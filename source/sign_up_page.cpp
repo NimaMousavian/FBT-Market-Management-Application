@@ -60,6 +60,17 @@ void Sign_up_page::on_sign_push_clicked()
 {
     //-------------- controls befor signUp -------------------------
 
+    if (ui->username_le->text().isEmpty() || ui->firstNmae_le->text().isEmpty() || ui->lastNmae_le->text().isEmpty() || ui->confPassword_le->text().isEmpty() || ui->password_le->text().isEmpty() || ui->idNumber_spin->value()==0 || ui->age_spin->value()==1)
+        mainwindow->display_error("Please fill out required fields.");
+
+    else
+    {
+        QString pass=ui->password_le->text();
+        QString con_pass=ui->confPassword_le->text();
+        if (QString::compare(pass,con_pass,Qt::CaseInsensitive))
+            mainwindow->display_error("password doesn't match");
+    }
+
 
     //-------------- signing up --------------------------
     try

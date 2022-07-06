@@ -41,7 +41,7 @@
     <string notr="true"/>
    </property>
    <property name="text">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; color:#4b93ff;&quot;&gt;FBT Market&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    <string>FBT Market</string>
    </property>
   </widget>
   <widget class="QPushButton" name="sign_up_push">
