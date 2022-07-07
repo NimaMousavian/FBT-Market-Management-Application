@@ -32,6 +32,8 @@
 
 using namespace std;
 
+//QJsonObject * user = new QJsonObject;
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -67,6 +69,8 @@ void MainWindow::customer_window()
     display_shop_product(customerBeverageTable, "Beverage");
     display_shop_product(customerSnackTable, "Snack");
     display_shop_product(customerNoneFoodTable, "None-Food");
+
+    customer_load_purchases();
 
 }
 
@@ -264,11 +268,6 @@ void MainWindow::set_customer_window_ui()
     //------------------ Shop History ToolBox -------------
 
     customerShopHistoryToolBox = new QToolBox;
-    // example
-//    QTableWidget *t = new QTableWidget(1,4);
-//    QPushButton *b = new QPushButton("ssss");
-//    customerShopHistoryToolBox->addItem(b,"purchase 1");
-//    customerShopHistoryToolBox->addItem(t,"purchase 2");
 
     //------------------- wallet tab --------------------
 
@@ -281,6 +280,8 @@ void MainWindow::set_customer_window_ui()
 
     QPushButton *increasCredit = new QPushButton("increas credit");
     increasCredit->setStyleSheet("font-size: 12px;");
+    connect(increasCredit, &QPushButton::clicked, [this]{increase_credit();});
+
     QHBoxLayout * icLayout = new QHBoxLayout;
     icLayout->addWidget(increasCredit);
     icLayout->setAlignment(Qt::AlignLeft);
@@ -556,6 +557,12 @@ void MainWindow::set_customer_credit(int a)
 
 void MainWindow::add_purchase_to_history(int payment, int discount, int payout)
 {
+    QJsonObject purchaseJson;
+    purchaseJson["payment"] = payment;
+    purchaseJson["discount"] = discount;
+    purchaseJson["payout"] = payout;
+    QJsonArray productsArray;
+
     QTableWidget * purchase = new QTableWidget;
     purchase->setEditTriggers(QAbstractItemView::NoEditTriggers);  // disable in-place editing
     purchase->setSelectionBehavior(QAbstractItemView::SelectRows);  // only rows can be selected, not columns or sells
@@ -568,12 +575,58 @@ void MainWindow::add_purchase_to_history(int payment, int discount, int payout)
     purchase->setRowCount(customerCartTable->rowCount());
     for (int i=0; i<customerCartTable->rowCount(); i++)
     {
+        QJsonObject productJson;
         purchase->setItem(i,0, new QTableWidgetItem(customerCartTable->item(i,0)->text()));
+        productJson["name"] = customerCartTable->item(i,0)->text();
         purchase->setItem(i,1, new QTableWidgetItem(customerCartTable->item(i,1)->text()));
+        productJson["category"] = customerCartTable->item(i,1)->text();
         purchase->setItem(i,2, new QTableWidgetItem(customerCartTable->item(i,2)->text()));
+        productJson["manufacturer"] = customerCartTable->item(i,2)->text();
         purchase->setItem(i,3, new QTableWidgetItem(customerCartTable->item(i,3)->text()));
+        productJson["price"] = customerCartTable->item(i,3)->text().toInt();
         purchase->setItem(i,4, new QTableWidgetItem(customerCartTable->item(i,4)->text()));
+        productJson["expiry date"] = customerCartTable->item(i,4)->text();
+        productsArray.append(productJson);
     }
+
+    purchaseJson["products"] = productsArray;
+
+    //-----------writing in file--------
+    QString path = "database/customers/" + this->username +".json";
+
+    QFile f(path);
+    f.open(QIODevice::ReadOnly);
+    if(f.isOpen())
+    {
+        QByteArray b = f.readAll();
+        QJsonDocument d = QJsonDocument::fromJson(b);
+        QJsonObject o = d.object();
+        QJsonArray p = o["purchases"].toArray();
+        QJsonArray invoices = p;
+        invoices.append(purchaseJson);
+        QJsonObject v;
+        v["purchases"] = invoices;
+        QJsonDocument u(v);
+        QFile w(path);
+        w.open(QIODevice::WriteOnly);
+        w.write(u.toJson());
+        w.close();
+    }
+    else
+    {
+        QFile z(path);
+        z.open(QIODevice::WriteOnly);
+
+        QJsonObject j;
+        QJsonArray purchaseArray;
+        purchaseArray.append(purchaseJson);
+        j["purchases"] = purchaseArray;
+
+        QJsonDocument d(j);
+        z.write(d.toJson());
+        z.close();
+    }
+    //-----------------------------------
 
     QLabel * paymentLabel = new QLabel("Payment: ");
     QSpinBox * paymentSpin = new QSpinBox;
@@ -723,6 +776,87 @@ void MainWindow::employee_load_invoices()
     }
 }
 
+void MainWindow::customer_load_purchases()
+{
+    QString path = "database/customers/" + this->username + ".json";
+    QFile f(path);
+    f.open(QIODevice::ReadOnly);
+    QByteArray b = f.readAll();
+    QJsonDocument d = QJsonDocument::fromJson(b);
+    QJsonObject o = d.object();
+
+    foreach (QJsonValue x, o["purchases"].toArray())
+    {
+        QLabel * paymentLabel = new QLabel("Payment: ");
+        QSpinBox * paymentSpin = new QSpinBox;
+        paymentSpin->setReadOnly(true);
+        paymentSpin->setStyleSheet("font-size: 15px;");
+        paymentSpin->setMaximum(10000000);
+        paymentSpin->setValue(x["payment"].toInt());
+        QHBoxLayout * paymentLayout = new QHBoxLayout;
+        paymentLayout->addWidget(paymentLabel);
+        paymentLayout->addWidget(paymentSpin);
+        paymentLayout->setAlignment(Qt::AlignLeft);
+
+        QLabel * discountLabel = new QLabel("Discount: ");
+        QSpinBox * discountSpin = new QSpinBox;
+        discountSpin->setReadOnly(true);
+        discountSpin->setStyleSheet("font-size: 15px;");
+        discountSpin->setMaximum(10000000);
+        discountSpin->setValue(x["discount"].toInt());
+        QHBoxLayout * discountLayout = new QHBoxLayout;
+        discountLayout->addWidget(discountLabel);
+        discountLayout->addWidget(discountSpin);
+        discountLayout->setAlignment(Qt::AlignLeft);
+
+        QLabel * payoutLabel = new QLabel("Payout: ");
+        QSpinBox * payoutSpin = new QSpinBox;
+        payoutSpin->setReadOnly(true);
+        payoutSpin->setStyleSheet("font-size: 15px;");
+        payoutSpin->setMaximum(10000000);
+        payoutSpin->setValue(x["payout"].toInt());
+        QHBoxLayout * payoutLayout = new QHBoxLayout;
+        payoutLayout->addWidget(payoutLabel);
+        payoutLayout->addWidget(payoutSpin);
+        payoutLayout->setAlignment(Qt::AlignLeft);
+
+
+        QTableWidget * purchase = new QTableWidget;
+        purchase->setEditTriggers(QAbstractItemView::NoEditTriggers);  // disable in-place editing
+        purchase->setSelectionBehavior(QAbstractItemView::SelectRows);  // only rows can be selected, not columns or sells
+        purchase->setSelectionMode(QAbstractItemView::SingleSelection);  // disable selection of multiple rows
+        purchase->setColumnCount(5);  // assign the number of columns in the table
+        QStringList s6;
+        s6 << tr("Name") << tr("Category") << tr("Manufacturer") << tr("Price") << tr("Expiry Date") ;
+        purchase->setHorizontalHeaderLabels(s6);
+
+        foreach (QJsonValue y, x["products"].toArray())
+        {
+            purchase->insertRow(purchase->rowCount());
+            purchase->setItem(purchase->rowCount()-1,0, new QTableWidgetItem(y["name"].toString()));
+            purchase->setItem(purchase->rowCount()-1,1, new QTableWidgetItem(y["category"].toString()));
+            purchase->setItem(purchase->rowCount()-1,2, new QTableWidgetItem(y["manufacturer"].toString()));
+            purchase->setItem(purchase->rowCount()-1,3, new QTableWidgetItem(QString::number(y["price"].toInt())));
+            purchase->setItem(purchase->rowCount()-1,4, new QTableWidgetItem(y["expiry date"].toString()));
+        }
+
+        QVBoxLayout * l = new QVBoxLayout;
+        l->addWidget(purchase);
+        l->addLayout(paymentLayout);
+        l->addLayout(discountLayout);
+        l->addLayout(payoutLayout);
+        QGroupBox * g = new QGroupBox;
+        g->setLayout(l);
+        customerShopHistoryToolBox->insertItem(customerShopHistoryToolBox->count(),g, "Purchase " + QString::number(customerShopHistoryToolBox->count()+1));
+    }
+}
+
+void MainWindow::set_username(QString u)
+{
+    this->username = u;
+    return;
+}
+
 void MainWindow::display_error(QString msg)
 {
     QMessageBox * box = new QMessageBox(QMessageBox::Critical, "Error", msg, QMessageBox::Ok);
@@ -819,5 +953,10 @@ void MainWindow::removeFromCart()
     }
     customerCartTable->clearSelection();
     return;
+}
+
+void MainWindow::increase_credit()
+{
+
 }
 

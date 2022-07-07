@@ -2,6 +2,7 @@
 #include "ui_login_page.h"
 #include "home.h"
 
+
 Login_page::Login_page(MainWindow *mw,QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Login_page)
@@ -65,6 +66,7 @@ void Login_page::on_login_push_clicked()
                  if ((customersObj[ui->username_le->text()].toObject())["password"] == ui->password_le->text())
                  {
                      this->close();
+                     mainwindow->set_username(ui->username_le->text());
                      mainwindow->customer_window();
                  }
                  else

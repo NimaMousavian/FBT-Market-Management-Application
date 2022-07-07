@@ -1,4 +1,5 @@
 #include "Customer.h"
+#include <QJsonArray>
 using namespace std;
 
 Customer::Customer(string f_name, string l_name, string _username, string _password, string _phone, string _address, int a, int id)
@@ -76,8 +77,9 @@ void Customer::sign_up()
         customersObj = (QJsonDocument::fromJson( customersFile.readAll() )).object();
         customersFile.close();
     }
+    //QJsonArray purchases;
     QJsonObject newCustomerInfo = { {"fist name", QString::fromStdString(Human::get_first_name())},
-                                    {"last name", QString::fromStdString(Human::get_first_name())},
+                                    {"last name", QString::fromStdString(Human::get_last_name())},
                                     {"user name", QString::fromStdString(this->userName)},
                                     {"password", QString::fromStdString(this->password)},
                                     {"customer ID", this->customerID},
