@@ -123,16 +123,6 @@
     </rect>
    </property>
   </widget>
-  <widget class="QLineEdit" name="exp_le">
-   <property name="geometry">
-    <rect>
-     <x>230</x>
-     <y>330</y>
-     <width>141</width>
-     <height>21</height>
-    </rect>
-   </property>
-  </widget>
   <widget class="QPushButton" name="pushButton">
    <property name="geometry">
     <rect>
@@ -244,6 +234,16 @@
      <string>None-Food</string>
     </property>
    </item>
+  </widget>
+  <widget class="QDateEdit" name="exp_date">
+   <property name="geometry">
+    <rect>
+     <x>230</x>
+     <y>340</y>
+     <width>141</width>
+     <height>22</height>
+    </rect>
+   </property>
   </widget>
  </widget>
  <resources/>
