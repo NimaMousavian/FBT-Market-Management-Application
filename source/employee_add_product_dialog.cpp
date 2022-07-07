@@ -40,7 +40,7 @@ void employee_add_product_dialog::on_pushButton_clicked()
         r["Category"] = ui->category_combo->currentText();
         r["Manufacturer"] = ui->manu_le->text();
         r["Price"] = ui->price_spin->value();
-        r["Expiry date"] = ui->exp_le->text();
+        r["Expiry date"] = ui->exp_date->date().toString("dd/MM/yyyy");
         QJsonArray product = p;
         product.append(r);
         QJsonObject v;
@@ -63,7 +63,7 @@ void employee_add_product_dialog::on_pushButton_clicked()
         t["Category"] = ui->category_combo->currentText();
         t["Manufacturer"] = ui->manu_le->text();
         t["Price"] = ui->price_spin->value();
-        t["Expiry date"] = ui->exp_le->text();
+        t["Expiry date"] = ui->exp_date->date().toString("dd/MM/yyyy");
         products.append(t);
         j["Products"] = products;
 

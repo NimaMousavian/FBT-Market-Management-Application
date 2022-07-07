@@ -41,6 +41,7 @@
     <string notr="true"/>
    </property>
    <property name="text">
+<<<<<<< HEAD
     <string/>
    </property>
    <property name="pixmap">
@@ -48,6 +49,9 @@
    </property>
    <property name="scaledContents">
     <bool>true</bool>
+=======
+    <string>FBT Market</string>
+>>>>>>> a23067ac89cb1ab4ef7a95cf130dd89472b6bc5e
    </property>
   </widget>
   <widget class="QPushButton" name="sign_up_push">
