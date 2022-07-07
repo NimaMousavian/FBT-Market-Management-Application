@@ -61,7 +61,7 @@
      <x>60</x>
      <y>270</y>
      <width>178</width>
-     <height>64</height>
+     <height>70</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_4">
@@ -91,10 +91,10 @@
   <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
-     <x>60</x>
-     <y>400</y>
+     <x>720</x>
+     <y>170</y>
      <width>171</width>
-     <height>64</height>
+     <height>70</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -130,43 +130,10 @@
   <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
-     <x>360</x>
-     <y>150</y>
-     <width>178</width>
-     <height>64</height>
-    </rect>
-   </property>
-   <layout class="QVBoxLayout" name="verticalLayout_2">
-    <item>
-     <widget class="QLabel" name="label_5">
-      <property name="font">
-       <font>
-        <pointsize>15</pointsize>
-       </font>
-      </property>
-      <property name="text">
-       <string>City:</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QLineEdit" name="city_le">
-      <property name="font">
-       <font>
-        <pointsize>15</pointsize>
-       </font>
-      </property>
-     </widget>
-    </item>
-   </layout>
-  </widget>
-  <widget class="QWidget" name="layoutWidget">
-   <property name="geometry">
-    <rect>
      <x>730</x>
      <y>470</y>
-     <width>178</width>
-     <height>64</height>
+     <width>185</width>
+     <height>70</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_10">
@@ -196,10 +163,10 @@
   <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
-     <x>730</x>
-     <y>150</y>
+     <x>80</x>
+     <y>390</y>
      <width>178</width>
-     <height>64</height>
+     <height>70</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_8">
@@ -229,8 +196,8 @@
   <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
-     <x>360</x>
-     <y>280</y>
+     <x>380</x>
+     <y>160</y>
      <width>258</width>
      <height>121</height>
     </rect>
@@ -265,7 +232,7 @@
      <x>730</x>
      <y>310</y>
      <width>178</width>
-     <height>64</height>
+     <height>70</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -295,10 +262,10 @@
   <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
-     <x>360</x>
-     <y>470</y>
+     <x>430</x>
+     <y>320</y>
      <width>178</width>
-     <height>64</height>
+     <height>70</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -331,7 +298,7 @@
      <x>60</x>
      <y>150</y>
      <width>178</width>
-     <height>64</height>
+     <height>70</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -343,7 +310,7 @@
        </font>
       </property>
       <property name="text">
-       <string>First Nmae:</string>
+       <string>First Nmae :</string>
       </property>
      </widget>
     </item>
@@ -364,10 +331,10 @@
   <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
-     <x>60</x>
-     <y>530</y>
+     <x>420</x>
+     <y>450</y>
      <width>171</width>
-     <height>64</height>
+     <height>70</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_6">
@@ -379,7 +346,7 @@
        </font>
       </property>
       <property name="text">
-       <string>ID Number:</string>
+       <string>ID Number :</string>
       </property>
      </widget>
     </item>

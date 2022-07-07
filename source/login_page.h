@@ -4,6 +4,9 @@
 #include <QWidget>
 #include <QMainWindow>
 #include "mainwindow.h"
+#include <QFile>
+#include <QJsonDocument>
+#include <QJsonObject>
 
 namespace Ui {
 class Login_page;
@@ -19,6 +22,8 @@ public:
 
 private slots:
     void on_back_push_clicked();
+
+    void on_login_push_clicked();
 
 private:
     Ui::Login_page *ui;

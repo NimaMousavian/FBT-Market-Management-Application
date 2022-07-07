@@ -1,39 +1,20 @@
 #include "Customer.h"
-#include <fstream>
-
-#include <bits/stdc++.h>
-#include <iostream>
-#include <sys/stat.h>
-#include <sys/types.h>
-
-#include <random>
-#include <time.h>
 using namespace std;
 
-Customer::Customer(string f_name, string l_name, int a, int id, string _username, string _password, string phone, string city, string address)
-    :Human(f_name, l_name, a, id)
+Customer::Customer(string f_name, string l_name, string _username, string _password, string _phone, string _address, int a, int id)
+    :Human(f_name, l_name, a)
 {
-    srand(time(0));
-    this->customer_ID = rand()%1000;
-    this->city = city;
-    this->address = address;
-    this->phone_number = phone;
-    this->username = _username;
+    this->address = _address;
+    this->phoneNumber = _phone;
+    this->userName = _username;
     this->password = _password;
+    this->customerID = id;
     this->wallet = 0;
     return;
 }
 
-void Customer::set_customer_id(int i)
-{
-    this->customer_ID = i;
-    return;
-}
-void Customer::set_city(string c)
-{
-    this->city = c;
-    return;
-}
+
+
 
 void Customer::set_address(string a)
 {
@@ -43,13 +24,19 @@ void Customer::set_address(string a)
 
 void Customer::set_phone_number(string p)
 {
-    this->phone_number = p;
+    this->phoneNumber = p;
     return;
 }
 
 void Customer::set_username(string u)
 {
-    this->username = u;
+    this->userName = u;
+    return;
+}
+
+void Customer::set_customer_id(int i)
+{
+    this->customerID = i;
     return;
 }
 
@@ -59,15 +46,6 @@ void Customer::set_wallet(double w)
     return;
 }
 
-int Customer::get_customer_id()
-{
-    return this->customer_ID;
-}
-
-string Customer::get_city()
-{
-    return this->city;
-}
 
 string Customer::get_address()
 {
@@ -75,7 +53,12 @@ string Customer::get_address()
 }
 string Customer::get_phone_number()
 {
-    return this->phone_number;
+    return this->phoneNumber;
+}
+
+int Customer::get_customer_id()
+{
+    return this->customerID;
 }
 
 double Customer::get_wallet()
@@ -85,16 +68,30 @@ double Customer::get_wallet()
 
 void Customer::sign_up()
 {
-    string path = "database/customers.dat";
-    ofstream file;
-    file.open(path, ios::app | ios::binary);
-    if (file)
+    QFile customersFile("database/customers.json");
+
+    QJsonObject customersObj;
+    if (customersFile.open(QIODevice::ReadOnly))
     {
-        file.write((char*)this, sizeof (Customer));
+        customersObj = (QJsonDocument::fromJson( customersFile.readAll() )).object();
+        customersFile.close();
     }
-    else
-    {
-        //error: file can not be opened!
-    }
-    file.close();
+    QJsonObject newCustomerInfo = { {"fist name", QString::fromStdString(Human::get_first_name())},
+                                    {"last name", QString::fromStdString(Human::get_first_name())},
+                                    {"user name", QString::fromStdString(this->userName)},
+                                    {"password", QString::fromStdString(this->password)},
+                                    {"customer ID", this->customerID},
+                                    {"age", Human::get_age()},
+                                    {"address", QString::fromStdString(this->address)},
+                                    {"phone number", QString::fromStdString(this->phoneNumber)},
+                                    {"wallet", this->wallet }};
+
+
+    customersObj[QString::fromStdString(this->userName)] = newCustomerInfo;
+    QJsonDocument customersDuc(customersObj);
+    customersFile.open(QIODevice::WriteOnly);
+    customersFile.write(customersDuc.toJson());
+    customersFile.close();
+    return;
+
 }

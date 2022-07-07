@@ -48,3 +48,73 @@ void Login_page::on_back_push_clicked()
     mainwindow->setMinimumSize(QSize(1000,725));
 }
 
+
+void Login_page::on_login_push_clicked()
+{
+    if (ui->comboBox->currentIndex() == 0)  // customer login
+     {
+         QFile customersFile("database/customers.json");
+
+         QJsonObject customersObj;
+         if (customersFile.open(QIODevice::ReadOnly))
+         {
+             customersObj = (QJsonDocument::fromJson( customersFile.readAll() )).object();
+             customersFile.close();
+             if ( customersObj[ui->username_le->text()] != NULL)
+             {
+                 if ((customersObj[ui->username_le->text()].toObject())["password"] == ui->password_le->text())
+                 {
+                     this->close();
+                     mainwindow->customer_window();
+                 }
+                 else
+                     mainwindow->display_error("Incorrect Password.");
+             }
+             else
+                 mainwindow->display_error("Incorrect Username");
+         }
+
+         else
+             mainwindow->display_error("Please sing up first.");
+     }
+
+
+    else if (ui->comboBox->currentIndex() == 1)   // employee logtiin
+     {
+         QFile employeesFile("database/employee.json");
+
+         QJsonObject employeesObj;
+         if (employeesFile.open(QIODevice::ReadOnly))
+         {
+             employeesObj = (QJsonDocument::fromJson( employeesFile.readAll() )).object();
+             employeesFile.close();
+
+             if ( employeesObj[ui->username_le->text()] != NULL)
+             {
+                 if ((employeesObj[ui->username_le->text()].toObject())["password"] == ui->password_le->text())
+                 {
+                     this->close();
+                     mainwindow->employee_window();
+                 }
+                 else
+                     mainwindow->display_error("Incorrect Password");
+             }
+             else
+                 mainwindow->display_error("Incorrect Username");
+         }
+
+         else
+             mainwindow->display_error("Please sign up first.");
+     }
+
+    else // manager login
+    {
+        if (QString::compare(ui->username_le->text(), "FBT_Admin") && QString::compare(ui->password_le->text(), "1234"))
+        {
+            this->close();
+//            mainwindow->manager_window();
+        }
+
+    }
+}
+

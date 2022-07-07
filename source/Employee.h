@@ -1,7 +1,10 @@
 #pragma once
 
-#include <Human.h>
+#include "Human.h"
 #include <iostream>
+#include <QFile>
+#include <QJsonDocument>
+#include <QJsonObject>
 using namespace std;
 #include <string>
 
@@ -9,22 +12,18 @@ using namespace std;
 class Employee : public Human
 {
 private:
-    string role;
-    int employee_ID;
     int salary;
+    int employeeID;
     string username;
     string password;
 public:
-    Employee(string f_name, string l_name, int a, int id, string username, string password, string role = "", int salary = 0);
+    Employee(string f_name, string l_name, int a, int id, string username, string password, int salary = 0);
     ~Employee();
 
-    void set_role(string);
-    void set_employee_ID(int);
     void set_salary(int);
-
-    string get_role();
-    int get_employee_ID();
+    void set_employee_ID(int id);
     int get_salary();
+    int get_employee_ID();
 
     virtual void sign_up();
 };
