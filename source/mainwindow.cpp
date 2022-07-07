@@ -28,6 +28,7 @@
 #include <QModelIndexList>
 #include <QModelIndex>
 #include <QItemSelectionModel>
+#include "customer_invoice.h"
 
 using namespace std;
 
@@ -75,7 +76,7 @@ void MainWindow::set_customer_window_ui()
     QLineEdit * searchLe = new QLineEdit;
     searchLe->setPlaceholderText(tr("Search by Name"));
     QPushButton * searchPush = new QPushButton("Search");
-    searchPush->setStyleSheet("color: red");
+    searchPush->setStyleSheet("color: red;");
     QHBoxLayout * searchLayout = new QHBoxLayout;
     searchLayout->addWidget(searchLe);
     searchLayout->addWidget(searchPush);
@@ -245,32 +246,49 @@ void MainWindow::set_customer_window_ui()
     QStringList s6;
     s6 << tr("Name") << tr("Category") << tr("Manufacturer") << tr("Price") << tr("Expiry Date") ;
     customerCartTable->setHorizontalHeaderLabels(s6);
-    //add buttons to purchase
+
+    QPushButton * pur = new QPushButton("Purchase");
+    QPushButton * removProduct = new QPushButton("Remove from Cart");
+    QHBoxLayout * purchaseLayout = new QHBoxLayout;
+    purchaseLayout->addWidget(pur);
+    purchaseLayout->addWidget(removProduct);
+    purchaseLayout->setAlignment(Qt::AlignLeft);
+    connect(pur,&QPushButton::clicked, this, [this]{customerPurchase();});
+    connect(removProduct,&QPushButton::clicked, this, [this]{removeFromCart();});
+    QVBoxLayout * cl = new QVBoxLayout;
+    cl->addWidget(customerCartTable);
+    cl->addLayout(purchaseLayout);
+    QGroupBox * cartGroup = new QGroupBox;
+    cartGroup->setLayout(cl);
 
     //------------------ Shop History ToolBox -------------
 
     customerShopHistoryToolBox = new QToolBox;
     // example
-    QTableWidget *t = new QTableWidget(1,4);
-    QPushButton *b = new QPushButton("ssss");
-    customerShopHistoryToolBox->addItem(b,"purchase 1");
-    customerShopHistoryToolBox->addItem(t,"purchase 2");
+//    QTableWidget *t = new QTableWidget(1,4);
+//    QPushButton *b = new QPushButton("ssss");
+//    customerShopHistoryToolBox->addItem(b,"purchase 1");
+//    customerShopHistoryToolBox->addItem(t,"purchase 2");
 
     //------------------- wallet tab --------------------
 
     customerCredit = new QSpinBox;
     customerCredit->setStyleSheet("font-size: 30px;");
     customerCredit->setReadOnly(true);
+    customerCredit->setMaximum(10000000);
     QLabel *lable = new QLabel("your current credit in wallet is:");
     lable->setStyleSheet("font-size: 30px;");
 
-    QPushButton *p = new QPushButton("increas credit");
-    p->setStyleSheet("font-size: 20px;");
+    QPushButton *increasCredit = new QPushButton("increas credit");
+    increasCredit->setStyleSheet("font-size: 12px;");
+    QHBoxLayout * icLayout = new QHBoxLayout;
+    icLayout->addWidget(increasCredit);
+    icLayout->setAlignment(Qt::AlignLeft);
 
     QVBoxLayout *v = new QVBoxLayout;
     v->addWidget(lable);
     v->addWidget(customerCredit);
-    v->addWidget(p);
+    v->addLayout(icLayout);
     v->setAlignment(Qt::AlignTop);
 
     QGroupBox *walletGroup = new QGroupBox;
@@ -283,7 +301,7 @@ void MainWindow::set_customer_window_ui()
     customerMaintab = new QTabWidget;
     customerMaintab->setIconSize(QSize(24, 24));
     customerMaintab->addTab(customerCategoryTab, QIcon("E:/FBT_project/f.b.t/icons/cash_register.png"), tr("Shop"));
-    customerMaintab->addTab(customerCartTable,"Cart");
+    customerMaintab->addTab(cartGroup,"Cart");
     customerMaintab->addTab(customerShopHistoryToolBox,"shop History");
     customerMaintab->addTab(walletGroup, "Wallet");
 
@@ -524,6 +542,40 @@ void MainWindow::display_shop_product(QTableWidget *table, QString category)
     }
 }
 
+void MainWindow::set_customer_credit(int a)
+{
+    this->customerCredit->setValue(a);
+    return;
+}
+
+void MainWindow::add_purchase_to_history()
+{
+    QTableWidget * purchase = new QTableWidget;
+    purchase->setEditTriggers(QAbstractItemView::NoEditTriggers);  // disable in-place editing
+    purchase->setSelectionBehavior(QAbstractItemView::SelectRows);  // only rows can be selected, not columns or sells
+    purchase->setSelectionMode(QAbstractItemView::SingleSelection);  // disable selection of multiple rows
+    purchase->setColumnCount(5);  // assign the number of columns in the table
+    QStringList s6;
+    s6 << tr("Name") << tr("Category") << tr("Manufacturer") << tr("Price") << tr("Expiry Date") ;
+    purchase->setHorizontalHeaderLabels(s6);
+
+    purchase->setRowCount(customerCartTable->rowCount());
+    for (int i=0; i<customerCartTable->rowCount(); i++)
+    {
+        purchase->setItem(i,0, new QTableWidgetItem(customerCartTable->item(i,0)->text()));
+        purchase->setItem(i,1, new QTableWidgetItem(customerCartTable->item(i,1)->text()));
+        purchase->setItem(i,2, new QTableWidgetItem(customerCartTable->item(i,2)->text()));
+        purchase->setItem(i,3, new QTableWidgetItem(customerCartTable->item(i,3)->text()));
+        purchase->setItem(i,4, new QTableWidgetItem(customerCartTable->item(i,4)->text()));
+    }
+
+    QVBoxLayout * l = new QVBoxLayout;
+    l->addWidget(purchase);
+    QGroupBox * g = new QGroupBox;
+    g->setLayout(l);
+    customerShopHistoryToolBox->addItem(g, "purchase 1");
+}
+
 void MainWindow::display_error(QString msg)
 {
     QMessageBox * box = new QMessageBox(QMessageBox::Critical, "Error", msg, QMessageBox::Ok);
@@ -582,11 +634,43 @@ void MainWindow::customerAddToCart(QTableWidget* sourceTable)
         customerCartTable->setItem(customerCartTable->rowCount()-1,3, new QTableWidgetItem(price));
         customerCartTable->setItem(customerCartTable->rowCount()-1,4, new QTableWidgetItem(expDate));
         sourceTable->clearSelection();
+        display_info("product succefully added to cart.");
     }
     else
     {
         this->display_info("Please select a product!");
     }
+    return;
+}
+
+void MainWindow::customerPurchase()
+{
+    if (customerCartTable->rowCount() == 0)
+    {
+        display_error("your cart is empty!");
+    }
+    else
+    {
+        customer_invoice * invoic = new customer_invoice(this,"sajad", "8766", customerCartTable, 100000, 3000);
+        invoic->show();
+    }
+    return;
+}
+
+void MainWindow::removeFromCart()
+{
+    QItemSelectionModel  *s = customerCartTable->selectionModel();
+    QModelIndexList  selectedRows = s->selectedRows();
+    if (selectedRows.size() > 0)
+    {
+        customerCartTable->removeRow(selectedRows.first().row());
+        display_info("product succefully removed from cart.");
+    }
+    else
+    {
+        this->display_info("Please select a product!");
+    }
+    customerCartTable->clearSelection();
     return;
 }
 

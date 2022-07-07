@@ -34,6 +34,9 @@ public:
 
     void employee_add_product();
     void display_shop_product(QTableWidget*, QString);
+
+    void set_customer_credit(int);
+    void add_purchase_to_history();
 private:
     Ui::MainWindow *ui;
 
@@ -57,7 +60,7 @@ private:
     QTableWidget * employeeBeverageTable;
     QTableWidget * employeeSnackTable;
     QTableWidget * employeeNoneFoodTable;
-    QPushButton *employeeAddProduct;
+    QPushButton * employeeAddProduct;
 
 
 signals:
@@ -68,5 +71,7 @@ public slots:
     void display_info(QString);
     void employeeAddProductdialog();
     void customerAddToCart(QTableWidget*);
+    void customerPurchase();
+    void removeFromCart();
 };
 #endif // MAINWINDOW_H
