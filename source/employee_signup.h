@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <mainwindow.h>
+#include <memory>
 
 namespace Ui {
 class Employee_signup;

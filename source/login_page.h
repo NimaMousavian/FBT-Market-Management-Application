@@ -2,7 +2,11 @@
 #define LOGIN_PAGE_H
 
 #include <QWidget>
+#include <QFile>
+#include <QJsonDocument>
+#include <QJsonObject>
 #include <QMainWindow>
+#include <string>
 #include "mainwindow.h"
 
 namespace Ui {
@@ -19,6 +23,10 @@ public:
 
 private slots:
     void on_back_push_clicked();
+
+    void on_login_push_clicked();
+
+    void on_comboBox_currentIndexChanged(int index);
 
 private:
     Ui::Login_page *ui;

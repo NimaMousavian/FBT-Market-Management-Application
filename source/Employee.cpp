@@ -1,18 +1,14 @@
 #include "Employee.h"
 #include <iostream>
 #include <fstream>
-#include <random>
-#include <time.h>
 using namespace std;
 
-Employee::Employee(string f_name, string l_name, int a, int id, string _username, string _password, string role, int salary)
-    :Human(f_name,l_name,a,id)
+Employee::Employee(string f_name, string l_name, int a, int id, string _username, string _password, int salary)
+    :Human(f_name, l_name, a)
 {
-    srand(time(0));
-    this->role = role;
+    this->employeeID = id;
     this->username = _username;
     this->password = _password;
-    this->employee_ID = rand()%1000;
     this->salary = salary;
     return;
 }
@@ -22,17 +18,6 @@ Employee::~Employee()
     return;
 }
 
-void Employee::set_role(string t)
-{
-    this->role = t;
-    return;
-}
-
-void Employee::set_employee_ID(int i)
-{
-    this->employee_ID = i;
-    return;
-}
 
 void Employee::set_salary(int s)
 {
@@ -40,14 +25,10 @@ void Employee::set_salary(int s)
     return;
 }
 
-string Employee::get_role()
+void Employee::set_employee_ID(int id)
 {
-    return this->role;
-}
-
-int Employee::get_employee_ID()
-{
-    return this->employee_ID;
+    this->employeeID = id;
+    return;
 }
 
 int Employee::get_salary()
@@ -55,18 +36,33 @@ int Employee::get_salary()
     return this->salary;
 }
 
+int Employee::get_employee_ID()
+{
+    return this->employeeID;
+}
+
 void Employee::sign_up()
 {
-    string path = "database/employee_requests.dat";
-    ofstream file;
-    file.open(path, ios::app | ios::binary);
-    if (file)
+    QFile employeesFile("database/employee.json");
+
+    QJsonObject employeesObj;
+    if (employeesFile.open(QIODevice::ReadOnly))
     {
-        file.write((char*)this, sizeof (Employee));
+        employeesObj = (QJsonDocument::fromJson( employeesFile.readAll() )).object();
+        employeesFile.close();
     }
-    else
-    {
-        //error: file can not be opened!
-    }
-    file.close();
+    QJsonObject newEmployeeInfo = { {"fist name", QString::fromStdString(Human::get_first_name())},
+                                    {"last name", QString::fromStdString(Human::get_last_name())},
+                                    {"user name", QString::fromStdString(this->username)},
+                                    {"password", QString::fromStdString(this->password)},
+                                    {"ID number", this->employeeID},
+                                    {"age", Human::get_age()},
+                                    {"salary", this->salary}};
+
+    employeesObj[QString::fromStdString(this->username)] = newEmployeeInfo;
+    QJsonDocument customersDuc(employeesObj);
+    employeesFile.open(QIODevice::WriteOnly);
+    employeesFile.write(customersDuc.toJson());
+    employeesFile.close();
+    return;
 }

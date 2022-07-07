@@ -4,7 +4,9 @@
 #include <QWidget>
 #include <QMainWindow>
 #include "mainwindow.h"
-
+#include <QFile>
+#include <QJsonDocument>
+#include <QJsonObject>
 namespace Ui {
 class Sign_up_page;
 }

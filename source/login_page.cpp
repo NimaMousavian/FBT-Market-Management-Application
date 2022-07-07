@@ -1,6 +1,7 @@
 #include "login_page.h"
 #include "ui_login_page.h"
 #include "home.h"
+#include <string.h>
 
 Login_page::Login_page(MainWindow *mw,QWidget *parent) :
     QWidget(parent),
@@ -47,4 +48,15 @@ void Login_page::on_back_push_clicked()
     mainwindow->setCentralWidget(new Home(this->mainwindow));
     mainwindow->setMinimumSize(QSize(1000,725));
 }
+
+
+void Login_page::on_login_push_clicked()
+{
+
+
+}
+
+
+
+
 

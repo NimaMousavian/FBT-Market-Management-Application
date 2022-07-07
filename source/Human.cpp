@@ -4,12 +4,11 @@ using namespace std;
 #include <string>
 
 
-Human::Human(string first_name, string last_name, int age, int id)
+Human::Human(string first_name, string last_name, int age)
 {
     this->first_name = first_name;
     this->last_name = last_name;
     this->age = age;
-    this->ID_number = id;
     return;
 }
 
