@@ -36,7 +36,9 @@ public:
     void display_shop_product(QTableWidget*, QString);
 
     void set_customer_credit(int);
-    void add_purchase_to_history();
+    void add_purchase_to_history(int payment, int discount, int payout);
+
+    void employee_load_invoices();
 private:
     Ui::MainWindow *ui;
 
@@ -61,6 +63,7 @@ private:
     QTableWidget * employeeSnackTable;
     QTableWidget * employeeNoneFoodTable;
     QPushButton * employeeAddProduct;
+    QToolBox * employeeInvoices;
 
 
 signals:

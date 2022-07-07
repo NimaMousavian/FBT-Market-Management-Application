@@ -72,7 +72,7 @@ void customer_invoice::save_invoic()
         QJsonArray p = o["Invoices"].toArray();
         QJsonObject r;
         r["Customer Name"] = ui->name_le->text();
-        r["Cutomer ID"] = ui->id_le->text();
+        r["Customer ID"] = ui->id_le->text();
         r["Products"] = create_products_json();
         r["Payment"] = ui->payment_spin->value();
         r["Discount"] = ui->discount_spin->value();
@@ -96,7 +96,7 @@ void customer_invoice::save_invoic()
         QJsonArray invoices;
         QJsonObject t;
         t["Customer Name"] = ui->name_le->text();
-        t["Cutomer ID"] = ui->id_le->text();
+        t["Customer ID"] = ui->id_le->text();
         t["Products"] = create_products_json();
         t["Payment"] = ui->payment_spin->value();
         t["Discount"] = ui->discount_spin->value();
@@ -140,7 +140,7 @@ void customer_invoice::on_purchase_push_clicked()
         save_invoic();
         mainwindow->set_customer_credit(ui->credit_spin->value() - ui->payout_spin->value());
         mainwindow->display_info("your purchase succesfully don.");
-        mainwindow->add_purchase_to_history();
+        mainwindow->add_purchase_to_history(ui->payment_spin->value(), ui->discount_spin->value(), ui->payout_spin->value());
         this->close();
     }
     else

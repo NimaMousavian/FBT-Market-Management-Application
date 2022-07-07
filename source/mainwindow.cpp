@@ -321,6 +321,8 @@ void MainWindow::employee_window()
     display_shop_product(employeeBeverageTable, "Beverage");
     display_shop_product(employeeSnackTable, "Snack");
     display_shop_product(employeeNoneFoodTable, "None-Food");
+
+    employee_load_invoices();
 }
 
 void MainWindow::set_employee_window_ui()
@@ -477,9 +479,14 @@ void MainWindow::set_employee_window_ui()
     gg->setLayout(vv);
 
 
+    //------------- Invoices ------------
+
+    employeeInvoices = new QToolBox;
+
     //------------- Main tab ------------
     employeeMaintab = new QTabWidget;
     employeeMaintab->addTab(gg, "Shop Products");
+    employeeMaintab->addTab(employeeInvoices, "Invoices");
 
 
     this->setCentralWidget(employeeMaintab);
@@ -520,7 +527,6 @@ void MainWindow::display_shop_product(QTableWidget *table, QString category)
     QJsonObject o = d.object();
 
     int counter=0;
-    vector<Product> vec;
 
     foreach (QJsonValue x, o["Products"].toArray())
     {
@@ -548,7 +554,7 @@ void MainWindow::set_customer_credit(int a)
     return;
 }
 
-void MainWindow::add_purchase_to_history()
+void MainWindow::add_purchase_to_history(int payment, int discount, int payout)
 {
     QTableWidget * purchase = new QTableWidget;
     purchase->setEditTriggers(QAbstractItemView::NoEditTriggers);  // disable in-place editing
@@ -569,11 +575,152 @@ void MainWindow::add_purchase_to_history()
         purchase->setItem(i,4, new QTableWidgetItem(customerCartTable->item(i,4)->text()));
     }
 
+    QLabel * paymentLabel = new QLabel("Payment: ");
+    QSpinBox * paymentSpin = new QSpinBox;
+    paymentSpin->setReadOnly(true);
+    paymentSpin->setStyleSheet("font-size: 15px;");
+    paymentSpin->setMaximum(10000000);
+    paymentSpin->setValue(payment);
+    QHBoxLayout * paymentLayout = new QHBoxLayout;
+    paymentLayout->addWidget(paymentLabel);
+    paymentLayout->addWidget(paymentSpin);
+    paymentLayout->setAlignment(Qt::AlignLeft);
+
+    QLabel * discountLabel = new QLabel("Discount: ");
+    QSpinBox * discountSpin = new QSpinBox;
+    discountSpin->setReadOnly(true);
+    discountSpin->setStyleSheet("font-size: 15px;");
+    discountSpin->setMaximum(10000000);
+    discountSpin->setValue(discount);
+    QHBoxLayout * discountLayout = new QHBoxLayout;
+    discountLayout->addWidget(discountLabel);
+    discountLayout->addWidget(discountSpin);
+    discountLayout->setAlignment(Qt::AlignLeft);
+
+    QLabel * payoutLabel = new QLabel("Payout: ");
+    QSpinBox * payoutSpin = new QSpinBox;
+    payoutSpin->setReadOnly(true);
+    payoutSpin->setStyleSheet("font-size: 15px;");
+    payoutSpin->setMaximum(10000000);
+    payoutSpin->setValue(payout);
+    QHBoxLayout * payoutLayout = new QHBoxLayout;
+    payoutLayout->addWidget(payoutLabel);
+    payoutLayout->addWidget(payoutSpin);
+    payoutLayout->setAlignment(Qt::AlignLeft);
+
     QVBoxLayout * l = new QVBoxLayout;
     l->addWidget(purchase);
+    l->addLayout(paymentLayout);
+    l->addLayout(discountLayout);
+    l->addLayout(payoutLayout);
     QGroupBox * g = new QGroupBox;
     g->setLayout(l);
-    customerShopHistoryToolBox->addItem(g, "purchase 1");
+    customerShopHistoryToolBox->insertItem(customerShopHistoryToolBox->count(),g, "Purchase " + QString::number(customerShopHistoryToolBox->count()+1));
+
+    customerCartTable->clear();
+    customerCartTable->setRowCount(0);
+    QStringList s;
+    s << tr("Name") << tr("Category") << tr("Manufacturer") << tr("Price") << tr("Expiry Date") ;
+    customerCartTable->setHorizontalHeaderLabels(s);
+}
+
+void MainWindow::employee_load_invoices()
+{
+    QFile f("database/invoices.json");
+    f.open(QIODevice::ReadOnly);
+    QByteArray b = f.readAll();
+    QJsonDocument d = QJsonDocument::fromJson(b);
+    QJsonObject o = d.object();
+
+    int counter=0;
+
+    foreach (QJsonValue x, o["Invoices"].toArray())
+    {
+        QLabel * nameLabel = new QLabel("Customer Name: ");
+        QLineEdit * nameLe = new QLineEdit(x["Customer Name"].toString());
+        nameLe->setReadOnly(true);
+        nameLe->setStyleSheet("font-size: 15px;");
+        QHBoxLayout * nameLayout = new QHBoxLayout;
+        nameLayout->addWidget(nameLabel);
+        nameLayout->addWidget(nameLe);
+        nameLayout->setAlignment(Qt::AlignLeft);
+
+        QLabel * idLabel = new QLabel("Customer ID: ");
+        QLineEdit * idLe = new QLineEdit(x["Customer ID"].toString());
+        idLe->setReadOnly(true);
+        idLe->setStyleSheet("font-size: 15px;");
+        QHBoxLayout * idLayout = new QHBoxLayout;
+        idLayout->addWidget(idLabel);
+        idLayout->addWidget(idLe);
+        idLayout->setAlignment(Qt::AlignLeft);
+
+        QLabel * paymentLabel = new QLabel("Payment: ");
+        QSpinBox * paymentSpin = new QSpinBox;
+        paymentSpin->setReadOnly(true);
+        paymentSpin->setStyleSheet("font-size: 15px;");
+        paymentSpin->setMaximum(10000000);
+        paymentSpin->setValue(x["Payment"].toInt());
+        QHBoxLayout * paymentLayout = new QHBoxLayout;
+        paymentLayout->addWidget(paymentLabel);
+        paymentLayout->addWidget(paymentSpin);
+        paymentLayout->setAlignment(Qt::AlignLeft);
+
+        QLabel * discountLabel = new QLabel("Discount: ");
+        QSpinBox * discountSpin = new QSpinBox;
+        discountSpin->setReadOnly(true);
+        discountSpin->setStyleSheet("font-size: 15px;");
+        discountSpin->setMaximum(10000000);
+        discountSpin->setValue(x["Discount"].toInt());
+        QHBoxLayout * discountLayout = new QHBoxLayout;
+        discountLayout->addWidget(discountLabel);
+        discountLayout->addWidget(discountSpin);
+        discountLayout->setAlignment(Qt::AlignLeft);
+
+        QLabel * payoutLabel = new QLabel("Payout: ");
+        QSpinBox * payoutSpin = new QSpinBox;
+        payoutSpin->setReadOnly(true);
+        payoutSpin->setStyleSheet("font-size: 15px;");
+        payoutSpin->setMaximum(10000000);
+        payoutSpin->setValue(x["Payout"].toInt());
+        QHBoxLayout * payoutLayout = new QHBoxLayout;
+        payoutLayout->addWidget(payoutLabel);
+        payoutLayout->addWidget(payoutSpin);
+        payoutLayout->setAlignment(Qt::AlignLeft);
+
+
+        QTableWidget * product = new QTableWidget;
+        product->setEditTriggers(QAbstractItemView::NoEditTriggers);  // disable in-place editing
+        product->setSelectionBehavior(QAbstractItemView::SelectRows);  // only rows can be selected, not columns or sells
+        product->setSelectionMode(QAbstractItemView::SingleSelection);  // disable selection of multiple rows
+        product->setColumnCount(5);  // assign the number of columns in the table
+        QStringList s6;
+        s6 << tr("Name") << tr("Category") << tr("Manufacturer") << tr("Price") << tr("Expiry Date") ;
+        product->setHorizontalHeaderLabels(s6);
+
+        foreach (QJsonValue y, x["Products"].toArray())
+        {
+            product->insertRow(product->rowCount());
+            product->setItem(product->rowCount()-1,0, new QTableWidgetItem(y["Name"].toString()));
+            product->setItem(product->rowCount()-1,1, new QTableWidgetItem(y["Category"].toString()));
+            product->setItem(product->rowCount()-1,2, new QTableWidgetItem(y["Manufacturer"].toString()));
+            product->setItem(product->rowCount()-1,3, new QTableWidgetItem(QString::number(y["Price"].toInt())));
+            product->setItem(product->rowCount()-1,4, new QTableWidgetItem(y["Expiry date"].toString()));
+        }
+
+        QVBoxLayout * l = new QVBoxLayout;
+        l->addLayout(nameLayout);
+        l->addLayout(idLayout);
+        l->addWidget(product);
+        l->addLayout(paymentLayout);
+        l->addLayout(discountLayout);
+        l->addLayout(payoutLayout);
+        QGroupBox * g = new QGroupBox;
+        g->setLayout(l);
+
+        employeeInvoices->insertItem(employeeInvoices->count(), g, "Invoice " + QString::number(employeeInvoices->count()+1));
+
+        counter++;
+    }
 }
 
 void MainWindow::display_error(QString msg)
