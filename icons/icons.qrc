@@ -18,12 +18,15 @@
         <file>file.png</file>
         <file>forgot_password.png</file>
         <file>go back.png</file>
+        <file>gs.jpg</file>
         <file>help.png</file>
+        <file>history.png</file>
         <file>icons.qrc</file>
         <file>import.png</file>
         <file>language.png</file>
         <file>login.png</file>
         <file>login2.png</file>
+        <file>main_icon4.png</file>
         <file>manual.png</file>
         <file>nepali.png</file>
         <file>ok.png</file>
@@ -35,6 +38,7 @@
         <file>remove.png</file>
         <file>sales.png</file>
         <file>search.png</file>
+        <file>shopping-cart.png</file>
         <file>signup.png</file>
         <file>store.png</file>
         <file>support.png</file>
@@ -45,6 +49,7 @@
         <file>user_ok.png</file>
         <file>user_remove.png</file>
         <file>users.png</file>
+        <file>wallet1.png</file>
         <file>warehouse.png</file>
     </qresource>
 </RCC>

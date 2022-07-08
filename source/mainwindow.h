@@ -33,8 +33,9 @@ public:
     void employee_window();
     void set_employee_window_ui();
 
-    void employee_add_product();
+    void employee_add_product_to_stock();
     void display_shop_product(QTableWidget*, QString);
+    void display_stock_product(QTableWidget*, QString);
 
     void set_customer_credit(int);
     void add_purchase_to_history(int payment, int discount, int payout);
@@ -68,7 +69,15 @@ private:
     QTableWidget * employeeBeverageTable;
     QTableWidget * employeeSnackTable;
     QTableWidget * employeeNoneFoodTable;
-    QPushButton * employeeAddProduct;
+    QTabWidget * employeeStockCategoryTab;
+    QTableWidget * employeeStockVandFTable;
+    QTableWidget * employeeStockDairyTable;
+    QTableWidget * employeeStockBeverageTable;
+    QTableWidget * employeeStockSnackTable;
+    QTableWidget * employeeStockNoneFoodTable;
+    QPushButton * employeeStockAddProductToStock;
+    QPushButton * employeeStockAddProductToShop;
+    QPushButton * employeeStockRemoveProductFromStock;
     QToolBox * employeeInvoices;
 
 
@@ -78,7 +87,10 @@ signals:
 public slots:
     void display_error(QString);
     void display_info(QString);
-    void employeeAddProductdialog();
+    void employeeAddProductToStockDialog();
+    void employeeAddProductToShopSlt(QTableWidget*, QTableWidget*);
+    void employeeRemoveProductFromStockSlt();
+    void employeeRemoveProductFromShopSlt(QTableWidget*);
     void customerAddToCart(QTableWidget*);
     void customerPurchase();
     void removeFromCart();

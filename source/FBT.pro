@@ -53,7 +53,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 RESOURCES += \
     ../icons/icons.qrc \
-    ../icons/icons.qrc \
     ../images/images.qrc
 
 DISTFILES += \
