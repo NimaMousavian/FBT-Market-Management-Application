@@ -43,6 +43,8 @@ public:
     void employee_load_invoices();
     void customer_load_purchases();
 
+    void cutomer_add_to_cart(QString, QString, QString, QString, QString);
+
     void set_username(QString);
 private:
     Ui::MainWindow *ui;
@@ -91,7 +93,7 @@ public slots:
     void employeeAddProductToShopSlt(QTableWidget*, QTableWidget*);
     void employeeRemoveProductFromStockSlt();
     void employeeRemoveProductFromShopSlt(QTableWidget*);
-    void customerAddToCart(QTableWidget*);
+    void customerAddToCartDialog(QTableWidget*);
     void customerPurchase();
     void removeFromCart();
     void increase_credit();

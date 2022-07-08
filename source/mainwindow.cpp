@@ -29,6 +29,7 @@
 #include <QModelIndex>
 #include <QItemSelectionModel>
 #include "customer_invoice.h"
+#include "addtocart_dialog.h"
 
 using namespace std;
 
@@ -246,9 +247,9 @@ void MainWindow::set_customer_window_ui()
     customerCartTable->setEditTriggers(QAbstractItemView::NoEditTriggers);  // disable in-place editing
     customerCartTable->setSelectionBehavior(QAbstractItemView::SelectRows);  // only rows can be selected, not columns or sells
     customerCartTable->setSelectionMode(QAbstractItemView::SingleSelection);  // disable selection of multiple rows
-    customerCartTable->setColumnCount(5);  // assign the number of columns in the table
+    customerCartTable->setColumnCount(6);  // assign the number of columns in the table
     QStringList s6;
-    s6 << tr("Name") << tr("Category") << tr("Manufacturer") << tr("Price") << tr("Expiry Date") ;
+    s6 << tr("Name") << tr("Category") << tr("Manufacturer") << tr("Price") << tr("Expiry Date") << tr("Amount");
     customerCartTable->setHorizontalHeaderLabels(s6);
 
     QPushButton * pur = new QPushButton("Purchase");
@@ -316,9 +317,6 @@ void MainWindow::employee_window()
     set_employee_window_ui();
 
     connect(employeeStockAddProductToStock,&QPushButton::clicked, this, &MainWindow::employeeAddProductToStockDialog);
-    //connect(employeeStockRemoveProductFromStock,&QPushButton::clicked, this, &MainWindow::employeeRemoveProductFromStockSlt);
-
-    //connect(employeeRemoveProductFromShop,&QPushButton::clicked, this, &MainWindow::employeeRemoveProductFromShopSlt);
 
 
     display_shop_product(employeeVandFTable, "Vegetable and Fruit");
@@ -1118,6 +1116,16 @@ void MainWindow::customer_load_purchases()
     }
 }
 
+void MainWindow::cutomer_add_to_cart(QString name, QString manu, QString price, QString exp_date, QString amount)
+{
+            customerCartTable->insertRow(customerCartTable->rowCount());
+            customerCartTable->setItem(customerCartTable->rowCount()-1,0, new QTableWidgetItem(name));
+            ///customerCartTable->setItem(customerCartTable->rowCount()-1,1, new QTableWidgetItem(category));
+            customerCartTable->setItem(customerCartTable->rowCount()-1,2, new QTableWidgetItem(manu));
+            customerCartTable->setItem(customerCartTable->rowCount()-1,3, new QTableWidgetItem(price));
+            customerCartTable->setItem(customerCartTable->rowCount()-1,4, new QTableWidgetItem(exp_date));
+}
+
 void MainWindow::set_username(QString u)
 {
     this->username = u;
@@ -1348,37 +1356,47 @@ void MainWindow::employeeRemoveProductFromShopSlt(QTableWidget* sourceTabel)
     return;
 }
 
-void MainWindow::customerAddToCart(QTableWidget* sourceTable)
+void MainWindow::customerAddToCartDialog(QTableWidget* sourceTable)
 {
-    QString category;
-    if (sourceTable == customerVandFTable)
-        category = "Vegetable and Fruit";
-    else if (sourceTable == customerDairyTable)
-        category = "Dairy";
-    else if (sourceTable == customerBeverageTable)
-        category = "Beverage";
-    else if (sourceTable == customerSnackTable)
-        category = "Snack";
-    else if (sourceTable == customerNoneFoodTable)
-        category = "None-Food";
+
+
+//    QString category;
+//    if (sourceTable == customerVandFTable)
+//        category = "Vegetable and Fruit";
+//    else if (sourceTable == customerDairyTable)
+//        category = "Dairy";
+//    else if (sourceTable == customerBeverageTable)
+//        category = "Beverage";
+//    else if (sourceTable == customerSnackTable)
+//        category = "Snack";
+//    else if (sourceTable == customerNoneFoodTable)
+//        category = "None-Food";
 
     QItemSelectionModel  *s = sourceTable->selectionModel();
     QModelIndexList  selectedRows = s->selectedRows();
     if (selectedRows.size() > 0)
     {
-        int row = selectedRows.first().row();
-        QString name = sourceTable->item(row, 0)->text();
-        QString manufacturer = sourceTable->item(row, 1)->text();
-        QString price = sourceTable->item(row, 2)->text();
-        QString expDate = sourceTable->item(row, 3)->text();
-        customerCartTable->insertRow(customerCartTable->rowCount());
-        customerCartTable->setItem(customerCartTable->rowCount()-1,0, new QTableWidgetItem(name));
-        customerCartTable->setItem(customerCartTable->rowCount()-1,1, new QTableWidgetItem(category));
-        customerCartTable->setItem(customerCartTable->rowCount()-1,2, new QTableWidgetItem(manufacturer));
-        customerCartTable->setItem(customerCartTable->rowCount()-1,3, new QTableWidgetItem(price));
-        customerCartTable->setItem(customerCartTable->rowCount()-1,4, new QTableWidgetItem(expDate));
+        QString name = sourceTable->item(selectedRows.first().row(),0)->text();
+        QString manu = sourceTable->item(selectedRows.first().row(),1)->text();
+        QString price = sourceTable->item(selectedRows.first().row(),2)->text();
+        QString exp_date = sourceTable->item(selectedRows.first().row(),3)->text();
+
+        addtocart_dialog *dialog = new addtocart_dialog(name, manu, price, exp_date, this);
+        dialog->show();
+
+//        int row = selectedRows.first().row();
+//        QString name = sourceTable->item(row, 0)->text();
+//        QString manufacturer = sourceTable->item(row, 1)->text();
+//        QString price = sourceTable->item(row, 2)->text();
+//        QString expDate = sourceTable->item(row, 3)->text();
+//        customerCartTable->insertRow(customerCartTable->rowCount());
+//        customerCartTable->setItem(customerCartTable->rowCount()-1,0, new QTableWidgetItem(name));
+//        customerCartTable->setItem(customerCartTable->rowCount()-1,1, new QTableWidgetItem(category));
+//        customerCartTable->setItem(customerCartTable->rowCount()-1,2, new QTableWidgetItem(manufacturer));
+//        customerCartTable->setItem(customerCartTable->rowCount()-1,3, new QTableWidgetItem(price));
+//        customerCartTable->setItem(customerCartTable->rowCount()-1,4, new QTableWidgetItem(expDate));
         sourceTable->clearSelection();
-        display_info("product succefully added to cart.");
+//        display_info("product succefully added to cart.");
     }
     else
     {
