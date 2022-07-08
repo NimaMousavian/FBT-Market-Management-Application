@@ -12,6 +12,7 @@
 #include <QToolBox>
 #include <QSpinBox>
 #include "product.h"
+#include <QJsonObject>
 
 
 QT_BEGIN_NAMESPACE
@@ -39,8 +40,13 @@ public:
     void add_purchase_to_history(int payment, int discount, int payout);
 
     void employee_load_invoices();
+    void customer_load_purchases();
+
+    void set_username(QString);
 private:
     Ui::MainWindow *ui;
+
+    QString username;
 
     //-------------- Customer window widgets ------------
     QTabWidget * customerMaintab;
@@ -76,5 +82,6 @@ public slots:
     void customerAddToCart(QTableWidget*);
     void customerPurchase();
     void removeFromCart();
+    void increase_credit();
 };
 #endif // MAINWINDOW_H

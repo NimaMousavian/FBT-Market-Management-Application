@@ -8,6 +8,9 @@
 #include <QMainWindow>
 #include <string>
 #include "mainwindow.h"
+#include <QFile>
+#include <QJsonDocument>
+#include <QJsonObject>
 
 namespace Ui {
 class Login_page;
@@ -26,8 +29,11 @@ private slots:
 
     void on_login_push_clicked();
 
+<<<<<<< HEAD
     void on_comboBox_currentIndexChanged(int index);
 
+=======
+>>>>>>> 33e84d1c574e221dfda4ed7a89ff1a0f54971905
 private:
     Ui::Login_page *ui;
     MainWindow *mainwindow;
