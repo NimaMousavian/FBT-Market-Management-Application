@@ -39,7 +39,6 @@ Sign_up_page::Sign_up_page(MainWindow *mw,QWidget *parent) :
     ui->firstNmae_le->setStyleSheet("background-color:#e6e8fc; border:2px solid #828ff5; border-radius:10px;");
     ui->lastNmae_le->setStyleSheet("background-color:#e6e8fc; border:2px solid #828ff5; border-radius:10px;");
     ui->age_spin->setStyleSheet("background-color:#e6e8fc; border:2px solid #828ff5; border-radius:10px;");
-    ui->idNumber_spin->setStyleSheet("background-color:#e6e8fc; border:2px solid #828ff5; border-radius:10px;");
     ui->address_te->setStyleSheet("background-color:#e6e8fc; border:2px solid #828ff5; border-radius:10px;");
     ui->phoneNumber_le->setStyleSheet("background-color:#e6e8fc; border:2px solid #828ff5; border-radius:10px;");
     ui->username_le->setStyleSheet("background-color:#e6e8fc; border:2px solid #828ff5; border-radius:10px;");
@@ -64,12 +63,11 @@ void Sign_up_page::on_sign_push_clicked()
     QString userName = ui->username_le->text();
     QString pass = ui->password_le->text();
     QString con_pass = ui->confPassword_le->text();
-    int ID = ui->idNumber_spin->value();
     int age = ui->age_spin->value();
     QString address = ui->address_te->toPlainText();
     QString phoneNumber = ui->phoneNumber_le->text();
 
-    if (firstName.isEmpty() || lastName.isEmpty() || userName.isEmpty() || pass.isEmpty() || con_pass.isEmpty() || ID == 0 || age == 1  || address.isEmpty() || phoneNumber.isEmpty())
+    if (firstName.isEmpty() || lastName.isEmpty() || userName.isEmpty() || pass.isEmpty() || con_pass.isEmpty() || age == 1  || address.isEmpty() || phoneNumber.isEmpty())
             mainwindow->display_error("Please fill out required fields.");
 
     else if (QString::compare(pass,con_pass,Qt::CaseInsensitive))
@@ -83,11 +81,12 @@ void Sign_up_page::on_sign_push_clicked()
     {
 
 
-        Customer* c = new Customer(firstName.toStdString(), lastName.toStdString(), userName.toStdString(), pass.toStdString(), phoneNumber.toStdString(), address.toStdString(), age, ID);
+        Customer* c = new Customer(firstName.toStdString(), lastName.toStdString(), userName.toStdString(), pass.toStdString(), phoneNumber.toStdString(), address.toStdString(), age);
         unique_ptr<Human> h1(c);
         h1->sign_up();
         this->close();
         mainwindow->customer_window();
+        mainwindow->display_info("Your ID Number in FBT Market is "+QString::number(c->get_customer_id()));
 
     }
 

@@ -3,10 +3,10 @@
 #include <fstream>
 using namespace std;
 
-Employee::Employee(string f_name, string l_name, int a, int id, string _username, string _password, int salary)
+Employee::Employee(string f_name, string l_name, int a, string _username, string _password, int salary)
     :Human(f_name, l_name, a)
 {
-    this->employeeID = id;
+    this->employeeID = QRandomGenerator::global()->generate()%100000;
     this->username = _username;
     this->password = _password;
     this->salary = salary;

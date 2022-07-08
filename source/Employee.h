@@ -6,8 +6,9 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QJsonArray>
-using namespace std;
+#include <QRandomGenerator>
 #include <string>
+using namespace std;
 
 
 class Employee : public Human
@@ -18,7 +19,7 @@ private:
     string username;
     string password;
 public:
-    Employee(string f_name, string l_name, int a, int id, string username, string password, int salary = 0);
+    Employee(string f_name, string l_name, int a, string username, string password, int salary = 1000000);
     ~Employee();
 
     void set_salary(int);

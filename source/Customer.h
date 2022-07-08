@@ -10,6 +10,7 @@
 #include <QFile>
 #include <QJsonDocument>
 #include <QJsonObject>
+#include <QRandomGenerator>
 
 using namespace std;
 
@@ -23,7 +24,7 @@ private:
     int customerID;
     double wallet;
 public:
-    Customer(string, string, string, string, string, string, int, int);
+    Customer(string, string, string, string, string, string, int);
 
     void set_address(string);
     void set_phone_number(string);
