@@ -301,7 +301,7 @@ void MainWindow::set_customer_window_ui()
 
     customerMaintab = new QTabWidget;
     customerMaintab->setIconSize(QSize(24, 24));
-    customerMaintab->addTab(customerCategoryTab, QIcon("E:/FBT_project/f.b.t/icons/cash_register.png"), tr("Shop"));
+    customerMaintab->addTab(customerCategoryTab, QIcon(":cash_register.png"), tr("Shop"));
     customerMaintab->addTab(cartGroup,"Cart");
     customerMaintab->addTab(customerShopHistoryToolBox,"shop History");
     customerMaintab->addTab(walletGroup, "Wallet");
@@ -467,12 +467,12 @@ void MainWindow::set_employee_window_ui()
 
 
     employeeAddProduct = new QPushButton("Add Product");
-    QPushButton *removeProduct = new QPushButton("Remove Product");
-    QHBoxLayout *hh = new QHBoxLayout;
+    removeProduct = new QPushButton("Remove Product");
+    hh = new QHBoxLayout;
     hh->addWidget(employeeAddProduct);
     hh->addWidget(removeProduct);
     hh->setAlignment(Qt::AlignLeft);
-    QVBoxLayout *vv = new QVBoxLayout;
+    vv = new QVBoxLayout;
     vv->addWidget(employeeCategoryTab);
     vv->addLayout(hh);
 
@@ -496,12 +496,78 @@ void MainWindow::set_employee_window_ui()
 
 void MainWindow::manager_window()
 {
-
+    set_manager_window_ui();
 }
 
 void MainWindow::set_manager_window_ui()
 {
 
+    //----------------- Employees Tab ----------------
+
+    employeeTable = new QTableWidget;
+    employeeTable->setEditTriggers(QAbstractItemView::NoEditTriggers);  // disable in-place editing
+    employeeTable->setSelectionBehavior(QAbstractItemView::SelectRows);  // only rows can be selected, not columns or sells
+    employeeTable->setSelectionMode(QAbstractItemView::SingleSelection);  // disable selection of multiple rows
+    employeeTable->setColumnCount(7);
+    QStringList tablehead;
+    tablehead << tr("First Name") << tr("Last Name") << tr("UserName") << tr("Age") << tr("Password") << tr("Employee ID") << tr("Salary");
+    employeeTable->setHorizontalHeaderLabels(tablehead);
+    display_employees(employeeTable);
+
+    addEmp = new QPushButton("Add Employee");
+    removeEmp = new QPushButton("Remove Employees");
+    editSalary = new QPushButton("Edit Salaries");
+    editPushbuttons = new QHBoxLayout;
+    editPushbuttons->addWidget(addEmp);
+    editPushbuttons->addWidget(removeEmp);
+    editPushbuttons->addWidget(editSalary);
+    editPushbuttons->setAlignment(Qt::AlignHCenter);
+
+    employeeslayout = new QVBoxLayout;
+    employeeslayout->addLayout(editPushbuttons);
+    employeeslayout->addWidget(employeeTable);
+    QGroupBox * empGroup = new QGroupBox;
+    empGroup->setLayout(employeeslayout);
+
+
+    managerTab = new QTabWidget;
+    managerTab->addTab(empGroup, "Employees");
+    this->setCentralWidget(managerTab);
+
+}
+
+void MainWindow::display_employees(QTableWidget *table)
+{
+    QFile employeesFile("database/employee.json");
+
+    QJsonObject employeesObj;
+    if (employeesFile.open(QIODevice::ReadOnly))
+    {
+        employeesObj = (QJsonDocument::fromJson( employeesFile.readAll() )).object();
+        employeesFile.close();
+    }
+
+    int counter=0;
+
+    foreach (QJsonValue x, employeesObj["Employees"].toArray())
+    {
+        if(x["age"] != 1)
+            counter++;
+    }
+    table->setRowCount(counter);
+    counter = 0;
+    foreach (QJsonValue x, employeesObj["Employees"].toArray())
+    {
+        table->setItem(counter, 0, new QTableWidgetItem(x["first name"].toString()));
+        table->setItem(counter, 1, new QTableWidgetItem(x["last name"].toString()));
+        table->setItem(counter, 2, new QTableWidgetItem(x["user name"].toString()));
+        table->setItem(counter, 3, new QTableWidgetItem(QString::number(x["age"].toInt())));
+        table->setItem(counter, 4, new QTableWidgetItem(x["password"].toString()));
+        table->setItem(counter, 5, new QTableWidgetItem(QString::number(x["ID number"].toInt())));
+        table->setItem(counter, 6, new QTableWidgetItem(QString::number(x["salary"].toInt())));
+
+        counter++;
+    }
 }
 
 void MainWindow::employee_add_product()

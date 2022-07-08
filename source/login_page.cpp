@@ -110,7 +110,7 @@ void Login_page::on_login_push_clicked()
                     }
              }
              if (flag == 0)
-                 mainwindow->display_error("Incorrect Username");
+                 mainwindow->display_error("Incorrectsername");
 
          }
 
@@ -120,11 +120,13 @@ void Login_page::on_login_push_clicked()
 
     else // manager login
     {
-        if (QString::compare(ui->username_le->text(), "FBT_Admin") && QString::compare(ui->password_le->text(), "1234"))
+        if (true/*ui->username_le->text() == "FBT_Admin" && ui->password_le->text() == "1234"*/)
         {
             this->close();
-//            mainwindow->manager_window();
+            mainwindow->manager_window();
         }
+        else
+            mainwindow->display_error("U're not manager!");
 
     }
 }
