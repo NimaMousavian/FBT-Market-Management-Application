@@ -49,7 +49,7 @@ public:
     void employee_load_invoices();
     void customer_load_purchases();
 
-    void cutomer_add_to_cart(QString, QString, QString, QString, QString);
+    void customer_add_to_cart(QString, QString, QString, QString, QString, QString);
 
     void set_username(QString);
 private:

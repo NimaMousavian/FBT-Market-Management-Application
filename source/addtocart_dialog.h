@@ -13,8 +13,10 @@ class addtocart_dialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit addtocart_dialog(QString, QString, QString, QString, MainWindow* mw, QWidget *parent = nullptr);
+    explicit addtocart_dialog(QString, QString, QString, QString, QString, MainWindow* mw, QWidget *parent = nullptr);
     ~addtocart_dialog();
+
+    void if_product_one();
 
 private slots:
     void on_addButton_clicked();

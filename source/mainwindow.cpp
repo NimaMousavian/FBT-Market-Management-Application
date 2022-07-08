@@ -809,7 +809,6 @@ void MainWindow::display_employees(QTableWidget *table)
 //void MainWindow::employee_add_product()
 
 void MainWindow::employee_add_product_to_stock()
-
 {
     QFile f("database/stockproducts.json");
     f.open(QIODevice::ReadOnly);
@@ -1197,14 +1196,15 @@ void MainWindow::customer_load_purchases()
     }
 }
 
-void MainWindow::cutomer_add_to_cart(QString name, QString manu, QString price, QString exp_date, QString amount)
+void MainWindow::customer_add_to_cart(QString name, QString category, QString manu, QString price, QString exp_date, QString amount)
 {
-            customerCartTable->insertRow(customerCartTable->rowCount());
-            customerCartTable->setItem(customerCartTable->rowCount()-1,0, new QTableWidgetItem(name));
-            ///customerCartTable->setItem(customerCartTable->rowCount()-1,1, new QTableWidgetItem(category));
-            customerCartTable->setItem(customerCartTable->rowCount()-1,2, new QTableWidgetItem(manu));
-            customerCartTable->setItem(customerCartTable->rowCount()-1,3, new QTableWidgetItem(price));
-            customerCartTable->setItem(customerCartTable->rowCount()-1,4, new QTableWidgetItem(exp_date));
+    customerCartTable->insertRow(customerCartTable->rowCount());
+    customerCartTable->setItem(customerCartTable->rowCount()-1,0, new QTableWidgetItem(name));
+    customerCartTable->setItem(customerCartTable->rowCount()-1,1, new QTableWidgetItem(category));
+    customerCartTable->setItem(customerCartTable->rowCount()-1,2, new QTableWidgetItem(manu));
+    customerCartTable->setItem(customerCartTable->rowCount()-1,3, new QTableWidgetItem(price));
+    customerCartTable->setItem(customerCartTable->rowCount()-1,4, new QTableWidgetItem(exp_date));
+    customerCartTable->setItem(customerCartTable->rowCount()-1,5, new QTableWidgetItem(amount));
 }
 
 void MainWindow::set_username(QString u)
@@ -1441,17 +1441,17 @@ void MainWindow::customerAddToCartDialog(QTableWidget* sourceTable)
 {
 
 
-//    QString category;
-//    if (sourceTable == customerVandFTable)
-//        category = "Vegetable and Fruit";
-//    else if (sourceTable == customerDairyTable)
-//        category = "Dairy";
-//    else if (sourceTable == customerBeverageTable)
-//        category = "Beverage";
-//    else if (sourceTable == customerSnackTable)
-//        category = "Snack";
-//    else if (sourceTable == customerNoneFoodTable)
-//        category = "None-Food";
+    QString category;
+    if (sourceTable == customerVandFTable)
+        category = "Vegetable and Fruit";
+    else if (sourceTable == customerDairyTable)
+        category = "Dairy";
+    else if (sourceTable == customerBeverageTable)
+        category = "Beverage";
+    else if (sourceTable == customerSnackTable)
+        category = "Snack";
+    else if (sourceTable == customerNoneFoodTable)
+        category = "None-Food";
 
     QItemSelectionModel  *s = sourceTable->selectionModel();
     QModelIndexList  selectedRows = s->selectedRows();
@@ -1462,7 +1462,7 @@ void MainWindow::customerAddToCartDialog(QTableWidget* sourceTable)
         QString price = sourceTable->item(selectedRows.first().row(),2)->text();
         QString exp_date = sourceTable->item(selectedRows.first().row(),3)->text();
 
-        addtocart_dialog *dialog = new addtocart_dialog(name, manu, price, exp_date, this);
+        addtocart_dialog *dialog = new addtocart_dialog(name,category, manu, price, exp_date, this);
         dialog->show();
 
 //        int row = selectedRows.first().row();

@@ -14,7 +14,6 @@ SOURCES += \
     Customer.cpp \
     Employee.cpp \
     Human.cpp \
-    mainwindow.cpp
     addtocart_dialog.cpp \
     Manager.cpp \
     customer_invoice.cpp \
@@ -30,7 +29,6 @@ HEADERS += \
     Customer.h \
     Employee.h \
     Human.h \
-    mainwindow.h
     addtocart_dialog.h \
     Manager.h \
     customer_invoice.h \
