@@ -27,7 +27,7 @@ void employee_add_product_dialog::on_pushButton_clicked()
         mainwindow->display_error("Please fill out required fields.");
 
     //------------ add product ----------------
-    QFile f("database/shopproducts.json");
+    QFile f("database/stockproducts.json");
     f.open(QIODevice::ReadOnly);
     if(f.isOpen())
     {
@@ -41,19 +41,20 @@ void employee_add_product_dialog::on_pushButton_clicked()
         r["Manufacturer"] = ui->manu_le->text();
         r["Price"] = ui->price_spin->value();
         r["Expiry date"] = ui->exp_date->date().toString("dd/MM/yyyy");
+        r["Amount"] = ui->amount_spin->value();
         QJsonArray product = p;
         product.append(r);
         QJsonObject v;
         v["Products"] = product;
         QJsonDocument u(v);
-        QFile w("database/shopproducts.json");
+        QFile w("database/stockproducts.json");
         w.open(QIODevice::WriteOnly);
         w.write(u.toJson());
 
     }
     else
     {
-        QFile z("database/shopproducts.json");
+        QFile z("database/stockproducts.json");
         z.open(QIODevice::WriteOnly);
 
         QJsonObject j;
@@ -64,6 +65,7 @@ void employee_add_product_dialog::on_pushButton_clicked()
         t["Manufacturer"] = ui->manu_le->text();
         t["Price"] = ui->price_spin->value();
         t["Expiry date"] = ui->exp_date->date().toString("dd/MM/yyyy");
+        t["Amount"] = ui->amount_spin->value();
         products.append(t);
         j["Products"] = products;
 
@@ -73,7 +75,7 @@ void employee_add_product_dialog::on_pushButton_clicked()
 
 
 
-    mainwindow->employee_add_product();
+    mainwindow->employee_add_product_to_stock();
     this->close();
 }
 
