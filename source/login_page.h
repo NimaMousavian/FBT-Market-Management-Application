@@ -2,11 +2,16 @@
 #define LOGIN_PAGE_H
 
 #include <QWidget>
+#include <QFile>
+#include <QJsonDocument>
+#include <QJsonObject>
 #include <QMainWindow>
+#include <string>
 #include "mainwindow.h"
 #include <QFile>
 #include <QJsonDocument>
 #include <QJsonObject>
+#include <QJsonArray>
 
 namespace Ui {
 class Login_page;
@@ -24,6 +29,7 @@ private slots:
     void on_back_push_clicked();
 
     void on_login_push_clicked();
+
 
 private:
     Ui::Login_page *ui;

@@ -14,7 +14,9 @@ SOURCES += \
     Customer.cpp \
     Employee.cpp \
     Human.cpp \
+    mainwindow.cpp
     addtocart_dialog.cpp \
+    Manager.cpp \
     customer_invoice.cpp \
     employee_add_product_dialog.cpp \
     employee_signup.cpp \
@@ -24,12 +26,13 @@ SOURCES += \
     mainwindow.cpp \
     product.cpp \
     sign_up_page.cpp
-
 HEADERS += \
     Customer.h \
     Employee.h \
     Human.h \
+    mainwindow.h
     addtocart_dialog.h \
+    Manager.h \
     customer_invoice.h \
     employee_add_product_dialog.h \
     employee_signup.h \
@@ -38,7 +41,6 @@ HEADERS += \
     mainwindow.h \
     product.h \
     sign_up_page.h
-
 FORMS += \
     addtocart_dialog.ui \
     customer_invoice.ui \

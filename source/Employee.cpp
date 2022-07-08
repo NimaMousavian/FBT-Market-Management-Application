@@ -1,12 +1,8 @@
 #include "Employee.h"
-#include <iostream>
-#include <fstream>
-using namespace std;
-
-Employee::Employee(string f_name, string l_name, int a, int id, string _username, string _password, int salary)
+Employee::Employee(string f_name, string l_name, int a, string _username, string _password, int salary)
     :Human(f_name, l_name, a)
 {
-    this->employeeID = id;
+    this->employeeID = QRandomGenerator::global()->generate()%100000;
     this->username = _username;
     this->password = _password;
     this->salary = salary;
@@ -59,10 +55,11 @@ void Employee::sign_up()
                                     {"age", Human::get_age()},
                                     {"salary", this->salary}};
 
-    employeesObj[QString::fromStdString(this->username)] = newEmployeeInfo;
-    QJsonDocument customersDuc(employeesObj);
+    QJsonArray empArray = employeesObj["Employees"].toArray();
+    empArray.append(newEmployeeInfo);
+    employeesObj["Employees"] = empArray;
     employeesFile.open(QIODevice::WriteOnly);
-    employeesFile.write(customersDuc.toJson());
+    employeesFile.write(QJsonDocument (employeesObj).toJson());
     employeesFile.close();
     return;
 }

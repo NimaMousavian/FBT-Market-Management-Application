@@ -1,15 +1,13 @@
 #include "Customer.h"
-#include <QJsonArray>
-using namespace std;
 
-Customer::Customer(string f_name, string l_name, string _username, string _password, string _phone, string _address, int a, int id)
+Customer::Customer(string f_name, string l_name, string _username, string _password, string _phone, string _address, int a)
     :Human(f_name, l_name, a)
 {
     this->address = _address;
     this->phoneNumber = _phone;
     this->userName = _username;
     this->password = _password;
-    this->customerID = id;
+    this->customerID = QRandomGenerator::global()->generate()%100000;
     this->wallet = 0;
     return;
 }
@@ -77,7 +75,7 @@ void Customer::sign_up()
         customersObj = (QJsonDocument::fromJson( customersFile.readAll() )).object();
         customersFile.close();
     }
-    //QJsonArray purchases;
+
     QJsonObject newCustomerInfo = { {"first name", QString::fromStdString(Human::get_first_name())},
                                     {"last name", QString::fromStdString(Human::get_last_name())},
                                     {"user name", QString::fromStdString(this->userName)},

@@ -1,6 +1,7 @@
 #include "login_page.h"
 #include "ui_login_page.h"
 #include "home.h"
+#include <string.h>
 
 
 Login_page::Login_page(MainWindow *mw,QWidget *parent) :
@@ -61,7 +62,7 @@ void Login_page::on_login_push_clicked()
          {
              customersObj = (QJsonDocument::fromJson( customersFile.readAll() )).object();
              customersFile.close();
-             if ( customersObj[ui->username_le->text()] != NULL)
+             if ( (customersObj[ui->username_le->text()].toObject())["user name"] == ui->username_le->text())
              {
                  if ((customersObj[ui->username_le->text()].toObject())["password"] == ui->password_le->text())
                  {
@@ -91,18 +92,26 @@ void Login_page::on_login_push_clicked()
              employeesObj = (QJsonDocument::fromJson( employeesFile.readAll() )).object();
              employeesFile.close();
 
-             if ( employeesObj[ui->username_le->text()] != NULL)
+             int flag = 0;
+             foreach(QJsonValue x, employeesObj["Employees"].toArray() )
              {
-                 if ((employeesObj[ui->username_le->text()].toObject())["password"] == ui->password_le->text())
-                 {
-                     this->close();
-                     mainwindow->employee_window();
-                 }
-                 else
-                     mainwindow->display_error("Incorrect Password");
+                    if (x["user name"] == ui->username_le->text())
+                    {
+                        flag = 1;
+                        if (x["password"] == ui->password_le->text())
+                        {
+                            this->close();
+                            mainwindow->set_username(ui->username_le->text());
+                            mainwindow->employee_window();
+                        }
+                        else
+                            mainwindow->display_error("Incorrect Password");
+                        break;
+                    }
              }
-             else
-                 mainwindow->display_error("Incorrect Username");
+             if (flag == 0)
+                 mainwindow->display_error("Incorrectsername");
+
          }
 
          else
@@ -111,12 +120,16 @@ void Login_page::on_login_push_clicked()
 
     else // manager login
     {
-        if (QString::compare(ui->username_le->text(), "FBT_Admin") && QString::compare(ui->password_le->text(), "1234"))
+        if (true/*ui->username_le->text() == "FBT_Admin" && ui->password_le->text() == "1234"*/)
         {
             this->close();
-//            mainwindow->manager_window();
+            mainwindow->manager_window();
         }
+        else
+            mainwindow->display_error("U're not manager!");
 
     }
 }
+
+
 

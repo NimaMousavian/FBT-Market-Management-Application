@@ -52,7 +52,7 @@ MainWindow::MainWindow(QWidget *parent)
     QPixmap bkgnd(":/image2.jpg");
     bkgnd = bkgnd.scaled(this->size(), Qt::IgnoreAspectRatio);
     QPalette palette;
-    palette.setBrush(QPalette::Background, bkgnd);
+    palette.setBrush(QPalette::Window, bkgnd);
     this->setPalette(palette);
 }
 
@@ -89,7 +89,7 @@ void MainWindow::set_customer_window_ui()
     QHBoxLayout * addLayout = new QHBoxLayout;
     addLayout->addWidget(addToCartPush);
     addLayout->setAlignment(Qt::AlignLeft);
-    connect(addToCartPush,&QPushButton::clicked,this,[this]{customerAddToCart(customerVandFTable);});
+    connect(addToCartPush,&QPushButton::clicked,this,[this]{customerAddToCartDialog(customerVandFTable);});
 
     customerVandFTable = new QTableWidget;
     customerVandFTable->setEditTriggers(QAbstractItemView::NoEditTriggers);  // disable in-place editing
@@ -120,7 +120,7 @@ void MainWindow::set_customer_window_ui()
     QHBoxLayout * addLayout2 = new QHBoxLayout;
     addLayout2->addWidget(addToCartPush2);
     addLayout2->setAlignment(Qt::AlignLeft);
-    connect(addToCartPush2,&QPushButton::clicked,this,[this]{customerAddToCart(customerDairyTable);});
+    connect(addToCartPush2,&QPushButton::clicked,this,[this]{customerAddToCartDialog(customerDairyTable);});
 
 
     customerDairyTable = new QTableWidget;
@@ -152,7 +152,7 @@ void MainWindow::set_customer_window_ui()
     QHBoxLayout * addLayout3 = new QHBoxLayout;
     addLayout3->addWidget(addToCartPush3);
     addLayout3->setAlignment(Qt::AlignLeft);
-    connect(addToCartPush3,&QPushButton::clicked,this,[this]{customerAddToCart(customerBeverageTable);});
+    connect(addToCartPush3,&QPushButton::clicked,this,[this]{customerAddToCartDialog(customerBeverageTable);});
 
     customerBeverageTable = new QTableWidget;
     customerBeverageTable->setEditTriggers(QAbstractItemView::NoEditTriggers);  // disable in-place editing
@@ -183,7 +183,7 @@ void MainWindow::set_customer_window_ui()
     QHBoxLayout * addLayout4 = new QHBoxLayout;
     addLayout4->addWidget(addToCartPush4);
     addLayout4->setAlignment(Qt::AlignLeft);
-    connect(addToCartPush4,&QPushButton::clicked,this,[this]{customerAddToCart(customerSnackTable);});
+    connect(addToCartPush4,&QPushButton::clicked,this,[this]{customerAddToCartDialog(customerSnackTable);});
 
     customerSnackTable = new QTableWidget;
     customerSnackTable->setEditTriggers(QAbstractItemView::NoEditTriggers);  // disable in-place editing
@@ -214,7 +214,7 @@ void MainWindow::set_customer_window_ui()
     QHBoxLayout * addLayout5 = new QHBoxLayout;
     addLayout5->addWidget(addToCartPush5);
     addLayout5->setAlignment(Qt::AlignLeft);
-    connect(addToCartPush5,&QPushButton::clicked,this,[this]{customerAddToCart(customerNoneFoodTable);});
+    connect(addToCartPush5,&QPushButton::clicked,this,[this]{customerAddToCartDialog(customerNoneFoodTable);});
 
     customerNoneFoodTable = new QTableWidget;
     customerNoneFoodTable->setEditTriggers(QAbstractItemView::NoEditTriggers);  // disable in-place editing
@@ -302,7 +302,7 @@ void MainWindow::set_customer_window_ui()
 
     customerMaintab = new QTabWidget;
     customerMaintab->setIconSize(QSize(24, 24));
-    customerMaintab->addTab(customerCategoryTab, QIcon("E:/FBT_project/f.b.t/icons/cash_register.png"), tr("Shop"));
+    customerMaintab->addTab(customerCategoryTab, QIcon(":cash_register.png"), tr("Shop"));
     customerMaintab->addTab(cartGroup,"Cart");
     customerMaintab->addTab(customerShopHistoryToolBox,"shop History");
     customerMaintab->addTab(walletGroup, "Wallet");
@@ -514,10 +514,12 @@ void MainWindow::set_employee_window_ui()
 
 
 
+
     QHBoxLayout *hh = new QHBoxLayout;
     //hh->addWidget(employeeRemoveProductFromShop);
-    hh->setAlignment(Qt::AlignLeft);
     QVBoxLayout *vv = new QVBoxLayout;
+    hh->setAlignment(Qt::AlignLeft);
+    vv = new QVBoxLayout;
     vv->addWidget(employeeCategoryTab);
     vv->addLayout(hh);
 
@@ -728,7 +730,86 @@ void MainWindow::set_employee_window_ui()
 
 }
 
+void MainWindow::manager_window()
+{
+    set_manager_window_ui();
+}
+
+void MainWindow::set_manager_window_ui()
+{
+
+    //----------------- Employees Tab ----------------
+
+    employeeTable = new QTableWidget;
+    employeeTable->setEditTriggers(QAbstractItemView::NoEditTriggers);  // disable in-place editing
+    employeeTable->setSelectionBehavior(QAbstractItemView::SelectRows);  // only rows can be selected, not columns or sells
+    employeeTable->setSelectionMode(QAbstractItemView::SingleSelection);  // disable selection of multiple rows
+    employeeTable->setColumnCount(7);
+    QStringList tablehead;
+    tablehead << tr("First Name") << tr("Last Name") << tr("UserName") << tr("Age") << tr("Password") << tr("Employee ID") << tr("Salary");
+    employeeTable->setHorizontalHeaderLabels(tablehead);
+    display_employees(employeeTable);
+
+    addEmp = new QPushButton("Add Employee");
+    removeEmp = new QPushButton("Remove Employees");
+    editSalary = new QPushButton("Edit Salaries");
+    editPushbuttons = new QHBoxLayout;
+    editPushbuttons->addWidget(addEmp);
+    editPushbuttons->addWidget(removeEmp);
+    editPushbuttons->addWidget(editSalary);
+    editPushbuttons->setAlignment(Qt::AlignHCenter);
+
+    employeeslayout = new QVBoxLayout;
+    employeeslayout->addLayout(editPushbuttons);
+    employeeslayout->addWidget(employeeTable);
+    QGroupBox * empGroup = new QGroupBox;
+    empGroup->setLayout(employeeslayout);
+
+
+    managerTab = new QTabWidget;
+    managerTab->addTab(empGroup, "Employees");
+    this->setCentralWidget(managerTab);
+
+}
+
+void MainWindow::display_employees(QTableWidget *table)
+{
+    QFile employeesFile("database/employee.json");
+
+    QJsonObject employeesObj;
+    if (employeesFile.open(QIODevice::ReadOnly))
+    {
+        employeesObj = (QJsonDocument::fromJson( employeesFile.readAll() )).object();
+        employeesFile.close();
+    }
+
+    int counter=0;
+
+    foreach (QJsonValue x, employeesObj["Employees"].toArray())
+    {
+        if(x["age"] != 1)
+            counter++;
+    }
+    table->setRowCount(counter);
+    counter = 0;
+    foreach (QJsonValue x, employeesObj["Employees"].toArray())
+    {
+        table->setItem(counter, 0, new QTableWidgetItem(x["first name"].toString()));
+        table->setItem(counter, 1, new QTableWidgetItem(x["last name"].toString()));
+        table->setItem(counter, 2, new QTableWidgetItem(x["user name"].toString()));
+        table->setItem(counter, 3, new QTableWidgetItem(QString::number(x["age"].toInt())));
+        table->setItem(counter, 4, new QTableWidgetItem(x["password"].toString()));
+        table->setItem(counter, 5, new QTableWidgetItem(QString::number(x["ID number"].toInt())));
+        table->setItem(counter, 6, new QTableWidgetItem(QString::number(x["salary"].toInt())));
+
+        counter++;
+    }
+}
+
+//void MainWindow::employee_add_product()
+
 void MainWindow::employee_add_product_to_stock()
+
 {
     QFile f("database/stockproducts.json");
     f.open(QIODevice::ReadOnly);
