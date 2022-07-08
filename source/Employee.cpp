@@ -1,8 +1,4 @@
 #include "Employee.h"
-#include <iostream>
-#include <fstream>
-using namespace std;
-
 Employee::Employee(string f_name, string l_name, int a, string _username, string _password, int salary)
     :Human(f_name, l_name, a)
 {

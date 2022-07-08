@@ -1,7 +1,5 @@
 #include "Customer.h"
 
-using namespace std;
-
 Customer::Customer(string f_name, string l_name, string _username, string _password, string _phone, string _address, int a)
     :Human(f_name, l_name, a)
 {

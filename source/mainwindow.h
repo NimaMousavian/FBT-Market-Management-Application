@@ -33,6 +33,9 @@ public:
     void employee_window();
     void set_employee_window_ui();
 
+    void manager_window();
+    void set_manager_window_ui();
+
     void employee_add_product();
     void display_shop_product(QTableWidget*, QString);
 
@@ -71,6 +74,11 @@ private:
     QPushButton * employeeAddProduct;
     QToolBox * employeeInvoices;
 
+    //------------- Manager window widgets -----------------
+    QTabWidget * manageemployees;
+    QTabWidget * manageshop;
+    QTabWidget * managestock;
+    QTabWidget * manageinvoices;
 
 signals:
     void throw_error(QString);

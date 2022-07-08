@@ -301,7 +301,7 @@ void MainWindow::set_customer_window_ui()
 
     customerMaintab = new QTabWidget;
     customerMaintab->setIconSize(QSize(24, 24));
-    customerMaintab->addTab(customerCategoryTab, QIcon("E:/FBT_project/f.b.t/icons/cash_register.png"), tr("Shop"));
+    customerMaintab->addTab(customerCategoryTab, QIcon(":cash_register.png"), tr("Shop"));
     customerMaintab->addTab(cartGroup,"Cart");
     customerMaintab->addTab(customerShopHistoryToolBox,"shop History");
     customerMaintab->addTab(walletGroup, "Wallet");
@@ -500,8 +500,19 @@ void MainWindow::manager_window()
 }
 
 void MainWindow::set_manager_window_ui()
-{
-
+{  
+    manageemployees = new QTableWidget;
+    manageemployees->setEditTriggers(QAbstractItemView::NoEditTriggers);  // disable in-place editing
+    manageemployees->setSelectionBehavior(QAbstractItemView::SelectRows);  // only rows can be selected, not columns or sells
+    manageemployees->setSelectionMode(QAbstractItemView::SingleSelection);  // disable selection of multiple rows
+    manageemployees->setColumnCount(7);  
+    QStringList tablehead;
+    tablehead << tr("First Name") << tr("Last Name") << tr("UserName") << tr("Age") << tr("Password") << tr("Employee ID") << tr("Salary");
+    manageemployees->setHorizontalHeaderLabels(tablehead);
+    
+    
+    managerTab = new QTabWidget; 
+//    managerTab->addTab(, "Employees");
 }
 
 void MainWindow::employee_add_product()
