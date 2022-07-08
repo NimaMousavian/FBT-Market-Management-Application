@@ -78,7 +78,7 @@ void Customer::sign_up()
         customersFile.close();
     }
     //QJsonArray purchases;
-    QJsonObject newCustomerInfo = { {"fist name", QString::fromStdString(Human::get_first_name())},
+    QJsonObject newCustomerInfo = { {"first name", QString::fromStdString(Human::get_first_name())},
                                     {"last name", QString::fromStdString(Human::get_last_name())},
                                     {"user name", QString::fromStdString(this->userName)},
                                     {"password", QString::fromStdString(this->password)},
