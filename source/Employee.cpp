@@ -51,7 +51,7 @@ void Employee::sign_up()
         employeesObj = (QJsonDocument::fromJson( employeesFile.readAll() )).object();
         employeesFile.close();
     }
-    QJsonObject newEmployeeInfo = { {"fist name", QString::fromStdString(Human::get_first_name())},
+    QJsonObject newEmployeeInfo = { {"first name", QString::fromStdString(Human::get_first_name())},
                                     {"last name", QString::fromStdString(Human::get_last_name())},
                                     {"user name", QString::fromStdString(this->username)},
                                     {"password", QString::fromStdString(this->password)},

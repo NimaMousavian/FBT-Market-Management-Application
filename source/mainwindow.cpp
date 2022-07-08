@@ -32,7 +32,6 @@
 
 using namespace std;
 
-//QJsonObject * user = new QJsonObject;
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -64,6 +63,7 @@ MainWindow::~MainWindow()
 void MainWindow::customer_window()
 {
     set_customer_window_ui();
+
     display_shop_product(customerVandFTable, "Vegetable and Fruit");
     display_shop_product(customerDairyTable, "Dairy");
     display_shop_product(customerBeverageTable, "Beverage");
@@ -932,7 +932,16 @@ void MainWindow::customerPurchase()
     }
     else
     {
-        customer_invoice * invoic = new customer_invoice(this,"sajad", "8766", customerCartTable, 100000, 3000);
+        QFile f("database/customers.json");
+        f.open(QIODevice::ReadOnly);
+        QByteArray b = f.readAll();
+        QJsonDocument d = QJsonDocument::fromJson(b);
+        QJsonObject o = d.object();
+        QJsonObject j = o[this->username].toObject();
+
+        QString name = j["first name"].toString() + " " + j["last name"].toString();
+
+        customer_invoice * invoic = new customer_invoice(this, name, QString::number(j["customer ID"].toInt()), customerCartTable, 100000);
         invoic->show();
     }
     return;
