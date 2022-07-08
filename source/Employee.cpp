@@ -59,10 +59,11 @@ void Employee::sign_up()
                                     {"age", Human::get_age()},
                                     {"salary", this->salary}};
 
-    employeesObj[QString::fromStdString(this->username)] = newEmployeeInfo;
-    QJsonDocument customersDuc(employeesObj);
+    QJsonArray empArray = employeesObj["Employees"].toArray();
+    empArray.append(newEmployeeInfo);
+    employeesObj["Employees"] = empArray;
     employeesFile.open(QIODevice::WriteOnly);
-    employeesFile.write(customersDuc.toJson());
+    employeesFile.write(QJsonDocument (employeesObj).toJson());
     employeesFile.close();
     return;
 }

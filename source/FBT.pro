@@ -14,6 +14,7 @@ SOURCES += \
     Customer.cpp \
     Employee.cpp \
     Human.cpp \
+    Manager.cpp \
     customer_invoice.cpp \
     employee_add_product_dialog.cpp \
     employee_signup.cpp \
@@ -28,6 +29,7 @@ HEADERS += \
     Customer.h \
     Employee.h \
     Human.h \
+    Manager.h \
     customer_invoice.h \
     employee_add_product_dialog.h \
     employee_signup.h \
