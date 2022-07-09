@@ -30,6 +30,10 @@
 #include <QItemSelectionModel>
 #include "customer_invoice.h"
 #include "addtocart_dialog.h"
+#include "increase_credit_dialog.h"
+#include "manageraddemployeedialog.h"
+#include "manager_remove_employee_dialog.h"
+#include "manager_edit_salary_dialog.h"
 
 using namespace std;
 
@@ -41,8 +45,11 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
     mkdir("database");
+    mkdir("datebase/customers");
 
-    connect(this, SIGNAL(throw_error), this,SLOT(display_error));
+    FBTManager = new Manager("Mamad", "Admini", 31, "FBT_Admin", "1234");
+    unique_ptr<Human> h4(FBTManager);
+    h4->sign_up();
 
     this->setWindowTitle("Hyper Market Manager System");
     this->setCentralWidget(new Home(this));
@@ -72,6 +79,8 @@ void MainWindow::customer_window()
     display_shop_product(customerNoneFoodTable, "None-Food");
 
     customer_load_purchases();
+
+    customer_increase_credit();
 
 }
 
@@ -281,7 +290,7 @@ void MainWindow::set_customer_window_ui()
 
     QPushButton *increasCredit = new QPushButton("increas credit");
     increasCredit->setStyleSheet("font-size: 12px;");
-    connect(increasCredit, &QPushButton::clicked, [this]{increase_credit();});
+    connect(increasCredit, &QPushButton::clicked, this, &MainWindow::increaseCreditDialog);
 
     QHBoxLayout * icLayout = new QHBoxLayout;
     icLayout->addWidget(increasCredit);
@@ -519,7 +528,6 @@ void MainWindow::set_employee_window_ui()
     //hh->addWidget(employeeRemoveProductFromShop);
     QVBoxLayout *vv = new QVBoxLayout;
     hh->setAlignment(Qt::AlignLeft);
-    vv = new QVBoxLayout;
     vv->addWidget(employeeCategoryTab);
     vv->addLayout(hh);
 
@@ -733,12 +741,18 @@ void MainWindow::set_employee_window_ui()
 void MainWindow::manager_window()
 {
     set_manager_window_ui();
+    connect(addEmp,&QPushButton::clicked, this, &MainWindow::managerAddEmployeedialog);
+    connect(removeEmp,&QPushButton::clicked, this, &MainWindow::managerRemoveEmployeeDialog);
+    connect(editSalary,&QPushButton::clicked, this, &MainWindow::managerEditSalaryDialog);
 }
 
 void MainWindow::set_manager_window_ui()
 {
 
+
+    //------------------------------------------------
     //----------------- Employees Tab ----------------
+    //------------------------------------------------
 
     employeeTable = new QTableWidget;
     employeeTable->setEditTriggers(QAbstractItemView::NoEditTriggers);  // disable in-place editing
@@ -765,15 +779,9 @@ void MainWindow::set_manager_window_ui()
     QGroupBox * empGroup = new QGroupBox;
     empGroup->setLayout(employeeslayout);
 
-    //------------- main tab -----------------
 
-    managerTab = new QTabWidget;
-    managerTab->addTab(empGroup, "Employees");
-
-    this->setCentralWidget(managerTab);
-
+    this->setCentralWidget(empGroup);
 }
-
 void MainWindow::display_employees(QTableWidget *table)
 {
     QFile employeesFile("database/employee.json");
@@ -808,7 +816,6 @@ void MainWindow::display_employees(QTableWidget *table)
     }
 }
 
-//void MainWindow::employee_add_product()
 
 void MainWindow::employee_add_product_to_stock()
 {
@@ -896,9 +903,39 @@ void MainWindow::display_stock_product(QTableWidget * table, QString category)
     }
 }
 
-void MainWindow::set_customer_credit(int a)
+void MainWindow::customer_increase_credit(int a)
 {
-    this->customerCredit->setValue(a);
+    //------------writing in file-------------
+    QFile f("database/customers.json");
+    f.open(QIODevice::ReadOnly);
+    QByteArray b = f.readAll();
+    QJsonDocument d = QJsonDocument::fromJson(b);
+    QJsonObject o = d.object();
+
+    QJsonObject other = o[this->username].toObject();
+    QJsonObject j =  { {"first name", other["first name"].toString()},
+                       {"last name", other["last name"].toString()},
+                       {"user name", other["user name"].toString()},
+                       {"password", other["password"].toString()},
+                       {"customer ID", other["customer ID"].toInt()},
+                       {"age", other["age"].toInt()},
+                       {"address", other["address"].toString()},
+                       {"phone number", other["phone number"].toString()},
+                       {"wallet", a + other["wallet"].toInt()}};
+
+    QJsonObject  tmp = o;
+    tmp[this->username] = j;
+
+    QJsonDocument u(tmp);
+    QFile w("database/customers.json");
+    w.open(QIODevice::WriteOnly);
+    w.write(u.toJson());
+
+    this->customerCredit->setValue(j["wallet"].toInt());
+
+    if (a>0)
+        display_info("your credit successfully increased.");
+
     return;
 }
 
@@ -1048,7 +1085,7 @@ void MainWindow::employee_load_invoices()
         nameLayout->setAlignment(Qt::AlignLeft);
 
         QLabel * idLabel = new QLabel("Customer ID: ");
-        QLineEdit * idLe = new QLineEdit(x["Customer ID"].toString());
+        QLineEdit * idLe = new QLineEdit(QString::number(x["Customer ID"].toInt()));
         idLe->setReadOnly(true);
         idLe->setStyleSheet("font-size: 15px;");
         QHBoxLayout * idLayout = new QHBoxLayout;
@@ -1516,7 +1553,7 @@ void MainWindow::customerPurchase()
 
         QString name = j["first name"].toString() + " " + j["last name"].toString();
 
-        customer_invoice * invoic = new customer_invoice(this, name, QString::number(j["customer ID"].toInt()), customerCartTable, 100000);
+        customer_invoice * invoic = new customer_invoice(this, name, QString::number(j["customer ID"].toInt()), customerCartTable, customerCredit->value());
         invoic->show();
     }
     return;
@@ -1594,8 +1631,27 @@ void MainWindow::removeFromCart()
     return;
 }
 
-void MainWindow::increase_credit()
+void MainWindow::increaseCreditDialog()
 {
+    increase_credit_dialog * dialog = new increase_credit_dialog(this);
+    dialog->show();
+}
 
+void MainWindow::managerAddEmployeedialog()
+{
+    managerAddEmployeeDialog * dialog = new managerAddEmployeeDialog(this);
+    dialog->show();
+}
+
+void MainWindow::managerRemoveEmployeeDialog()
+{
+    manager_remove_employee_dialog * dialog = new manager_remove_employee_dialog(this);
+    dialog->show();
+}
+
+void MainWindow::managerEditSalaryDialog()
+{
+    manager_edit_salary_dialog * dialog = new manager_edit_salary_dialog(this);
+    dialog->show();
 }
 

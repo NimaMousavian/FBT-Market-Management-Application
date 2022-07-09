@@ -13,6 +13,7 @@
 #include <QSpinBox>
 #include "product.h"
 #include <QJsonObject>
+#include "Manager.h"
 
 
 QT_BEGIN_NAMESPACE
@@ -43,7 +44,7 @@ public:
 
     void display_employees(QTableWidget *);
 
-    void set_customer_credit(int);
+    void customer_increase_credit(int a =0);
     void add_purchase_to_history(int payment, int discount, int payout);
 
     void employee_load_invoices();
@@ -91,6 +92,7 @@ private:
 
     //------------- Manager window widgets -----------------
     QTabWidget * managerTab;
+    QTabWidget * shopTab;
     QTableWidget * employeeTable;
     QTableWidget * manageshop;
     QTableWidget * managestock;
@@ -100,6 +102,8 @@ private:
     QPushButton * editSalary;
     QHBoxLayout * editPushbuttons;
     QVBoxLayout * employeeslayout;
+
+    Manager * FBTManager;
 
 signals:
     void throw_error(QString);
@@ -114,6 +118,9 @@ public slots:
     void customerAddToCartDialog(QTableWidget*);
     void customerPurchase();
     void removeFromCart();
-    void increase_credit();
+    void increaseCreditDialog();
+    void managerAddEmployeedialog();
+    void managerRemoveEmployeeDialog();
+    void managerEditSalaryDialog();
 };
 #endif // MAINWINDOW_H

@@ -84,40 +84,12 @@ void Sign_up_page::on_sign_push_clicked()
         Customer* c = new Customer(firstName.toStdString(), lastName.toStdString(), userName.toStdString(), pass.toStdString(), phoneNumber.toStdString(), address.toStdString(), age);
         unique_ptr<Human> h1(c);
         h1->sign_up();
+        mainwindow->set_username(userName);
         this->close();
         mainwindow->customer_window();
         mainwindow->display_info("Your ID Number in FBT Market is "+QString::number(c->get_customer_id()));
 
     }
-
-
-
-
-
-        //    try
-        //    {
-                //Employee em(ui->firstNmae_le->text().toStdString(), ui->lastNmae_le->text().toStdString(), ui->age_spin->value(), ui->idNumber_spin->value(), "role");
-                //Customer * cu = new Customer(ui->firstNmae_le->text().toStdString(), ui->lastNmae_le->text().toStdString(), ui->age_spin->value(), ui->idNumber_spin->value(), ui->username_le->text().toStdString(), ui->password_le->text().toStdString(),ui->phoneNumber_le->text().toStdString(), ui->city_le->text().toStdString(), ui->address_te->toPlainText().toStdString());
-        //        shared_ptr<Customer> b;
-        //        b->set_username(ui->username_le->text().toStdString());
-        //        shared_ptr<Human> user = static_pointer_cast<Customer> (b);
-                //mainwindow->display_error("signup");
-        //        this->close();
-        //        mainwindow->customer_window();
-
-                //b->sign_up();
-                //user.operator=(shared_ptr<Customer> (cu));
-                //user->sign_up();
-        //            Human * u = cu;
-        //            u->sign_up();
-        //    }
-        //    catch(...)
-        //    {
-        //        mainwindow->display_error("unknown error");
-
-        //    }
-
-
 }
 
 
