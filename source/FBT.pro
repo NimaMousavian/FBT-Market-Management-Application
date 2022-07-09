@@ -20,9 +20,13 @@ SOURCES += \
     employee_add_product_dialog.cpp \
     employee_signup.cpp \
     home.cpp \
+    increase_credit_dialog.cpp \
     login_page.cpp \
     main.cpp \
     mainwindow.cpp \
+    manager_edit_salary_dialog.cpp \
+    manager_remove_employee_dialog.cpp \
+    manageraddemployeedialog.cpp \
     product.cpp \
     sign_up_page.cpp
 HEADERS += \
@@ -35,8 +39,12 @@ HEADERS += \
     employee_add_product_dialog.h \
     employee_signup.h \
     home.h \
+    increase_credit_dialog.h \
     login_page.h \
     mainwindow.h \
+    manager_edit_salary_dialog.h \
+    manager_remove_employee_dialog.h \
+    manageraddemployeedialog.h \
     product.h \
     sign_up_page.h
 FORMS += \
@@ -45,8 +53,12 @@ FORMS += \
     employee_add_product_dialog.ui \
     employee_signup.ui \
     home.ui \
+    increase_credit_dialog.ui \
     login_page.ui \
     mainwindow.ui \
+    manager_edit_salary_dialog.ui \
+    manager_remove_employee_dialog.ui \
+    manageraddemployeedialog.ui \
     sign_up_page.ui
 
 # Default rules for deployment.

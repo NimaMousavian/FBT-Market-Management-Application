@@ -119,16 +119,19 @@ void Login_page::on_login_push_clicked()
      }
 
     else // manager login
-    {
-        if (true/*ui->username_le->text() == "FBT_Admin" && ui->password_le->text() == "1234"*/)
         {
-            this->close();
-            mainwindow->manager_window();
-        }
-        else
-            mainwindow->display_error("U're not manager!");
+            QFile managerFile("database/manager.json");
+            managerFile.open(QIODevice::ReadOnly);
+            QJsonDocument managerObj = QJsonDocument::fromJson( managerFile.readAll() );
+            if (ui->username_le->text() == managerObj["user name"].toString() && ui->password_le->text() == managerObj["password"].toString())
+            {
+                this->close();
+                mainwindow->manager_window();
+            }
+            else
+                mainwindow->display_error("You are not manager!");
 
-    }
+        }
 }
 
 
