@@ -16,8 +16,8 @@
   <widget class="QComboBox" name="comboBox">
    <property name="geometry">
     <rect>
-     <x>370</x>
-     <y>80</y>
+     <x>270</x>
+     <y>140</y>
      <width>241</width>
      <height>41</height>
     </rect>
@@ -46,10 +46,10 @@
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>190</x>
-     <y>70</y>
-     <width>121</width>
-     <height>61</height>
+     <x>90</x>
+     <y>110</y>
+     <width>191</width>
+     <height>81</height>
     </rect>
    </property>
    <property name="font">
@@ -64,15 +64,15 @@
   <widget class="QLabel" name="label_3">
    <property name="geometry">
     <rect>
-     <x>370</x>
-     <y>360</y>
+     <x>270</x>
+     <y>310</y>
      <width>121</width>
      <height>41</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <pointsize>15</pointsize>
+     <pointsize>13</pointsize>
     </font>
    </property>
    <property name="text">
@@ -82,8 +82,8 @@
   <widget class="QLineEdit" name="password_le">
    <property name="geometry">
     <rect>
-     <x>370</x>
-     <y>410</y>
+     <x>270</x>
+     <y>350</y>
      <width>241</width>
      <height>41</height>
     </rect>
@@ -97,15 +97,15 @@
   <widget class="QPushButton" name="login_push">
    <property name="geometry">
     <rect>
-     <x>370</x>
-     <y>550</y>
-     <width>231</width>
+     <x>270</x>
+     <y>460</y>
+     <width>241</width>
      <height>71</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <pointsize>15</pointsize>
+     <pointsize>18</pointsize>
     </font>
    </property>
    <property name="cursor">
@@ -118,10 +118,10 @@
   <widget class="QPushButton" name="back_push">
    <property name="geometry">
     <rect>
-     <x>30</x>
-     <y>660</y>
-     <width>81</width>
-     <height>31</height>
+     <x>90</x>
+     <y>600</y>
+     <width>121</width>
+     <height>71</height>
     </rect>
    </property>
    <property name="font">
@@ -139,15 +139,15 @@
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>370</x>
-     <y>200</y>
-     <width>111</width>
-     <height>31</height>
+     <x>270</x>
+     <y>210</y>
+     <width>121</width>
+     <height>41</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <pointsize>15</pointsize>
+     <pointsize>13</pointsize>
     </font>
    </property>
    <property name="text">
@@ -157,7 +157,7 @@
   <widget class="QLineEdit" name="username_le">
    <property name="geometry">
     <rect>
-     <x>370</x>
+     <x>270</x>
      <y>250</y>
      <width>241</width>
      <height>41</height>
@@ -169,7 +169,26 @@
     </font>
    </property>
   </widget>
+  <widget class="QLabel" name="label_4">
+   <property name="geometry">
+    <rect>
+     <x>500</x>
+     <y>230</y>
+     <width>441</width>
+     <height>451</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="../images/images.qrc">:/login_pic.png</pixmap>
+   </property>
+  </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="../images/images.qrc"/>
+  <include location="../images/images.qrc"/>
+ </resources>
  <connections/>
 </ui>

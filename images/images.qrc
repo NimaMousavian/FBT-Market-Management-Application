@@ -1,7 +1,15 @@
 <RCC>
     <qresource prefix="/">
+        <file>aboutus_pic.png</file>
+        <file>Drawing1.png</file>
+        <file>home_pic.png</file>
         <file>image2.jpg</file>
         <file>images.qrc</file>
+        <file>login_pic.png</file>
+        <file>office_pic.png</file>
+        <file>parties_pic.png</file>
         <file>photo_2022-07-05_02-07-49.jpg</file>
+        <file>purchase_pic.png</file>
+        <file>signup_pic.png</file>
     </qresource>
 </RCC>

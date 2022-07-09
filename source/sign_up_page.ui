@@ -10,20 +10,27 @@
     <height>725</height>
    </rect>
   </property>
+  <property name="font">
+   <font>
+    <family>MS Shell Dlg 2</family>
+    <pointsize>8</pointsize>
+   </font>
+  </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
   <widget class="QPushButton" name="back_push">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>670</y>
-     <width>81</width>
-     <height>31</height>
+     <x>70</x>
+     <y>610</y>
+     <width>131</width>
+     <height>71</height>
     </rect>
    </property>
    <property name="font">
     <font>
+     <family>MS Shell Dlg 2</family>
      <pointsize>13</pointsize>
     </font>
    </property>
@@ -37,14 +44,15 @@
   <widget class="QPushButton" name="sign_push">
    <property name="geometry">
     <rect>
-     <x>360</x>
-     <y>610</y>
+     <x>610</x>
+     <y>510</y>
      <width>231</width>
      <height>71</height>
     </rect>
    </property>
    <property name="font">
     <font>
+     <family>MS Shell Dlg 2</family>
      <pointsize>16</pointsize>
     </font>
    </property>
@@ -58,10 +66,10 @@
   <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
-     <x>60</x>
-     <y>270</y>
-     <width>178</width>
-     <height>70</height>
+     <x>280</x>
+     <y>310</y>
+     <width>211</width>
+     <height>77</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_4">
@@ -69,7 +77,8 @@
      <widget class="QLabel" name="label_2">
       <property name="font">
        <font>
-        <pointsize>15</pointsize>
+        <family>MS Shell Dlg 2</family>
+        <pointsize>13</pointsize>
        </font>
       </property>
       <property name="text">
@@ -81,6 +90,7 @@
      <widget class="QLineEdit" name="lastNmae_le">
       <property name="font">
        <font>
+        <family>MS Shell Dlg 2</family>
         <pointsize>15</pointsize>
        </font>
       </property>
@@ -91,18 +101,22 @@
   <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
-     <x>720</x>
-     <y>170</y>
-     <width>171</width>
-     <height>70</height>
+     <x>280</x>
+     <y>400</y>
+     <width>111</width>
+     <height>73</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_5">
+    <property name="sizeConstraint">
+     <enum>QLayout::SetNoConstraint</enum>
+    </property>
     <item>
      <widget class="QLabel" name="label_3">
       <property name="font">
        <font>
-        <pointsize>15</pointsize>
+        <family>MS Shell Dlg 2</family>
+        <pointsize>13</pointsize>
        </font>
       </property>
       <property name="text">
@@ -112,8 +126,15 @@
     </item>
     <item>
      <widget class="QSpinBox" name="age_spin">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
       <property name="font">
        <font>
+        <family>MS Shell Dlg 2</family>
         <pointsize>14</pointsize>
        </font>
       </property>
@@ -130,10 +151,10 @@
   <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
-     <x>730</x>
-     <y>470</y>
-     <width>185</width>
-     <height>70</height>
+     <x>280</x>
+     <y>220</y>
+     <width>211</width>
+     <height>77</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_10">
@@ -141,7 +162,8 @@
      <widget class="QLabel" name="label_10">
       <property name="font">
        <font>
-        <pointsize>15</pointsize>
+        <family>MS Shell Dlg 2</family>
+        <pointsize>13</pointsize>
        </font>
       </property>
       <property name="text">
@@ -153,6 +175,7 @@
      <widget class="QLineEdit" name="confPassword_le">
       <property name="font">
        <font>
+        <family>MS Shell Dlg 2</family>
         <pointsize>15</pointsize>
        </font>
       </property>
@@ -163,10 +186,10 @@
   <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
-     <x>80</x>
-     <y>390</y>
-     <width>178</width>
-     <height>70</height>
+     <x>70</x>
+     <y>130</y>
+     <width>201</width>
+     <height>77</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_8">
@@ -174,7 +197,8 @@
      <widget class="QLabel" name="label_8">
       <property name="font">
        <font>
-        <pointsize>15</pointsize>
+        <family>MS Shell Dlg 2</family>
+        <pointsize>13</pointsize>
        </font>
       </property>
       <property name="text">
@@ -186,6 +210,7 @@
      <widget class="QLineEdit" name="username_le">
       <property name="font">
        <font>
+        <family>MS Shell Dlg 2</family>
         <pointsize>15</pointsize>
        </font>
       </property>
@@ -196,10 +221,10 @@
   <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
-     <x>380</x>
-     <y>160</y>
-     <width>258</width>
-     <height>121</height>
+     <x>70</x>
+     <y>490</y>
+     <width>421</width>
+     <height>99</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -207,7 +232,8 @@
      <widget class="QLabel" name="label_6">
       <property name="font">
        <font>
-        <pointsize>15</pointsize>
+        <family>MS Shell Dlg 2</family>
+        <pointsize>13</pointsize>
        </font>
       </property>
       <property name="text">
@@ -219,6 +245,7 @@
      <widget class="QTextEdit" name="address_te">
       <property name="font">
        <font>
+        <family>MS Shell Dlg 2</family>
         <pointsize>13</pointsize>
        </font>
       </property>
@@ -229,10 +256,10 @@
   <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
-     <x>730</x>
-     <y>310</y>
-     <width>178</width>
-     <height>70</height>
+     <x>70</x>
+     <y>220</y>
+     <width>201</width>
+     <height>77</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -240,7 +267,8 @@
      <widget class="QLabel" name="label_9">
       <property name="font">
        <font>
-        <pointsize>15</pointsize>
+        <family>MS Shell Dlg 2</family>
+        <pointsize>13</pointsize>
        </font>
       </property>
       <property name="text">
@@ -252,6 +280,7 @@
      <widget class="QLineEdit" name="password_le">
       <property name="font">
        <font>
+        <family>MS Shell Dlg 2</family>
         <pointsize>15</pointsize>
        </font>
       </property>
@@ -262,10 +291,10 @@
   <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
-     <x>430</x>
-     <y>320</y>
-     <width>178</width>
-     <height>70</height>
+     <x>70</x>
+     <y>400</y>
+     <width>201</width>
+     <height>77</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -273,7 +302,8 @@
      <widget class="QLabel" name="label_7">
       <property name="font">
        <font>
-        <pointsize>15</pointsize>
+        <family>MS Shell Dlg 2</family>
+        <pointsize>13</pointsize>
        </font>
       </property>
       <property name="text">
@@ -285,6 +315,7 @@
      <widget class="QLineEdit" name="phoneNumber_le">
       <property name="font">
        <font>
+        <family>MS Shell Dlg 2</family>
         <pointsize>15</pointsize>
        </font>
       </property>
@@ -295,10 +326,10 @@
   <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
-     <x>60</x>
-     <y>150</y>
-     <width>178</width>
-     <height>70</height>
+     <x>70</x>
+     <y>310</y>
+     <width>201</width>
+     <height>77</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -306,11 +337,12 @@
      <widget class="QLabel" name="label">
       <property name="font">
        <font>
-        <pointsize>15</pointsize>
+        <family>MS Shell Dlg 2</family>
+        <pointsize>13</pointsize>
        </font>
       </property>
       <property name="text">
-       <string>First Nmae :</string>
+       <string>First Name:</string>
       </property>
      </widget>
     </item>
@@ -318,6 +350,7 @@
      <widget class="QLineEdit" name="firstNmae_le">
       <property name="font">
        <font>
+        <family>MS Shell Dlg 2</family>
         <pointsize>15</pointsize>
        </font>
       </property>
@@ -331,32 +364,34 @@
   <widget class="QLabel" name="label_11">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>20</y>
-     <width>231</width>
-     <height>41</height>
+     <x>70</x>
+     <y>50</y>
+     <width>181</width>
+     <height>61</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <pointsize>15</pointsize>
+     <family>MS Shell Dlg 2</family>
+     <pointsize>20</pointsize>
     </font>
    </property>
    <property name="text">
-    <string>Please select your role: </string>
+    <string>Sign Up as:</string>
    </property>
   </widget>
   <widget class="QComboBox" name="comboBox">
    <property name="geometry">
     <rect>
-     <x>290</x>
-     <y>30</y>
-     <width>171</width>
-     <height>31</height>
+     <x>280</x>
+     <y>70</y>
+     <width>201</width>
+     <height>41</height>
     </rect>
    </property>
    <property name="font">
     <font>
+     <family>MS Shell Dlg 2</family>
      <pointsize>12</pointsize>
     </font>
    </property>
@@ -371,25 +406,26 @@
     </property>
    </item>
   </widget>
-  <widget class="QLabel" name="label_12">
+  <widget class="QLabel" name="label_4">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>90</y>
-     <width>251</width>
-     <height>31</height>
+     <x>480</x>
+     <y>20</y>
+     <width>471</width>
+     <height>481</height>
     </rect>
    </property>
-   <property name="font">
-    <font>
-     <pointsize>15</pointsize>
-    </font>
-   </property>
    <property name="text">
-    <string>Please fill the form below:</string>
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="../images/images.qrc">:/signup_pic.png</pixmap>
    </property>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="../images/images.qrc"/>
+  <include location="../images/images.qrc"/>
+ </resources>
  <connections/>
 </ui>

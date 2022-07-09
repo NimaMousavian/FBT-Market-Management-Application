@@ -13,29 +13,29 @@ Login_page::Login_page(MainWindow *mw,QWidget *parent) :
 
     //----------------- set push buttons icons ------------------
 
-    ui->back_push->setIcon(QIcon(":/go back.png"));
-    ui->login_push->setIcon(QIcon(":/login2.png"));
-    ui->login_push->setIconSize(QSize(90,90));
+//    ui->back_push->setIcon(QIcon(":/go back.png"));
+//    ui->login_push->setIcon(QIcon(":/login2.png"));
+//    ui->login_push->setIconSize(QSize(90,90));
 
     //----------------- set push buttons stylesheet -------------------
 
     ui->back_push->setStyleSheet(
-    "*{background-color:#ced5f5;"
-    "border:2px solid #0530f2;"
-    "border-radius:15px;}"
-    "*:hover{background: '#aeb6f5';}");
+    "*{background-color:#fcde73;"
+    "border:2px solid #fad037;"
+    "border-radius:25px;}"
+    "*:hover{background: '#fbd95f';}");
 
     ui->login_push->setStyleSheet(
-    "*{background-color:#ced5f5;"
-    "border:2px solid #0530f2;"
-    "border-radius:35px;}"
-    "*:hover{background: '#aeb6f5';}");
+    "*{background-color:#f889cc;"
+    "border:2px solid #e82970;"
+    "border-radius:25px;}"
+    "*:hover{background: '#c66ea3';}");
 
     //----------------- set line edits stylesheet -------------------------
 
-    ui->username_le->setStyleSheet("background-color:#e6e8fc; border:2px solid #828ff5; border-radius:10px;");
-    ui->password_le->setStyleSheet("background-color:#e6e8fc; border:2px solid #828ff5; border-radius:10px;");
-    ui->comboBox->setStyleSheet("background-color:#e6e8fc; border:2px solid #828ff5; border-radius:10px;");
+    ui->username_le->setStyleSheet("background-color:#91c3c1; border:2px solid #0e5b56; border-radius:12px;");
+    ui->password_le->setStyleSheet("background-color:#91c3c1; border:2px solid #0e5b56; border-radius:12px;");
+    ui->comboBox->setStyleSheet("background-color:#91c3c1; border:2px solid #0e5b56; border-radius:12px;");
 }
 
 Login_page::~Login_page()
@@ -110,7 +110,7 @@ void Login_page::on_login_push_clicked()
                     }
              }
              if (flag == 0)
-                 mainwindow->display_error("Incorrectsername");
+                 mainwindow->display_error("Incorrect Username");
 
          }
 

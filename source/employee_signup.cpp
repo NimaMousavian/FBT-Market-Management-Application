@@ -11,6 +11,33 @@ Employee_signup::Employee_signup(MainWindow *mw ,QWidget *parent) :
 {
     ui->setupUi(this);
     this->mainwindow = mw;
+
+    //----------------- set push buttons stylesheet -------------------
+
+    ui->back_push->setStyleSheet(
+    "*{background-color:#fcde73;"
+    "border:2px solid #fad037;"
+    "border-radius:25px;}"
+    "*:hover{background: '#fbd95f';}");
+
+    ui->sign_push->setStyleSheet(
+    "*{background-color:#f3bcbd;"
+    "border:2px solid #aa8283;"
+    "border-radius:25px;}"
+    "*:hover{background: '#c29496';}");
+
+    //----------------- set line edits stylesheet -------------------------
+
+    ui->firstNmae_le->setStyleSheet("background-color:#91c3c1; border:2px solid #0e5b56; border-radius:12px;");
+    ui->lastNmae_le->setStyleSheet("background-color:#91c3c1; border:2px solid #0e5b56; border-radius:12px;");
+    ui->age_spin->setStyleSheet("background-color:#91c3c1; border:2px solid #0e5b56; border-radius:12px;");
+    ui->username_le->setStyleSheet("background-color:#91c3c1; border:2px solid #0e5b56; border-radius:12px;");
+    ui->password_le->setStyleSheet("background-color:#91c3c1; border:2px solid #0e5b56; border-radius:12px;");
+    ui->confPassword_le->setStyleSheet("background-color:#91c3c1; border:2px solid #0e5b56; border-radius:12px;");
+    ui->comboBox_2->setStyleSheet("background-color:#f3bcbd; border:2px solid #aa8283; border-radius:12px;");
+
+    ui->password_le->setEchoMode(QLineEdit::Password);
+    ui->confPassword_le->setEchoMode(QLineEdit::Password);
 }
 
 Employee_signup::~Employee_signup()
@@ -20,7 +47,7 @@ Employee_signup::~Employee_signup()
 
 void Employee_signup::on_comboBox_2_currentIndexChanged(int index)
 {
-    if(index == 0)
+    if(index == 1)
     {
         this->close();
         mainwindow->setCentralWidget(new Sign_up_page(this->mainwindow));

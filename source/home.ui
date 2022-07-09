@@ -25,10 +25,10 @@
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>310</x>
-     <y>60</y>
-     <width>361</width>
-     <height>221</height>
+     <x>60</x>
+     <y>110</y>
+     <width>531</width>
+     <height>471</height>
     </rect>
    </property>
    <property name="font">
@@ -44,7 +44,7 @@
     <string/>
    </property>
    <property name="pixmap">
-    <pixmap resource="../images/images.qrc">:/photo_2022-07-05_02-07-49.jpg</pixmap>
+    <pixmap resource="../images/images.qrc">:/home_pic.png</pixmap>
    </property>
    <property name="scaledContents">
     <bool>true</bool>
@@ -53,9 +53,9 @@
   <widget class="QPushButton" name="sign_up_push">
    <property name="geometry">
     <rect>
-     <x>510</x>
-     <y>360</y>
-     <width>191</width>
+     <x>610</x>
+     <y>270</y>
+     <width>211</width>
      <height>71</height>
     </rect>
    </property>
@@ -80,9 +80,9 @@
   <widget class="QPushButton" name="login_push">
    <property name="geometry">
     <rect>
-     <x>290</x>
-     <y>360</y>
-     <width>191</width>
+     <x>610</x>
+     <y>190</y>
+     <width>211</width>
      <height>71</height>
     </rect>
    </property>
@@ -107,15 +107,15 @@
   <widget class="QPushButton" name="about_push">
    <property name="geometry">
     <rect>
-     <x>420</x>
-     <y>500</y>
-     <width>151</width>
-     <height>61</height>
+     <x>610</x>
+     <y>350</y>
+     <width>211</width>
+     <height>71</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <pointsize>12</pointsize>
+     <pointsize>15</pointsize>
     </font>
    </property>
    <property name="cursor">
@@ -128,15 +128,15 @@
   <widget class="QPushButton" name="exit_push">
    <property name="geometry">
     <rect>
-     <x>420</x>
-     <y>590</y>
-     <width>151</width>
-     <height>61</height>
+     <x>610</x>
+     <y>430</y>
+     <width>211</width>
+     <height>71</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <pointsize>14</pointsize>
+     <pointsize>15</pointsize>
     </font>
    </property>
    <property name="cursor">
