@@ -34,6 +34,8 @@
 #include "manageraddemployeedialog.h"
 #include "manager_remove_employee_dialog.h"
 #include "manager_edit_salary_dialog.h"
+#include <QAction>
+#include <QMenuBar>
 
 using namespace std;
 
@@ -51,16 +53,19 @@ MainWindow::MainWindow(QWidget *parent)
     unique_ptr<Human> h4(FBTManager);
     h4->sign_up();
 
-    this->setWindowTitle("Hyper Market Manager System");
+    this->setWindowTitle("FBT Market");
+
+    ui->menubar->setVisible(false);
     this->setCentralWidget(new Home(this));
     this->setWindowIcon(QIcon(":/store.png"));
 
+    connect(ui->actionLogout, &QAction::triggered, this, &MainWindow::logoutActionSlt);
 
-    QPixmap bkgnd(":/image2.jpg");
-    bkgnd = bkgnd.scaled(this->size(), Qt::IgnoreAspectRatio);
-    QPalette palette;
-    palette.setBrush(QPalette::Window, bkgnd);
-    this->setPalette(palette);
+//    QPixmap bkgnd(":/image2.jpg");
+//    bkgnd = bkgnd.scaled(this->size(), Qt::IgnoreAspectRatio);
+//    QPalette palette;
+//    palette.setBrush(QPalette::Window, bkgnd);
+//    this->setPalette(palette);
 }
 
 MainWindow::~MainWindow()
@@ -86,11 +91,21 @@ void MainWindow::customer_window()
 
 void MainWindow::set_customer_window_ui()
 {
+    //-------------  show Actions ------------------
+    ui->menubar->setVisible(true);
+
+
+
+///***********************************************************
+//********************      shop tab      ********************
+///***********************************************************
+
     //--------------- vegetable and food table ----------------
-    QLineEdit * searchLe = new QLineEdit;
+    searchLe = new QLineEdit;
     searchLe->setPlaceholderText(tr("Search by Name"));
     QPushButton * searchPush = new QPushButton("Search");
     searchPush->setStyleSheet("color: red;");
+    connect(searchPush, &QPushButton::clicked, this, [this]{searchSlt(customerVandFTable, searchLe);});
     QHBoxLayout * searchLayout = new QHBoxLayout;
     searchLayout->addWidget(searchLe);
     searchLayout->addWidget(searchPush);
@@ -118,10 +133,11 @@ void MainWindow::set_customer_window_ui()
 
     //--------------- Dairy table ---------------------
 
-    QLineEdit * searchLe2 = new QLineEdit;
+    searchLe2 = new QLineEdit;
     searchLe2->setPlaceholderText(tr("Search by Name"));
     QPushButton * searchPush2 = new QPushButton("Search");
     searchPush2->setStyleSheet("color: red");
+    connect(searchPush2, &QPushButton::clicked, this, [this]{searchSlt(customerDairyTable, searchLe2);});
     QHBoxLayout * searchLayout2 = new QHBoxLayout;
     searchLayout2->addWidget(searchLe2);
     searchLayout2->addWidget(searchPush2);
@@ -150,10 +166,11 @@ void MainWindow::set_customer_window_ui()
 
     //-------------- Beverage table ---------------
 
-    QLineEdit * searchLe3 = new QLineEdit;
+    searchLe3 = new QLineEdit;
     searchLe3->setPlaceholderText(tr("Search by Name"));
     QPushButton * searchPush3 = new QPushButton("Search");
     searchPush3->setStyleSheet("color: red");
+    connect(searchPush3, &QPushButton::clicked, this, [this]{searchSlt(customerBeverageTable, searchLe3);});
     QHBoxLayout * searchLayout3 = new QHBoxLayout;
     searchLayout3->addWidget(searchLe3);
     searchLayout3->addWidget(searchPush3);
@@ -181,10 +198,11 @@ void MainWindow::set_customer_window_ui()
 
     //---------------- Snack table --------------------
 
-    QLineEdit * searchLe4 = new QLineEdit;
+    searchLe4 = new QLineEdit;
     searchLe4->setPlaceholderText(tr("Search by Name"));
     QPushButton * searchPush4 = new QPushButton("Search");
     searchPush4->setStyleSheet("color: red");
+    connect(searchPush4, &QPushButton::clicked, this, [this]{searchSlt(customerSnackTable, searchLe4);});
     QHBoxLayout * searchLayout4 = new QHBoxLayout;
     searchLayout4->addWidget(searchLe4);
     searchLayout4->addWidget(searchPush4);
@@ -212,10 +230,11 @@ void MainWindow::set_customer_window_ui()
 
     //------------------- None-Food table ------------------
 
-    QLineEdit * searchLe5 = new QLineEdit;
+    searchLe5 = new QLineEdit;
     searchLe5->setPlaceholderText(tr("Search by Name"));
     QPushButton * searchPush5 = new QPushButton("Search");
     searchPush5->setStyleSheet("color: red");
+    connect(searchPush5, &QPushButton::clicked, this, [this]{searchSlt(customerNoneFoodTable, searchLe5);});
     QHBoxLayout * searchLayout5 = new QHBoxLayout;
     searchLayout5->addWidget(searchLe5);
     searchLayout5->addWidget(searchPush5);
@@ -312,9 +331,9 @@ void MainWindow::set_customer_window_ui()
     customerMaintab = new QTabWidget;
     customerMaintab->setIconSize(QSize(24, 24));
     customerMaintab->addTab(customerCategoryTab, QIcon(":cash_register.png"), tr("Shop"));
-    customerMaintab->addTab(cartGroup,"Cart");
-    customerMaintab->addTab(customerShopHistoryToolBox,"shop History");
-    customerMaintab->addTab(walletGroup, "Wallet");
+    customerMaintab->addTab(cartGroup, QIcon(":/shopping-cart.png"),"Cart");
+    customerMaintab->addTab(customerShopHistoryToolBox, QIcon(":/history.png"),"Shop History");
+    customerMaintab->addTab(walletGroup, QIcon(":/wallet1.png"),"Wallet");
 
 
 
@@ -345,18 +364,21 @@ void MainWindow::employee_window()
 
 void MainWindow::set_employee_window_ui()
 {
+    //-------------  show Actions ------------------
+    ui->menubar->setVisible(true);
 
 /**************************************************************
  *-------------------- shop tab -------------------------------
  **************************************************************/
 
     //--------------- vegetable and food table ----------------
-    QLineEdit * searchLe = new QLineEdit;
-    searchLe->setPlaceholderText(tr("Search by Name"));
+    emsearchLe = new QLineEdit;
+    emsearchLe->setPlaceholderText(tr("Search by Name"));
     QPushButton * searchPush = new QPushButton("Search");
     searchPush->setStyleSheet("color: red");
+    connect(searchPush, &QPushButton::clicked, this, [this]{searchSlt(employeeVandFTable, emsearchLe);});
     QHBoxLayout * searchLayout = new QHBoxLayout;
-    searchLayout->addWidget(searchLe);
+    searchLayout->addWidget(emsearchLe);
     searchLayout->addWidget(searchPush);
     QPushButton * removePush = new QPushButton("Remove Product");
     QHBoxLayout * removeLayout = new QHBoxLayout;
@@ -383,12 +405,13 @@ void MainWindow::set_employee_window_ui()
 
     //--------------- Dairy table ---------------------
 
-    QLineEdit * searchLe2 = new QLineEdit;
-    searchLe2->setPlaceholderText(tr("Search by Name"));
+    emsearchLe2 = new QLineEdit;
+    emsearchLe2->setPlaceholderText(tr("Search by Name"));
     QPushButton * searchPush2 = new QPushButton("Search");
     searchPush2->setStyleSheet("color: red");
+    connect(searchPush2, &QPushButton::clicked, this, [this]{searchSlt(employeeDairyTable, emsearchLe2);});
     QHBoxLayout * searchLayout2 = new QHBoxLayout;
-    searchLayout2->addWidget(searchLe2);
+    searchLayout2->addWidget(emsearchLe2);
     searchLayout2->addWidget(searchPush2);
     QPushButton * removePush2 = new QPushButton("Remove Product");
     QHBoxLayout * removeLayout2 = new QHBoxLayout;
@@ -416,12 +439,13 @@ void MainWindow::set_employee_window_ui()
 
     //-------------- Beverage table ---------------
 
-    QLineEdit * searchLe3 = new QLineEdit;
-    searchLe3->setPlaceholderText(tr("Search by Name"));
+    emsearchLe3 = new QLineEdit;
+    emsearchLe3->setPlaceholderText(tr("Search by Name"));
     QPushButton * searchPush3 = new QPushButton("Search");
     searchPush3->setStyleSheet("color: red");
+    connect(searchPush3, &QPushButton::clicked, this, [this]{searchSlt(employeeBeverageTable, emsearchLe3);});
     QHBoxLayout * searchLayout3 = new QHBoxLayout;
-    searchLayout3->addWidget(searchLe3);
+    searchLayout3->addWidget(emsearchLe3);
     searchLayout3->addWidget(searchPush3);
     QPushButton * removePush3 = new QPushButton("Remove Product");
     QHBoxLayout * removeLayout3 = new QHBoxLayout;
@@ -449,12 +473,13 @@ void MainWindow::set_employee_window_ui()
 
     //---------------- Snack table --------------------
 
-    QLineEdit * searchLe4 = new QLineEdit;
-    searchLe4->setPlaceholderText(tr("Search by Name"));
+    emsearchLe4 = new QLineEdit;
+    emsearchLe4->setPlaceholderText(tr("Search by Name"));
     QPushButton * searchPush4 = new QPushButton("Search");
     searchPush4->setStyleSheet("color: red");
+    connect(searchPush4, &QPushButton::clicked, this, [this]{searchSlt(employeeSnackTable, emsearchLe4);});
     QHBoxLayout * searchLayout4 = new QHBoxLayout;
-    searchLayout4->addWidget(searchLe4);
+    searchLayout4->addWidget(emsearchLe4);
     searchLayout4->addWidget(searchPush4);
     QPushButton * removePush4 = new QPushButton("Remove Product");
     QHBoxLayout * removeLayout4 = new QHBoxLayout;
@@ -482,12 +507,13 @@ void MainWindow::set_employee_window_ui()
 
     //------------------- None-Food table ------------------
 
-    QLineEdit * searchLe5 = new QLineEdit;
-    searchLe5->setPlaceholderText(tr("Search by Name"));
+    emsearchLe5 = new QLineEdit;
+    emsearchLe5->setPlaceholderText(tr("Search by Name"));
     QPushButton * searchPush5 = new QPushButton("Search");
     searchPush5->setStyleSheet("color: red");
+    connect(searchPush5, &QPushButton::clicked, this, [this]{searchSlt(employeeNoneFoodTable, emsearchLe5);});
     QHBoxLayout * searchLayout5 = new QHBoxLayout;
-    searchLayout5->addWidget(searchLe5);
+    searchLayout5->addWidget(emsearchLe5);
     searchLayout5->addWidget(searchPush5);
     QPushButton * removePush5 = new QPushButton("Remove Product");
     QHBoxLayout * removeLayout5 = new QHBoxLayout;
@@ -539,12 +565,13 @@ void MainWindow::set_employee_window_ui()
 **************************************************************/
 
     //--------------- vegetable and food table ----------------
-     QLineEdit * searchLe6 = new QLineEdit;
-     searchLe6->setPlaceholderText(tr("Search by Name"));
+     emsearchLe6 = new QLineEdit;
+     emsearchLe6->setPlaceholderText(tr("Search by Name"));
      QPushButton * searchPush6 = new QPushButton("Search");
      searchPush6->setStyleSheet("color: red");
+     connect(searchPush6, &QPushButton::clicked, this, [this]{searchSlt(employeeStockVandFTable, emsearchLe6);});
      QHBoxLayout * searchLayout6 = new QHBoxLayout;
-     searchLayout6->addWidget(searchLe6);
+     searchLayout6->addWidget(emsearchLe6);
      searchLayout6->addWidget(searchPush6);
      QPushButton * addToShopPush6 = new QPushButton("Add to Shop");
      QHBoxLayout * addLayout6 = new QHBoxLayout;
@@ -571,12 +598,13 @@ void MainWindow::set_employee_window_ui()
 
      //--------------- Dairy table ---------------------
 
-     QLineEdit * searchLe7 = new QLineEdit;
-     searchLe7->setPlaceholderText(tr("Search by Name"));
+     emsearchLe7 = new QLineEdit;
+     emsearchLe7->setPlaceholderText(tr("Search by Name"));
      QPushButton * searchPush7 = new QPushButton("Search");
      searchPush7->setStyleSheet("color: red");
+     connect(searchPush7, &QPushButton::clicked, this, [this]{searchSlt(employeeStockDairyTable, emsearchLe7);});
      QHBoxLayout * searchLayout7 = new QHBoxLayout;
-     searchLayout7->addWidget(searchLe7);
+     searchLayout7->addWidget(emsearchLe7);
      searchLayout7->addWidget(searchPush7);
      QPushButton * addToShopPush7 = new QPushButton("Add to Shop");
      QHBoxLayout * addLayout7 = new QHBoxLayout;
@@ -603,12 +631,13 @@ void MainWindow::set_employee_window_ui()
 
      //-------------- Beverage table ---------------
 
-     QLineEdit * searchLe8 = new QLineEdit;
-     searchLe8->setPlaceholderText(tr("Search by Name"));
+     emsearchLe8 = new QLineEdit;
+     emsearchLe8->setPlaceholderText(tr("Search by Name"));
      QPushButton * searchPush8 = new QPushButton("Search");
      searchPush8->setStyleSheet("color: red");
+     connect(searchPush8, &QPushButton::clicked, this, [this]{searchSlt(employeeStockBeverageTable, emsearchLe8);});
      QHBoxLayout * searchLayout8 = new QHBoxLayout;
-     searchLayout8->addWidget(searchLe8);
+     searchLayout8->addWidget(emsearchLe8);
      searchLayout8->addWidget(searchPush8);
      QPushButton * addToShopPush8 = new QPushButton("Add to Shop");
      QHBoxLayout * addLayout8 = new QHBoxLayout;
@@ -635,12 +664,13 @@ void MainWindow::set_employee_window_ui()
 
      //---------------- Snack table --------------------
 
-     QLineEdit * searchLe9 = new QLineEdit;
-     searchLe9->setPlaceholderText(tr("Search by Name"));
+     emsearchLe9 = new QLineEdit;
+     emsearchLe9->setPlaceholderText(tr("Search by Name"));
      QPushButton * searchPush9 = new QPushButton("Search");
      searchPush9->setStyleSheet("color: red");
+     connect(searchPush9, &QPushButton::clicked, this, [this]{searchSlt(employeeStockSnackTable, emsearchLe9);});
      QHBoxLayout * searchLayout9 = new QHBoxLayout;
-     searchLayout9->addWidget(searchLe9);
+     searchLayout9->addWidget(emsearchLe9);
      searchLayout9->addWidget(searchPush9);
      QPushButton * addToShopPush9 = new QPushButton("Add to Shop");
      QHBoxLayout * addLayout9 = new QHBoxLayout;
@@ -667,12 +697,13 @@ void MainWindow::set_employee_window_ui()
 
      //------------------- None-Food table ------------------
 
-     QLineEdit * searchLe10 = new QLineEdit;
-     searchLe10->setPlaceholderText(tr("Search by Name"));
+     emsearchLe10 = new QLineEdit;
+     emsearchLe10->setPlaceholderText(tr("Search by Name"));
      QPushButton * searchPush10 = new QPushButton("Search");
      searchPush10->setStyleSheet("color: red");
+     connect(searchPush10, &QPushButton::clicked, this, [this]{searchSlt(employeeStockNoneFoodTable, emsearchLe10);});
      QHBoxLayout * searchLayout10 = new QHBoxLayout;
-     searchLayout10->addWidget(searchLe10);
+     searchLayout10->addWidget(emsearchLe10);
      searchLayout10->addWidget(searchPush10);
      QPushButton * addToShopPush10 = new QPushButton("Add to Shop");
      QHBoxLayout * addLayout10 = new QHBoxLayout;
@@ -748,7 +779,8 @@ void MainWindow::manager_window()
 
 void MainWindow::set_manager_window_ui()
 {
-
+    //-------------  show Actions ------------------
+    ui->menubar->setVisible(true);
 
     //------------------------------------------------
     //----------------- Employees Tab ----------------
@@ -1653,5 +1685,30 @@ void MainWindow::managerEditSalaryDialog()
 {
     manager_edit_salary_dialog * dialog = new manager_edit_salary_dialog(this);
     dialog->show();
+}
+
+void MainWindow::logoutActionSlt()
+{
+    this->setCentralWidget(new Home(this));
+    return;
+}
+
+void MainWindow::searchSlt(QTableWidget *sourceTable, QLineEdit* lineEdit)
+{
+    QString searchTaxt = lineEdit->text();
+    int flag=0;
+    for(int i=0; i<sourceTable->rowCount(); i++)
+    {
+        if(sourceTable->item(i,0)->text() == searchTaxt)
+        {
+            //product found
+            flag = 1;
+            sourceTable->selectRow(i);
+        }
+    }
+    if (flag == 0)
+    {
+        display_info("no result!");
+    }
 }
 

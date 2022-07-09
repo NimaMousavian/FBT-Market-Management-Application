@@ -2,7 +2,6 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-
 #include <QTableWidget>
 #include <QLineEdit>
 #include <QGroupBox>
@@ -70,6 +69,11 @@ private:
     QToolBox * customerShopHistoryToolBox;
     QHBoxLayout * hh;
     QSpinBox * customerCredit;
+    QLineEdit * searchLe;
+    QLineEdit * searchLe2;
+    QLineEdit * searchLe3;
+    QLineEdit * searchLe4;
+    QLineEdit * searchLe5;
 
     //-------------- Employee window widgets ---------------
     QTabWidget * employeeMaintab;
@@ -89,6 +93,17 @@ private:
     QPushButton * employeeStockAddProductToShop;
     QPushButton * employeeStockRemoveProductFromStock;
     QToolBox * employeeInvoices;
+    QLineEdit * emsearchLe;
+    QLineEdit * emsearchLe2;
+    QLineEdit * emsearchLe3;
+    QLineEdit * emsearchLe4;
+    QLineEdit * emsearchLe5;
+    QLineEdit * emsearchLe6;
+    QLineEdit * emsearchLe7;
+    QLineEdit * emsearchLe8;
+    QLineEdit * emsearchLe9;
+    QLineEdit * emsearchLe10;
+
 
     //------------- Manager window widgets -----------------
     QTabWidget * managerTab;
@@ -122,5 +137,7 @@ public slots:
     void managerAddEmployeedialog();
     void managerRemoveEmployeeDialog();
     void managerEditSalaryDialog();
+    void logoutActionSlt();
+    void searchSlt(QTableWidget*, QLineEdit*);
 };
 #endif // MAINWINDOW_H
