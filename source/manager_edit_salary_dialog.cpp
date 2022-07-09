@@ -67,3 +67,9 @@ void manager_edit_salary_dialog::on_pushButton_clicked()
 
 }
 
+
+void manager_edit_salary_dialog::on_pushButton_2_clicked()
+{
+    this->close();
+}
+
