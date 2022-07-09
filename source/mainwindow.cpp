@@ -912,9 +912,9 @@ void MainWindow::add_purchase_to_history(int payment, int discount, int payout)
     purchase->setEditTriggers(QAbstractItemView::NoEditTriggers);  // disable in-place editing
     purchase->setSelectionBehavior(QAbstractItemView::SelectRows);  // only rows can be selected, not columns or sells
     purchase->setSelectionMode(QAbstractItemView::SingleSelection);  // disable selection of multiple rows
-    purchase->setColumnCount(5);  // assign the number of columns in the table
+    purchase->setColumnCount(6);  // assign the number of columns in the table
     QStringList s6;
-    s6 << tr("Name") << tr("Category") << tr("Manufacturer") << tr("Price") << tr("Expiry Date") ;
+    s6 << tr("Name") << tr("Category") << tr("Manufacturer") << tr("Price") << tr("Expiry Date") << tr("Amount");
     purchase->setHorizontalHeaderLabels(s6);
 
     purchase->setRowCount(customerCartTable->rowCount());
@@ -931,6 +931,8 @@ void MainWindow::add_purchase_to_history(int payment, int discount, int payout)
         productJson["price"] = customerCartTable->item(i,3)->text().toInt();
         purchase->setItem(i,4, new QTableWidgetItem(customerCartTable->item(i,4)->text()));
         productJson["expiry date"] = customerCartTable->item(i,4)->text();
+        purchase->setItem(i,5, new QTableWidgetItem(customerCartTable->item(i,5)->text()));
+        productJson["amount"] = customerCartTable->item(i,5)->text().toInt();
         productsArray.append(productJson);
     }
 
@@ -1018,7 +1020,7 @@ void MainWindow::add_purchase_to_history(int payment, int discount, int payout)
     customerCartTable->clear();
     customerCartTable->setRowCount(0);
     QStringList s;
-    s << tr("Name") << tr("Category") << tr("Manufacturer") << tr("Price") << tr("Expiry Date") ;
+    s << tr("Name") << tr("Category") << tr("Manufacturer") << tr("Price") << tr("Expiry Date") << tr("Amount");
     customerCartTable->setHorizontalHeaderLabels(s);
 }
 
@@ -1170,9 +1172,9 @@ void MainWindow::customer_load_purchases()
         purchase->setEditTriggers(QAbstractItemView::NoEditTriggers);  // disable in-place editing
         purchase->setSelectionBehavior(QAbstractItemView::SelectRows);  // only rows can be selected, not columns or sells
         purchase->setSelectionMode(QAbstractItemView::SingleSelection);  // disable selection of multiple rows
-        purchase->setColumnCount(5);  // assign the number of columns in the table
+        purchase->setColumnCount(6);  // assign the number of columns in the table
         QStringList s6;
-        s6 << tr("Name") << tr("Category") << tr("Manufacturer") << tr("Price") << tr("Expiry Date") ;
+        s6 << tr("Name") << tr("Category") << tr("Manufacturer") << tr("Price") << tr("Expiry Date") << tr("Amount");
         purchase->setHorizontalHeaderLabels(s6);
 
         foreach (QJsonValue y, x["products"].toArray())
@@ -1183,6 +1185,7 @@ void MainWindow::customer_load_purchases()
             purchase->setItem(purchase->rowCount()-1,2, new QTableWidgetItem(y["manufacturer"].toString()));
             purchase->setItem(purchase->rowCount()-1,3, new QTableWidgetItem(QString::number(y["price"].toInt())));
             purchase->setItem(purchase->rowCount()-1,4, new QTableWidgetItem(y["expiry date"].toString()));
+            purchase->setItem(purchase->rowCount()-1,5, new QTableWidgetItem(QString::number(y["amount"].toInt())));
         }
 
         QVBoxLayout * l = new QVBoxLayout;
@@ -1205,6 +1208,14 @@ void MainWindow::customer_add_to_cart(QString name, QString category, QString ma
     customerCartTable->setItem(customerCartTable->rowCount()-1,3, new QTableWidgetItem(price));
     customerCartTable->setItem(customerCartTable->rowCount()-1,4, new QTableWidgetItem(exp_date));
     customerCartTable->setItem(customerCartTable->rowCount()-1,5, new QTableWidgetItem(amount));
+
+    display_shop_product(customerVandFTable, "Vegetable and Fruit");
+    display_shop_product(customerDairyTable, "Dairy");
+    display_shop_product(customerBeverageTable, "Beverage");
+    display_shop_product(customerSnackTable, "Snack");
+    display_shop_product(customerNoneFoodTable, "None-Food");
+
+    display_info("product seccessfully added to cart.");
 }
 
 void MainWindow::set_username(QString u)

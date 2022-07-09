@@ -92,7 +92,7 @@ void addtocart_dialog::on_addButton_clicked()
 
         foreach (QJsonValue x, p)
         {
-            if(x["Name"].toString() == ui->product_table->item(0,0)->text() && x["Manufacturer"].toString() == ui->product_table->item(0,1)->text())
+            if(x["Name"].toString() == ui->product_table->item(0,0)->text() && x["Manufacturer"].toString() == ui->product_table->item(0,2)->text())
             {
                 if (x["Amount"].toInt() < ui->amountSpinBox->value())
                 {

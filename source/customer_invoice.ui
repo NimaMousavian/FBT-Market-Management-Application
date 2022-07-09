@@ -18,7 +18,7 @@
     <rect>
      <x>50</x>
      <y>30</y>
-     <width>161</width>
+     <width>141</width>
      <height>41</height>
     </rect>
    </property>
@@ -106,7 +106,7 @@
   <widget class="QLineEdit" name="name_le">
    <property name="geometry">
     <rect>
-     <x>210</x>
+     <x>190</x>
      <y>40</y>
      <width>211</width>
      <height>31</height>
@@ -121,7 +121,7 @@
   <widget class="QSpinBox" name="payment_spin">
    <property name="geometry">
     <rect>
-     <x>210</x>
+     <x>190</x>
      <y>400</y>
      <width>191</width>
      <height>31</height>
@@ -139,7 +139,7 @@
   <widget class="QSpinBox" name="discount_spin">
    <property name="geometry">
     <rect>
-     <x>210</x>
+     <x>190</x>
      <y>460</y>
      <width>191</width>
      <height>31</height>
@@ -157,7 +157,7 @@
   <widget class="QSpinBox" name="payout_spin">
    <property name="geometry">
     <rect>
-     <x>210</x>
+     <x>190</x>
      <y>520</y>
      <width>191</width>
      <height>31</height>
@@ -176,8 +176,8 @@
    <property name="geometry">
     <rect>
      <x>50</x>
-     <y>100</y>
-     <width>141</width>
+     <y>90</y>
+     <width>111</width>
      <height>21</height>
     </rect>
    </property>
@@ -193,7 +193,7 @@
   <widget class="QLineEdit" name="id_le">
    <property name="geometry">
     <rect>
-     <x>210</x>
+     <x>190</x>
      <y>90</y>
      <width>211</width>
      <height>31</height>
@@ -208,9 +208,9 @@
   <widget class="QTableWidget" name="products_table">
    <property name="geometry">
     <rect>
-     <x>210</x>
+     <x>190</x>
      <y>170</y>
-     <width>541</width>
+     <width>591</width>
      <height>192</height>
     </rect>
    </property>
@@ -272,7 +272,7 @@
   <widget class="QSpinBox" name="credit_spin">
    <property name="geometry">
     <rect>
-     <x>210</x>
+     <x>190</x>
      <y>580</y>
      <width>191</width>
      <height>31</height>

@@ -41,9 +41,9 @@ void customer_invoice::create_table(QTableWidget * other)
     ui->products_table->setEditTriggers(QAbstractItemView::NoEditTriggers);  // disable in-place editing
     ui->products_table->setSelectionBehavior(QAbstractItemView::SelectRows);  // only rows can be selected, not columns or sells
     ui->products_table->setSelectionMode(QAbstractItemView::SingleSelection);  // disable selection of multiple rows
-    ui->products_table->setColumnCount(5);  // assign the number of columns in the table
+    ui->products_table->setColumnCount(6);  // assign the number of columns in the table
     QStringList s6;
-    s6 << tr("Name") << tr("Category") << tr("Manufacturer") << tr("Price") << tr("Expiry Date") ;
+    s6 << tr("Name") << tr("Category") << tr("Manufacturer") << tr("Price") << tr("Expiry Date") << tr("Amount");
     ui->products_table->setHorizontalHeaderLabels(s6);
 
     ui->products_table->setRowCount(other->rowCount());
@@ -55,7 +55,8 @@ void customer_invoice::create_table(QTableWidget * other)
         ui->products_table->setItem(i,2, new QTableWidgetItem(other->item(i,2)->text()));
         ui->products_table->setItem(i,3, new QTableWidgetItem(other->item(i,3)->text()));
         ui->products_table->setItem(i,4, new QTableWidgetItem(other->item(i,4)->text()));
-        py += other->item(i,3)->text().toInt();
+        ui->products_table->setItem(i,5, new QTableWidgetItem(other->item(i,5)->text()));
+        py += (other->item(i,3)->text().toInt() * other->item(i,5)->text().toInt());
     }
     ui->payment_spin->setValue(py);
 }
@@ -121,6 +122,7 @@ QJsonArray customer_invoice::create_products_json()
         j["Manufacturer"] = ui->products_table->item(i,2)->text();
         j["Price"] = ui->products_table->item(i,3)->text().toInt();
         j["Expiry date"] = ui->products_table->item(i,4)->text();
+        j["Amount"] = ui->products_table->item(i,5)->text().toInt();
         result.append(j);
     }
     return result;
