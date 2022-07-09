@@ -765,9 +765,11 @@ void MainWindow::set_manager_window_ui()
     QGroupBox * empGroup = new QGroupBox;
     empGroup->setLayout(employeeslayout);
 
+    //------------- main tab -----------------
 
     managerTab = new QTabWidget;
     managerTab->addTab(empGroup, "Employees");
+
     this->setCentralWidget(managerTab);
 
 }
@@ -1526,7 +1528,62 @@ void MainWindow::removeFromCart()
     QModelIndexList  selectedRows = s->selectedRows();
     if (selectedRows.size() > 0)
     {
-        customerCartTable->removeRow(selectedRows.first().row());
+        int row = selectedRows.first().row();
+
+
+        //-------------- add product to stock, file ----------------
+        QFile f("database/stockproducts.json");
+        f.open(QIODevice::ReadOnly);
+        QByteArray b = f.readAll();
+        QJsonDocument d = QJsonDocument::fromJson(b);
+        QJsonObject o = d.object();
+        QJsonArray p = o["Products"].toArray();
+        QJsonArray result;
+        int flag =0;
+
+        foreach (QJsonValue x, p)
+        {
+            if (x["Name"].toString() == customerCartTable->item(row,0)->text() && x["Manufacturer"].toString() == customerCartTable->item(row,2)->text())
+            {
+                flag = 1;
+                QJsonObject j;
+                j["Name"] = x["Name"].toString();
+                j["Category"] = x["Category"].toString();
+                j["Manufacturer"] = x["Manufacturer"].toString();
+                j["Piece"] = x["Price"].toInt();
+                j["Expiry date"] = x["Expiry date"].toString();
+                int i = x["Amount"].toInt();
+                j["Amount"] = i + customerCartTable->item(row,5)->text().toInt();
+                result.append(j);
+            }
+            else
+            {
+                result.append(x.toObject());
+            }
+        }
+
+        if (flag == 0)
+        {
+            QJsonObject r;
+            r["Name"] = customerCartTable->item(row,0)->text();
+            r["Category"] = customerCartTable->item(row,1)->text();
+            r["Manufacturer"] = customerCartTable->item(row,2)->text();
+            r["Price"] = customerCartTable->item(row,3)->text().toInt();
+            r["Expiry date"] = customerCartTable->item(row,4)->text();
+            r["Amount"] = customerCartTable->item(row,5)->text().toInt();
+            result.append(r);
+        }
+
+
+        QJsonObject v;
+        v["Products"] = result;
+        QJsonDocument u(v);
+        QFile w("database/stockproducts.json");
+        w.open(QIODevice::WriteOnly);
+        w.write(u.toJson());
+        //-------------------------------------------------------
+
+        customerCartTable->removeRow(row);
         display_info("product succefully removed from cart.");
     }
     else
