@@ -102,7 +102,7 @@ void addtocart_dialog::on_addButton_clicked()
                 else
                 {
                     int i = x["Amount"].toInt();
-                    if(i != 1)
+                    if(i - ui->amountSpinBox->value() != 0)
                     {
                         i -= ui->amountSpinBox->value();
                         QJsonObject j;
