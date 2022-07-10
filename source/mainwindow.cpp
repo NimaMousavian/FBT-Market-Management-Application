@@ -56,16 +56,11 @@ MainWindow::MainWindow(QWidget *parent)
     this->setWindowTitle("FBT Market");
 
     ui->menubar->setVisible(false);
+    ui->actionExit->setIcon(QIcon(":/exit.png"));
+
     this->setCentralWidget(new Home(this));
     this->setWindowIcon(QIcon(":/store.png"));
 
-    connect(ui->actionLogout, &QAction::triggered, this, &MainWindow::logoutActionSlt);
-
-//    QPixmap bkgnd(":/image2.jpg");
-//    bkgnd = bkgnd.scaled(this->size(), Qt::IgnoreAspectRatio);
-//    QPalette palette;
-//    palette.setBrush(QPalette::Window, bkgnd);
-//    this->setPalette(palette);
 }
 
 MainWindow::~MainWindow()
@@ -93,6 +88,9 @@ void MainWindow::set_customer_window_ui()
 {
     //-------------  show Actions ------------------
     ui->menubar->setVisible(true);
+    QAction * changePass = new QAction(QIcon(":/password.png"),"Change Password");
+    ui->menuAcount->addAction(changePass);
+    connect(changePass, &QAction::triggered, this, [this]{changePasswordSlt(0);});
 
 
 
@@ -104,12 +102,15 @@ void MainWindow::set_customer_window_ui()
     searchLe = new QLineEdit;
     searchLe->setPlaceholderText(tr("Search by Name"));
     QPushButton * searchPush = new QPushButton("Search");
-    searchPush->setStyleSheet("color: red;");
+    searchPush->setFixedSize(QSize(100,30));
+    searchPush->setStyleSheet("*{background-color:#fcde73; border:0.5px solid #f3b828; border-radius: 15px; font-size: 12px;} *:hover{background: '#dba624';}");
     connect(searchPush, &QPushButton::clicked, this, [this]{searchSlt(customerVandFTable, searchLe);});
     QHBoxLayout * searchLayout = new QHBoxLayout;
     searchLayout->addWidget(searchLe);
     searchLayout->addWidget(searchPush);
     QPushButton * addToCartPush = new QPushButton("Add to cart");
+    addToCartPush->setFixedSize(QSize(100,30));
+    addToCartPush->setStyleSheet("*{background-color:#91c3c1; border:0.5px solid #0e5b56; border-radius: 15px; font-size: 12px;} *:hover{background: '#568c89';}");
     QHBoxLayout * addLayout = new QHBoxLayout;
     addLayout->addWidget(addToCartPush);
     addLayout->setAlignment(Qt::AlignLeft);
@@ -136,12 +137,15 @@ void MainWindow::set_customer_window_ui()
     searchLe2 = new QLineEdit;
     searchLe2->setPlaceholderText(tr("Search by Name"));
     QPushButton * searchPush2 = new QPushButton("Search");
-    searchPush2->setStyleSheet("color: red");
+    searchPush2->setFixedSize(QSize(100,30));
+    searchPush2->setStyleSheet("*{background-color:#fcde73; border:0.5px solid #f3b828; border-radius: 15px; font-size: 12px;} *:hover{background: '#dba624';}");
     connect(searchPush2, &QPushButton::clicked, this, [this]{searchSlt(customerDairyTable, searchLe2);});
     QHBoxLayout * searchLayout2 = new QHBoxLayout;
     searchLayout2->addWidget(searchLe2);
     searchLayout2->addWidget(searchPush2);
     QPushButton * addToCartPush2 = new QPushButton("Add to cart");
+    addToCartPush2->setFixedSize(QSize(100,30));
+    addToCartPush2->setStyleSheet("*{background-color:#91c3c1; border:0.5px solid #0e5b56; border-radius: 15px; font-size: 12px;} *:hover{background: '#568c89';}");
     QHBoxLayout * addLayout2 = new QHBoxLayout;
     addLayout2->addWidget(addToCartPush2);
     addLayout2->setAlignment(Qt::AlignLeft);
@@ -169,12 +173,15 @@ void MainWindow::set_customer_window_ui()
     searchLe3 = new QLineEdit;
     searchLe3->setPlaceholderText(tr("Search by Name"));
     QPushButton * searchPush3 = new QPushButton("Search");
-    searchPush3->setStyleSheet("color: red");
+    searchPush3->setFixedSize(QSize(100,30));
+    searchPush3->setStyleSheet("*{background-color:#fcde73; border:0.5px solid #f3b828; border-radius: 15px; font-size: 12px;} *:hover{background: '#dba624';}");
     connect(searchPush3, &QPushButton::clicked, this, [this]{searchSlt(customerBeverageTable, searchLe3);});
     QHBoxLayout * searchLayout3 = new QHBoxLayout;
     searchLayout3->addWidget(searchLe3);
     searchLayout3->addWidget(searchPush3);
     QPushButton * addToCartPush3 = new QPushButton("Add to cart");
+    addToCartPush3->setFixedSize(QSize(100,30));
+    addToCartPush3->setStyleSheet("*{background-color:#91c3c1; border:0.5px solid #0e5b56; border-radius: 15px; font-size: 12px;} *:hover{background: '#568c89';}");
     QHBoxLayout * addLayout3 = new QHBoxLayout;
     addLayout3->addWidget(addToCartPush3);
     addLayout3->setAlignment(Qt::AlignLeft);
@@ -201,12 +208,15 @@ void MainWindow::set_customer_window_ui()
     searchLe4 = new QLineEdit;
     searchLe4->setPlaceholderText(tr("Search by Name"));
     QPushButton * searchPush4 = new QPushButton("Search");
-    searchPush4->setStyleSheet("color: red");
+    searchPush4->setFixedSize(QSize(100,30));
+    searchPush4->setStyleSheet("*{background-color:#fcde73; border:0.5px solid #f3b828; border-radius: 15px; font-size: 12px;} *:hover{background: '#dba624';}");
     connect(searchPush4, &QPushButton::clicked, this, [this]{searchSlt(customerSnackTable, searchLe4);});
     QHBoxLayout * searchLayout4 = new QHBoxLayout;
     searchLayout4->addWidget(searchLe4);
     searchLayout4->addWidget(searchPush4);
     QPushButton * addToCartPush4 = new QPushButton("Add to cart");
+    addToCartPush4->setFixedSize(QSize(100,30));
+    addToCartPush4->setStyleSheet("*{background-color:#91c3c1; border:0.5px solid #0e5b56; border-radius: 15px; font-size: 12px;} *:hover{background: '#568c89';}");
     QHBoxLayout * addLayout4 = new QHBoxLayout;
     addLayout4->addWidget(addToCartPush4);
     addLayout4->setAlignment(Qt::AlignLeft);
@@ -233,12 +243,15 @@ void MainWindow::set_customer_window_ui()
     searchLe5 = new QLineEdit;
     searchLe5->setPlaceholderText(tr("Search by Name"));
     QPushButton * searchPush5 = new QPushButton("Search");
-    searchPush5->setStyleSheet("color: red");
+    searchPush5->setFixedSize(QSize(100,30));
+    searchPush5->setStyleSheet("*{background-color:#fcde73; border:0.5px solid #f3b828; border-radius: 15px; font-size: 12px;} *:hover{background: '#dba624';}");
     connect(searchPush5, &QPushButton::clicked, this, [this]{searchSlt(customerNoneFoodTable, searchLe5);});
     QHBoxLayout * searchLayout5 = new QHBoxLayout;
     searchLayout5->addWidget(searchLe5);
     searchLayout5->addWidget(searchPush5);
     QPushButton * addToCartPush5 = new QPushButton("Add to cart");
+    addToCartPush5->setFixedSize(QSize(100,30));
+    addToCartPush5->setStyleSheet("*{background-color:#91c3c1; border:0.5px solid #0e5b56; border-radius: 15px; font-size: 12px;} *:hover{background: '#568c89';}");
     QHBoxLayout * addLayout5 = new QHBoxLayout;
     addLayout5->addWidget(addToCartPush5);
     addLayout5->setAlignment(Qt::AlignLeft);
@@ -281,7 +294,11 @@ void MainWindow::set_customer_window_ui()
     customerCartTable->setHorizontalHeaderLabels(s6);
 
     QPushButton * pur = new QPushButton("Purchase");
+    pur->setFixedSize(QSize(100,30));
+    pur->setStyleSheet("*{background-color:#91c3c1; border:0.5px solid #0e5b56; border-radius: 15px; font-size: 12px;} *:hover{background: '#568c89';}");
     QPushButton * removProduct = new QPushButton("Remove from Cart");
+    removProduct->setFixedSize(QSize(120,30));
+    removProduct->setStyleSheet("*{background-color:#f1a2a2; border:0.5px solid #e24544; border-radius: 15px; font-size: 12px;} *:hover{background: '#eb7d7c';}");
     QHBoxLayout * purchaseLayout = new QHBoxLayout;
     purchaseLayout->addWidget(pur);
     purchaseLayout->addWidget(removProduct);
@@ -301,14 +318,16 @@ void MainWindow::set_customer_window_ui()
     //------------------- wallet tab --------------------
 
     customerCredit = new QSpinBox;
+    customerCredit->setFixedWidth(400);
     customerCredit->setStyleSheet("font-size: 30px;");
     customerCredit->setReadOnly(true);
     customerCredit->setMaximum(10000000);
     QLabel *lable = new QLabel("your current credit in wallet is:");
-    lable->setStyleSheet("font-size: 30px;");
+    lable->setStyleSheet("font-size: 25px;");
 
     QPushButton *increasCredit = new QPushButton("increas credit");
-    increasCredit->setStyleSheet("font-size: 12px;");
+    increasCredit->setFixedSize(QSize(120,30));
+    increasCredit->setStyleSheet("*{background-color:#91c3c1; border:0.5px solid #0e5b56; border-radius: 15px; font-size: 12px;} *:hover{background: '#568c89';}");
     connect(increasCredit, &QPushButton::clicked, this, &MainWindow::increaseCreditDialog);
 
     QHBoxLayout * icLayout = new QHBoxLayout;
@@ -334,7 +353,7 @@ void MainWindow::set_customer_window_ui()
     customerMaintab->addTab(cartGroup, QIcon(":/shopping-cart.png"),"Cart");
     customerMaintab->addTab(customerShopHistoryToolBox, QIcon(":/history.png"),"Shop History");
     customerMaintab->addTab(walletGroup, QIcon(":/wallet1.png"),"Wallet");
-
+    customerMaintab->tabBar()->setIconSize(QSize(25,25));
 
 
     this->setCentralWidget(customerMaintab);
@@ -359,13 +378,16 @@ void MainWindow::employee_window()
     display_stock_product(employeeStockSnackTable, "Snack");
     display_stock_product(employeeStockNoneFoodTable, "None-Food");
 
-    employee_load_invoices();
+    load_invoices();
 }
 
 void MainWindow::set_employee_window_ui()
 {
     //-------------  show Actions ------------------
     ui->menubar->setVisible(true);
+    QAction * changePass = new QAction(QIcon(":/password.png"),"Change Password");
+    ui->menuAcount->addAction(changePass);
+    connect(changePass, &QAction::triggered, this, [this]{changePasswordSlt(1);});
 
 /**************************************************************
  *-------------------- shop tab -------------------------------
@@ -375,12 +397,15 @@ void MainWindow::set_employee_window_ui()
     emsearchLe = new QLineEdit;
     emsearchLe->setPlaceholderText(tr("Search by Name"));
     QPushButton * searchPush = new QPushButton("Search");
-    searchPush->setStyleSheet("color: red");
+    searchPush->setFixedSize(QSize(100,30));
+    searchPush->setStyleSheet("*{background-color:#fcde73; border:0.5px solid #f3b828; border-radius: 15px; font-size: 12px;} *:hover{background: '#dba624';}");
     connect(searchPush, &QPushButton::clicked, this, [this]{searchSlt(employeeVandFTable, emsearchLe);});
     QHBoxLayout * searchLayout = new QHBoxLayout;
     searchLayout->addWidget(emsearchLe);
     searchLayout->addWidget(searchPush);
     QPushButton * removePush = new QPushButton("Remove Product");
+    removePush->setFixedSize(QSize(120,30));
+    removePush->setStyleSheet("*{background-color:#f1a2a2; border:0.5px solid #e24544; border-radius: 15px; font-size: 12px;} *:hover{background: '#eb7d7c';}");
     QHBoxLayout * removeLayout = new QHBoxLayout;
     removeLayout->addWidget(removePush);
     removeLayout->setAlignment(Qt::AlignLeft);
@@ -408,12 +433,15 @@ void MainWindow::set_employee_window_ui()
     emsearchLe2 = new QLineEdit;
     emsearchLe2->setPlaceholderText(tr("Search by Name"));
     QPushButton * searchPush2 = new QPushButton("Search");
-    searchPush2->setStyleSheet("color: red");
+    searchPush2->setFixedSize(QSize(100,30));
+    searchPush2->setStyleSheet("*{background-color:#fcde73; border:0.5px solid #f3b828; border-radius: 15px; font-size: 12px;} *:hover{background: '#dba624';}");
     connect(searchPush2, &QPushButton::clicked, this, [this]{searchSlt(employeeDairyTable, emsearchLe2);});
     QHBoxLayout * searchLayout2 = new QHBoxLayout;
     searchLayout2->addWidget(emsearchLe2);
     searchLayout2->addWidget(searchPush2);
     QPushButton * removePush2 = new QPushButton("Remove Product");
+    removePush2->setFixedSize(QSize(120,30));
+    removePush2->setStyleSheet("*{background-color:#f1a2a2; border:0.5px solid #e24544; border-radius: 15px; font-size: 12px;} *:hover{background: '#eb7d7c';}");
     QHBoxLayout * removeLayout2 = new QHBoxLayout;
     removeLayout2->addWidget(removePush2);
     removeLayout2->setAlignment(Qt::AlignLeft);
@@ -442,12 +470,15 @@ void MainWindow::set_employee_window_ui()
     emsearchLe3 = new QLineEdit;
     emsearchLe3->setPlaceholderText(tr("Search by Name"));
     QPushButton * searchPush3 = new QPushButton("Search");
-    searchPush3->setStyleSheet("color: red");
+    searchPush3->setFixedSize(QSize(100,30));
+    searchPush3->setStyleSheet("*{background-color:#fcde73; border:0.5px solid #f3b828; border-radius: 15px; font-size: 12px;} *:hover{background: '#dba624';}");
     connect(searchPush3, &QPushButton::clicked, this, [this]{searchSlt(employeeBeverageTable, emsearchLe3);});
     QHBoxLayout * searchLayout3 = new QHBoxLayout;
     searchLayout3->addWidget(emsearchLe3);
     searchLayout3->addWidget(searchPush3);
     QPushButton * removePush3 = new QPushButton("Remove Product");
+    removePush3->setFixedSize(QSize(120,30));
+    removePush3->setStyleSheet("*{background-color:#f1a2a2; border:0.5px solid #e24544; border-radius: 15px; font-size: 12px;} *:hover{background: '#eb7d7c';}");
     QHBoxLayout * removeLayout3 = new QHBoxLayout;
     removeLayout3->addWidget(removePush3);
     removeLayout3->setAlignment(Qt::AlignLeft);
@@ -476,12 +507,15 @@ void MainWindow::set_employee_window_ui()
     emsearchLe4 = new QLineEdit;
     emsearchLe4->setPlaceholderText(tr("Search by Name"));
     QPushButton * searchPush4 = new QPushButton("Search");
-    searchPush4->setStyleSheet("color: red");
+    searchPush4->setFixedSize(QSize(100,30));
+    searchPush4->setStyleSheet("*{background-color:#fcde73; border:0.5px solid #f3b828; border-radius: 15px; font-size: 12px;} *:hover{background: '#dba624';}");
     connect(searchPush4, &QPushButton::clicked, this, [this]{searchSlt(employeeSnackTable, emsearchLe4);});
     QHBoxLayout * searchLayout4 = new QHBoxLayout;
     searchLayout4->addWidget(emsearchLe4);
     searchLayout4->addWidget(searchPush4);
     QPushButton * removePush4 = new QPushButton("Remove Product");
+    removePush4->setFixedSize(QSize(120,30));
+    removePush4->setStyleSheet("*{background-color:#f1a2a2; border:0.5px solid #e24544; border-radius: 15px; font-size: 12px;} *:hover{background: '#eb7d7c';}");
     QHBoxLayout * removeLayout4 = new QHBoxLayout;
     removeLayout4->addWidget(removePush4);
     removeLayout4->setAlignment(Qt::AlignLeft);
@@ -510,12 +544,15 @@ void MainWindow::set_employee_window_ui()
     emsearchLe5 = new QLineEdit;
     emsearchLe5->setPlaceholderText(tr("Search by Name"));
     QPushButton * searchPush5 = new QPushButton("Search");
-    searchPush5->setStyleSheet("color: red");
+    searchPush5->setFixedSize(QSize(100,30));
+    searchPush5->setStyleSheet("*{background-color:#fcde73; border:0.5px solid #f3b828; border-radius: 15px; font-size: 12px;} *:hover{background: '#dba624';}");
     connect(searchPush5, &QPushButton::clicked, this, [this]{searchSlt(employeeNoneFoodTable, emsearchLe5);});
     QHBoxLayout * searchLayout5 = new QHBoxLayout;
     searchLayout5->addWidget(emsearchLe5);
     searchLayout5->addWidget(searchPush5);
     QPushButton * removePush5 = new QPushButton("Remove Product");
+    removePush5->setFixedSize(QSize(120,30));
+    removePush5->setStyleSheet("*{background-color:#f1a2a2; border:0.5px solid #e24544; border-radius: 15px; font-size: 12px;} *:hover{background: '#eb7d7c';}");
     QHBoxLayout * removeLayout5 = new QHBoxLayout;
     removeLayout5->addWidget(removePush5);
     removeLayout5->setAlignment(Qt::AlignLeft);
@@ -546,16 +583,11 @@ void MainWindow::set_employee_window_ui()
     employeeCategoryTab->addTab(gBox3,"Beverage");
     employeeCategoryTab->addTab(gBox4,"Snack");
     employeeCategoryTab->addTab(gBox5, "None-Food");
+    employeeCategoryTab->tabBar()->setIconSize(QSize(20,20));
 
 
-
-
-    QHBoxLayout *hh = new QHBoxLayout;
-    //hh->addWidget(employeeRemoveProductFromShop);
     QVBoxLayout *vv = new QVBoxLayout;
-    hh->setAlignment(Qt::AlignLeft);
     vv->addWidget(employeeCategoryTab);
-    vv->addLayout(hh);
 
     QGroupBox *gg = new QGroupBox;
     gg->setLayout(vv);
@@ -568,12 +600,15 @@ void MainWindow::set_employee_window_ui()
      emsearchLe6 = new QLineEdit;
      emsearchLe6->setPlaceholderText(tr("Search by Name"));
      QPushButton * searchPush6 = new QPushButton("Search");
-     searchPush6->setStyleSheet("color: red");
+     searchPush6->setFixedSize(QSize(100,30));
+     searchPush6->setStyleSheet("*{background-color:#fcde73; border:0.5px solid #f3b828; border-radius: 15px; font-size: 12px;} *:hover{background: '#dba624';}");
      connect(searchPush6, &QPushButton::clicked, this, [this]{searchSlt(employeeStockVandFTable, emsearchLe6);});
      QHBoxLayout * searchLayout6 = new QHBoxLayout;
      searchLayout6->addWidget(emsearchLe6);
      searchLayout6->addWidget(searchPush6);
      QPushButton * addToShopPush6 = new QPushButton("Add to Shop");
+     addToShopPush6->setFixedSize(QSize(100,30));
+     addToShopPush6->setStyleSheet("*{background-color:#91c3c1; border:0.5px solid #0e5b56; border-radius: 15px; font-size: 12px;} *:hover{background: '#568c89';}");
      QHBoxLayout * addLayout6 = new QHBoxLayout;
      addLayout6->addWidget(addToShopPush6);
      addLayout6->setAlignment(Qt::AlignLeft);
@@ -601,12 +636,15 @@ void MainWindow::set_employee_window_ui()
      emsearchLe7 = new QLineEdit;
      emsearchLe7->setPlaceholderText(tr("Search by Name"));
      QPushButton * searchPush7 = new QPushButton("Search");
-     searchPush7->setStyleSheet("color: red");
+     searchPush7->setFixedSize(QSize(100,30));
+     searchPush7->setStyleSheet("*{background-color:#fcde73; border:0.5px solid #f3b828; border-radius: 15px; font-size: 12px;} *:hover{background: '#dba624';}");
      connect(searchPush7, &QPushButton::clicked, this, [this]{searchSlt(employeeStockDairyTable, emsearchLe7);});
      QHBoxLayout * searchLayout7 = new QHBoxLayout;
      searchLayout7->addWidget(emsearchLe7);
      searchLayout7->addWidget(searchPush7);
      QPushButton * addToShopPush7 = new QPushButton("Add to Shop");
+     addToShopPush7->setFixedSize(QSize(100,30));
+     addToShopPush7->setStyleSheet("*{background-color:#91c3c1; border:0.5px solid #0e5b56; border-radius: 15px; font-size: 12px;} *:hover{background: '#568c89';}");
      QHBoxLayout * addLayout7 = new QHBoxLayout;
      addLayout7->addWidget(addToShopPush7);
      addLayout7->setAlignment(Qt::AlignLeft);
@@ -634,12 +672,15 @@ void MainWindow::set_employee_window_ui()
      emsearchLe8 = new QLineEdit;
      emsearchLe8->setPlaceholderText(tr("Search by Name"));
      QPushButton * searchPush8 = new QPushButton("Search");
-     searchPush8->setStyleSheet("color: red");
+     searchPush8->setFixedSize(QSize(100,30));
+     searchPush8->setStyleSheet("*{background-color:#fcde73; border:0.5px solid #f3b828; border-radius: 15px; font-size: 12px;} *:hover{background: '#dba624';}");
      connect(searchPush8, &QPushButton::clicked, this, [this]{searchSlt(employeeStockBeverageTable, emsearchLe8);});
      QHBoxLayout * searchLayout8 = new QHBoxLayout;
      searchLayout8->addWidget(emsearchLe8);
      searchLayout8->addWidget(searchPush8);
      QPushButton * addToShopPush8 = new QPushButton("Add to Shop");
+     addToShopPush8->setFixedSize(QSize(100,30));
+     addToShopPush8->setStyleSheet("*{background-color:#91c3c1; border:0.5px solid #0e5b56; border-radius: 15px; font-size: 12px;} *:hover{background: '#568c89';}");
      QHBoxLayout * addLayout8 = new QHBoxLayout;
      addLayout8->addWidget(addToShopPush8);
      addLayout8->setAlignment(Qt::AlignLeft);
@@ -667,12 +708,15 @@ void MainWindow::set_employee_window_ui()
      emsearchLe9 = new QLineEdit;
      emsearchLe9->setPlaceholderText(tr("Search by Name"));
      QPushButton * searchPush9 = new QPushButton("Search");
-     searchPush9->setStyleSheet("color: red");
+     searchPush9->setFixedSize(QSize(100,30));
+     searchPush9->setStyleSheet("*{background-color:#fcde73; border:0.5px solid #f3b828; border-radius: 15px; font-size: 12px;} *:hover{background: '#dba624';}");
      connect(searchPush9, &QPushButton::clicked, this, [this]{searchSlt(employeeStockSnackTable, emsearchLe9);});
      QHBoxLayout * searchLayout9 = new QHBoxLayout;
      searchLayout9->addWidget(emsearchLe9);
      searchLayout9->addWidget(searchPush9);
      QPushButton * addToShopPush9 = new QPushButton("Add to Shop");
+     addToShopPush9->setFixedSize(QSize(100,30));
+     addToShopPush9->setStyleSheet("*{background-color:#91c3c1; border:0.5px solid #0e5b56; border-radius: 15px; font-size: 12px;} *:hover{background: '#568c89';}");
      QHBoxLayout * addLayout9 = new QHBoxLayout;
      addLayout9->addWidget(addToShopPush9);
      addLayout9->setAlignment(Qt::AlignLeft);
@@ -700,12 +744,15 @@ void MainWindow::set_employee_window_ui()
      emsearchLe10 = new QLineEdit;
      emsearchLe10->setPlaceholderText(tr("Search by Name"));
      QPushButton * searchPush10 = new QPushButton("Search");
-     searchPush10->setStyleSheet("color: red");
+     searchPush10->setFixedSize(QSize(100,30));
+     searchPush10->setStyleSheet("*{background-color:#fcde73; border:0.5px solid #f3b828; border-radius: 15px; font-size: 12px;} *:hover{background: '#dba624';}");
      connect(searchPush10, &QPushButton::clicked, this, [this]{searchSlt(employeeStockNoneFoodTable, emsearchLe10);});
      QHBoxLayout * searchLayout10 = new QHBoxLayout;
      searchLayout10->addWidget(emsearchLe10);
      searchLayout10->addWidget(searchPush10);
      QPushButton * addToShopPush10 = new QPushButton("Add to Shop");
+     addToShopPush10->setFixedSize(QSize(100,30));
+     addToShopPush10->setStyleSheet("*{background-color:#91c3c1; border:0.5px solid #0e5b56; border-radius: 15px; font-size: 12px;} *:hover{background: '#568c89';}");
      QHBoxLayout * addLayout10 = new QHBoxLayout;
      addLayout10->addWidget(addToShopPush10);
      addLayout10->setAlignment(Qt::AlignLeft);
@@ -735,15 +782,14 @@ void MainWindow::set_employee_window_ui()
      employeeStockCategoryTab->addTab(gBox8,"Beverage");
      employeeStockCategoryTab->addTab(gBox9,"Snack");
      employeeStockCategoryTab->addTab(gBox10, "None-Food");
+     employeeStockCategoryTab->tabBar()->setIconSize(QSize(20,20));
 
 
      employeeStockAddProductToStock = new QPushButton("Add Product to Stock");
-     //employeeStockAddProductToShop = new QPushButton("Add product to Shop");
-     //employeeStockRemoveProductFromStock = new QPushButton("Remove Product");
+     employeeStockAddProductToStock->setFixedSize(QSize(150,30));
+     employeeStockAddProductToStock->setStyleSheet("*{background-color:#91c3c1; border:0.5px solid #0e5b56; border-radius: 15px; font-size: 12px;} *:hover{background: '#568c89';}");
      QHBoxLayout *h2 = new QHBoxLayout;
      h2->addWidget(employeeStockAddProductToStock);
-     //h2->addWidget(employeeStockAddProductToShop);
-     //h2->addWidget(employeeStockRemoveProductFromStock);
      h2->setAlignment(Qt::AlignLeft);
      QVBoxLayout *v2 = new QVBoxLayout;
      v2->addWidget(employeeStockCategoryTab);
@@ -755,14 +801,15 @@ void MainWindow::set_employee_window_ui()
 
     //------------- Invoices ------------
 
-    employeeInvoices = new QToolBox;
+    Invoices = new QToolBox;
 
     //------------- Main tab ------------
 
     employeeMaintab = new QTabWidget;
-    employeeMaintab->addTab(gg, "Shop Products");
-    employeeMaintab->addTab(g2,"Stock");
-    employeeMaintab->addTab(employeeInvoices, "Invoices");
+    employeeMaintab->addTab(gg, "Shop");
+    employeeMaintab->addTab(g2, QIcon(":/warehouse.png"),"Stock");
+    employeeMaintab->addTab(Invoices, QIcon(":/receipt.png"),"Receipt");
+    employeeMaintab->tabBar()->setIconSize(QSize(25,25));
 
 
     this->setCentralWidget(employeeMaintab);
@@ -775,12 +822,17 @@ void MainWindow::manager_window()
     connect(addEmp,&QPushButton::clicked, this, &MainWindow::managerAddEmployeedialog);
     connect(removeEmp,&QPushButton::clicked, this, &MainWindow::managerRemoveEmployeeDialog);
     connect(editSalary,&QPushButton::clicked, this, &MainWindow::managerEditSalaryDialog);
+
+    connect(employeeStockAddProductToStock,&QPushButton::clicked, this, &MainWindow::employeeAddProductToStockDialog);
 }
 
 void MainWindow::set_manager_window_ui()
 {
     //-------------  show Actions ------------------
     ui->menubar->setVisible(true);
+    QAction * changePass = new QAction(QIcon(":/password.png"),"Change Password");
+    ui->menuAcount->addAction(changePass);
+    connect(changePass, &QAction::triggered, this, [this]{changePasswordSlt(2);});
 
     //------------------------------------------------
     //----------------- Employees Tab ----------------
@@ -797,8 +849,14 @@ void MainWindow::set_manager_window_ui()
     display_employees(employeeTable);
 
     addEmp = new QPushButton("Add Employee");
+    addEmp->setFixedSize(QSize(100,30));
+    addEmp->setStyleSheet("*{background-color:#91c3c1; border:0.5px solid #0e5b56; border-radius: 15px; font-size: 12px;} *:hover{background: '#568c89';}");
     removeEmp = new QPushButton("Remove Employees");
+    removeEmp->setFixedSize(QSize(120,30));
+    removeEmp->setStyleSheet("*{background-color:#f1a2a2; border:0.5px solid #e24544; border-radius: 15px; font-size: 12px;} *:hover{background: '#eb7d7c';}");
     editSalary = new QPushButton("Edit Salaries");
+    editSalary->setFixedSize(QSize(100,30));
+    editSalary->setStyleSheet("*{background-color:#fcde73; border:0.5px solid #f3b828; border-radius: 15px; font-size: 12px;} *:hover{background: '#dba624';}");
     editPushbuttons = new QHBoxLayout;
     editPushbuttons->addWidget(addEmp);
     editPushbuttons->addWidget(removeEmp);
@@ -811,8 +869,447 @@ void MainWindow::set_manager_window_ui()
     QGroupBox * empGroup = new QGroupBox;
     empGroup->setLayout(employeeslayout);
 
+    //-----------------------------------------------------------
+    //--------------------- shop tab -----------------------------
+    //-----------------------------------------------------------
 
-    this->setCentralWidget(empGroup);
+    //--------------- vegetable and food table ----------------
+    emsearchLe = new QLineEdit;
+    emsearchLe->setPlaceholderText(tr("Search by Name"));
+    QPushButton * searchPush = new QPushButton("Search");
+    searchPush->setFixedSize(QSize(100,30));
+    searchPush->setStyleSheet("*{background-color:#fcde73; border:0.5px solid #f3b828; border-radius: 15px; font-size: 12px;} *:hover{background: '#dba624';}");
+    connect(searchPush, &QPushButton::clicked, this, [this]{searchSlt(employeeVandFTable, emsearchLe);});
+    QHBoxLayout * searchLayout = new QHBoxLayout;
+    searchLayout->addWidget(emsearchLe);
+    searchLayout->addWidget(searchPush);
+    QPushButton * removePush = new QPushButton("Remove Product");
+    removePush->setFixedSize(QSize(120,30));
+    removePush->setStyleSheet("*{background-color:#f1a2a2; border:0.5px solid #e24544; border-radius: 15px; font-size: 12px;} *:hover{background: '#eb7d7c';}");
+    QHBoxLayout * removeLayout = new QHBoxLayout;
+    removeLayout->addWidget(removePush);
+    removeLayout->setAlignment(Qt::AlignLeft);
+    connect(removePush,&QPushButton::clicked,this,[this]{employeeRemoveProductFromShopSlt(employeeVandFTable);});
+
+    employeeVandFTable = new QTableWidget;
+    employeeVandFTable->setEditTriggers(QAbstractItemView::NoEditTriggers);  // disable in-place editing
+    employeeVandFTable->setSelectionBehavior(QAbstractItemView::SelectRows);  // only rows can be selected, not columns or sells
+    employeeVandFTable->setSelectionMode(QAbstractItemView::SingleSelection);  // disable selection of multiple rows
+    employeeVandFTable->setColumnCount(4);  // assign the number of columns in the table
+    QStringList s;
+    s << tr("Name") << tr("Manufacturer") << tr("Price") << tr("Expiry Date") ;
+    employeeVandFTable->setHorizontalHeaderLabels(s);
+
+    QVBoxLayout *l = new QVBoxLayout;
+    l->addLayout(searchLayout);
+    l->addWidget(employeeVandFTable);
+    l->addLayout(removeLayout);
+    QGroupBox * gBox = new QGroupBox;
+    gBox->setLayout(l);
+
+
+    //--------------- Dairy table ---------------------
+
+    emsearchLe2 = new QLineEdit;
+    emsearchLe2->setPlaceholderText(tr("Search by Name"));
+    QPushButton * searchPush2 = new QPushButton("Search");
+    searchPush2->setFixedSize(QSize(100,30));
+    searchPush2->setStyleSheet("*{background-color:#fcde73; border:0.5px solid #f3b828; border-radius: 15px; font-size: 12px;} *:hover{background: '#dba624';}");
+    connect(searchPush2, &QPushButton::clicked, this, [this]{searchSlt(employeeDairyTable, emsearchLe2);});
+    QHBoxLayout * searchLayout2 = new QHBoxLayout;
+    searchLayout2->addWidget(emsearchLe2);
+    searchLayout2->addWidget(searchPush2);
+    QPushButton * removePush2 = new QPushButton("Remove Product");
+    removePush2->setFixedSize(QSize(120,30));
+    removePush2->setStyleSheet("*{background-color:#f1a2a2; border:0.5px solid #e24544; border-radius: 15px; font-size: 12px;} *:hover{background: '#eb7d7c';}");
+    QHBoxLayout * removeLayout2 = new QHBoxLayout;
+    removeLayout2->addWidget(removePush2);
+    removeLayout2->setAlignment(Qt::AlignLeft);
+    connect(removePush2,&QPushButton::clicked,this,[this]{employeeRemoveProductFromShopSlt(employeeDairyTable);});
+
+
+    employeeDairyTable = new QTableWidget;
+    employeeDairyTable->setEditTriggers(QAbstractItemView::NoEditTriggers);  // disable in-place editing
+    employeeDairyTable->setSelectionBehavior(QAbstractItemView::SelectRows);  // only rows can be selected, not columns or sells
+    employeeDairyTable->setSelectionMode(QAbstractItemView::SingleSelection);  // disable selection of multiple rows
+    employeeDairyTable->setColumnCount(4);  // assign the number of columns in the table
+    QStringList s2;
+    s2 << tr("Name") << tr("Manufacturer") << tr("Price") << tr("Expiry Date") ;
+    employeeDairyTable->setHorizontalHeaderLabels(s2);
+
+    QVBoxLayout *l2 = new QVBoxLayout;
+    l2->addLayout(searchLayout2);
+    l2->addWidget(employeeDairyTable);
+    l2->addLayout(removeLayout2);
+    QGroupBox * gBox2 = new QGroupBox;
+    gBox2->setLayout(l2);
+
+
+    //-------------- Beverage table ---------------
+
+    emsearchLe3 = new QLineEdit;
+    emsearchLe3->setPlaceholderText(tr("Search by Name"));
+    QPushButton * searchPush3 = new QPushButton("Search");
+    searchPush3->setFixedSize(QSize(100,30));
+    searchPush3->setStyleSheet("*{background-color:#fcde73; border:0.5px solid #f3b828; border-radius: 15px; font-size: 12px;} *:hover{background: '#dba624';}");
+    connect(searchPush3, &QPushButton::clicked, this, [this]{searchSlt(employeeBeverageTable, emsearchLe3);});
+    QHBoxLayout * searchLayout3 = new QHBoxLayout;
+    searchLayout3->addWidget(emsearchLe3);
+    searchLayout3->addWidget(searchPush3);
+    QPushButton * removePush3 = new QPushButton("Remove Product");
+    removePush3->setFixedSize(QSize(120,30));
+    removePush3->setStyleSheet("*{background-color:#f1a2a2; border:0.5px solid #e24544; border-radius: 15px; font-size: 12px;} *:hover{background: '#eb7d7c';}");
+    QHBoxLayout * removeLayout3 = new QHBoxLayout;
+    removeLayout3->addWidget(removePush3);
+    removeLayout3->setAlignment(Qt::AlignLeft);
+    connect(removePush3,&QPushButton::clicked,this,[this]{employeeRemoveProductFromShopSlt(employeeBeverageTable);});
+
+
+    employeeBeverageTable = new QTableWidget;
+    employeeBeverageTable->setEditTriggers(QAbstractItemView::NoEditTriggers);  // disable in-place editing
+    employeeBeverageTable->setSelectionBehavior(QAbstractItemView::SelectRows);  // only rows can be selected, not columns or sells
+    employeeBeverageTable->setSelectionMode(QAbstractItemView::SingleSelection);  // disable selection of multiple rows
+    employeeBeverageTable->setColumnCount(4);  // assign the number of columns in the table
+    QStringList s3;
+    s3 << tr("Name") << tr("Manufacturer") << tr("Price") << tr("Expiry Date") ;
+    employeeBeverageTable->setHorizontalHeaderLabels(s3);
+
+    QVBoxLayout *l3 = new QVBoxLayout;
+    l3->addLayout(searchLayout3);
+    l3->addWidget(employeeBeverageTable);
+    l3->addLayout(removeLayout3);
+    QGroupBox * gBox3 = new QGroupBox;
+    gBox3->setLayout(l3);
+
+
+    //---------------- Snack table --------------------
+
+    emsearchLe4 = new QLineEdit;
+    emsearchLe4->setPlaceholderText(tr("Search by Name"));
+    QPushButton * searchPush4 = new QPushButton("Search");
+    searchPush4->setFixedSize(QSize(100,30));
+    searchPush4->setStyleSheet("*{background-color:#fcde73; border:0.5px solid #f3b828; border-radius: 15px; font-size: 12px;} *:hover{background: '#dba624';}");
+    connect(searchPush4, &QPushButton::clicked, this, [this]{searchSlt(employeeSnackTable, emsearchLe4);});
+    QHBoxLayout * searchLayout4 = new QHBoxLayout;
+    searchLayout4->addWidget(emsearchLe4);
+    searchLayout4->addWidget(searchPush4);
+    QPushButton * removePush4 = new QPushButton("Remove Product");
+    removePush4->setFixedSize(QSize(120,30));
+    removePush4->setStyleSheet("*{background-color:#f1a2a2; border:0.5px solid #e24544; border-radius: 15px; font-size: 12px;} *:hover{background: '#eb7d7c';}");
+    QHBoxLayout * removeLayout4 = new QHBoxLayout;
+    removeLayout4->addWidget(removePush4);
+    removeLayout4->setAlignment(Qt::AlignLeft);
+    connect(removePush4,&QPushButton::clicked,this,[this]{employeeRemoveProductFromShopSlt(employeeSnackTable);});
+
+
+    employeeSnackTable = new QTableWidget;
+    employeeSnackTable->setEditTriggers(QAbstractItemView::NoEditTriggers);  // disable in-place editing
+    employeeSnackTable->setSelectionBehavior(QAbstractItemView::SelectRows);  // only rows can be selected, not columns or sells
+    employeeSnackTable->setSelectionMode(QAbstractItemView::SingleSelection);  // disable selection of multiple rows
+    employeeSnackTable->setColumnCount(4);  // assign the number of columns in the table
+    QStringList s4;
+    s4 << tr("Name") << tr("Manufacturer") << tr("Price") << tr("Expiry Date") ;
+    employeeSnackTable->setHorizontalHeaderLabels(s4);
+
+    QVBoxLayout *l4 = new QVBoxLayout;
+    l4->addLayout(searchLayout4);
+    l4->addWidget(employeeSnackTable);
+    l4->addLayout(removeLayout4);
+    QGroupBox * gBox4 = new QGroupBox;
+    gBox4->setLayout(l4);
+
+
+    //------------------- None-Food table ------------------
+
+    emsearchLe5 = new QLineEdit;
+    emsearchLe5->setPlaceholderText(tr("Search by Name"));
+    QPushButton * searchPush5 = new QPushButton("Search");
+    searchPush5->setFixedSize(QSize(100,30));
+    searchPush5->setStyleSheet("*{background-color:#fcde73; border:0.5px solid #f3b828; border-radius: 15px; font-size: 12px;} *:hover{background: '#dba624';}");
+    connect(searchPush5, &QPushButton::clicked, this, [this]{searchSlt(employeeNoneFoodTable, emsearchLe5);});
+    QHBoxLayout * searchLayout5 = new QHBoxLayout;
+    searchLayout5->addWidget(emsearchLe5);
+    searchLayout5->addWidget(searchPush5);
+    QPushButton * removePush5 = new QPushButton("Remove Product");
+    removePush5->setFixedSize(QSize(120,30));
+    removePush5->setStyleSheet("*{background-color:#f1a2a2; border:0.5px solid #e24544; border-radius: 15px; font-size: 12px;} *:hover{background: '#eb7d7c';}");
+    QHBoxLayout * removeLayout5 = new QHBoxLayout;
+    removeLayout5->addWidget(removePush5);
+    removeLayout5->setAlignment(Qt::AlignLeft);
+    connect(removePush5,&QPushButton::clicked,this,[this]{employeeRemoveProductFromShopSlt(employeeNoneFoodTable);});
+
+
+    employeeNoneFoodTable = new QTableWidget;
+    employeeNoneFoodTable->setEditTriggers(QAbstractItemView::NoEditTriggers);  // disable in-place editing
+    employeeNoneFoodTable->setSelectionBehavior(QAbstractItemView::SelectRows);  // only rows can be selected, not columns or sells
+    employeeNoneFoodTable->setSelectionMode(QAbstractItemView::SingleSelection);  // disable selection of multiple rows
+    employeeNoneFoodTable->setColumnCount(4);  // assign the number of columns in the table
+    QStringList s5;
+    s5 << tr("Name") << tr("Manufacturer") << tr("Price") << tr("Expiry Date") ;
+    employeeNoneFoodTable->setHorizontalHeaderLabels(s5);
+
+    QVBoxLayout *l5 = new QVBoxLayout;
+    l5->addLayout(searchLayout5);
+    l5->addWidget(employeeNoneFoodTable);
+    l5->addLayout(removeLayout5);
+    QGroupBox * gBox5 = new QGroupBox;
+    gBox5->setLayout(l5);
+
+    //---------------- Display shop --------------
+
+    display_shop_product(employeeVandFTable, "Vegetable and Fruit");
+    display_shop_product(employeeDairyTable, "Dairy");
+    display_shop_product(employeeBeverageTable, "Beverage");
+    display_shop_product(employeeSnackTable, "Snack");
+    display_shop_product(employeeNoneFoodTable, "None-Food");
+
+    //---------------- Category tab ---------------
+    employeeCategoryTab = new QTabWidget;
+    employeeCategoryTab->addTab(gBox, "Vegatable and Fruit");
+    employeeCategoryTab->addTab(gBox2,"Dairy");
+    employeeCategoryTab->addTab(gBox3,"Beverage");
+    employeeCategoryTab->addTab(gBox4,"Snack");
+    employeeCategoryTab->addTab(gBox5, "None-Food");
+    employeeCategoryTab->tabBar()->setIconSize(QSize(20,20));
+
+
+    QVBoxLayout *vv = new QVBoxLayout;
+    vv->addWidget(employeeCategoryTab);
+
+    QGroupBox *gg = new QGroupBox;
+    gg->setLayout(vv);
+
+    //------------------------------------------------
+    //----------------- Stock Tab ------------------
+    //------------------------------------------------
+
+    //--------------- vegetable and food table ----------------
+     emsearchLe6 = new QLineEdit;
+     emsearchLe6->setPlaceholderText(tr("Search by Name"));
+     QPushButton * searchPush6 = new QPushButton("Search");
+     searchPush6->setFixedSize(QSize(100,30));
+     searchPush6->setStyleSheet("*{background-color:#fcde73; border:0.5px solid #f3b828; border-radius: 15px; font-size: 12px;} *:hover{background: '#dba624';}");
+     connect(searchPush6, &QPushButton::clicked, this, [this]{searchSlt(employeeStockVandFTable, emsearchLe6);});
+     QHBoxLayout * searchLayout6 = new QHBoxLayout;
+     searchLayout6->addWidget(emsearchLe6);
+     searchLayout6->addWidget(searchPush6);
+     QPushButton * addToShopPush6 = new QPushButton("Add to Shop");
+     addToShopPush6->setFixedSize(QSize(100,30));
+     addToShopPush6->setStyleSheet("*{background-color:#91c3c1; border:0.5px solid #0e5b56; border-radius: 15px; font-size: 12px;} *:hover{background: '#568c89';}");
+     QHBoxLayout * addLayout6 = new QHBoxLayout;
+     addLayout6->addWidget(addToShopPush6);
+     addLayout6->setAlignment(Qt::AlignLeft);
+     connect(addToShopPush6,&QPushButton::clicked,this,[this]{employeeAddProductToShopSlt(employeeStockVandFTable,employeeVandFTable);});
+
+     employeeStockVandFTable = new QTableWidget;
+     employeeStockVandFTable->setEditTriggers(QAbstractItemView::NoEditTriggers);  // disable in-place editing
+     employeeStockVandFTable->setSelectionBehavior(QAbstractItemView::SelectRows);  // only rows can be selected, not columns or sells
+     employeeStockVandFTable->setSelectionMode(QAbstractItemView::SingleSelection);  // disable selection of multiple rows
+     employeeStockVandFTable->setColumnCount(5);  // assign the number of columns in the table
+     QStringList s6;
+     s6 << tr("Name") << tr("Manufacturer") << tr("Price") << tr("Expiry Date") << tr("Amount");
+     employeeStockVandFTable->setHorizontalHeaderLabels(s6);
+
+     QVBoxLayout *l6 = new QVBoxLayout;
+     l6->addLayout(searchLayout6);
+     l6->addWidget(employeeStockVandFTable);
+     l6->addLayout(addLayout6);
+     QGroupBox * gBox6 = new QGroupBox;
+     gBox6->setLayout(l6);
+
+
+     //--------------- Dairy table ---------------------
+
+     emsearchLe7 = new QLineEdit;
+     emsearchLe7->setPlaceholderText(tr("Search by Name"));
+     QPushButton * searchPush7 = new QPushButton("Search");
+     searchPush7->setFixedSize(QSize(100,30));
+     searchPush7->setStyleSheet("*{background-color:#fcde73; border:0.5px solid #f3b828; border-radius: 15px; font-size: 12px;} *:hover{background: '#dba624';}");
+     connect(searchPush7, &QPushButton::clicked, this, [this]{searchSlt(employeeStockDairyTable, emsearchLe7);});
+     QHBoxLayout * searchLayout7 = new QHBoxLayout;
+     searchLayout7->addWidget(emsearchLe7);
+     searchLayout7->addWidget(searchPush7);
+     QPushButton * addToShopPush7 = new QPushButton("Add to Shop");
+     addToShopPush7->setFixedSize(QSize(100,30));
+     addToShopPush7->setStyleSheet("*{background-color:#91c3c1; border:0.5px solid #0e5b56; border-radius: 15px; font-size: 12px;} *:hover{background: '#568c89';}");
+     QHBoxLayout * addLayout7 = new QHBoxLayout;
+     addLayout7->addWidget(addToShopPush7);
+     addLayout7->setAlignment(Qt::AlignLeft);
+     connect(addToShopPush7,&QPushButton::clicked,this,[this]{employeeAddProductToShopSlt(employeeStockDairyTable,employeeDairyTable);});
+
+     employeeStockDairyTable = new QTableWidget;
+     employeeStockDairyTable->setEditTriggers(QAbstractItemView::NoEditTriggers);  // disable in-place editing
+     employeeStockDairyTable->setSelectionBehavior(QAbstractItemView::SelectRows);  // only rows can be selected, not columns or sells
+     employeeStockDairyTable->setSelectionMode(QAbstractItemView::SingleSelection);  // disable selection of multiple rows
+     employeeStockDairyTable->setColumnCount(5);  // assign the number of columns in the table
+     QStringList s7;
+     s7 << tr("Name") << tr("Manufacturer") << tr("Price") << tr("Expiry Date") << tr("Amount");
+     employeeStockDairyTable->setHorizontalHeaderLabels(s7);
+
+     QVBoxLayout *l7 = new QVBoxLayout;
+     l7->addLayout(searchLayout7);
+     l7->addWidget(employeeStockDairyTable);
+     l7->addLayout(addLayout7);
+     QGroupBox * gBox7 = new QGroupBox;
+     gBox7->setLayout(l7);
+
+
+     //-------------- Beverage table ---------------
+
+     emsearchLe8 = new QLineEdit;
+     emsearchLe8->setPlaceholderText(tr("Search by Name"));
+     QPushButton * searchPush8 = new QPushButton("Search");
+     searchPush8->setFixedSize(QSize(100,30));
+     searchPush8->setStyleSheet("*{background-color:#fcde73; border:0.5px solid #f3b828; border-radius: 15px; font-size: 12px;} *:hover{background: '#dba624';}");
+     connect(searchPush8, &QPushButton::clicked, this, [this]{searchSlt(employeeStockBeverageTable, emsearchLe8);});
+     QHBoxLayout * searchLayout8 = new QHBoxLayout;
+     searchLayout8->addWidget(emsearchLe8);
+     searchLayout8->addWidget(searchPush8);
+     QPushButton * addToShopPush8 = new QPushButton("Add to Shop");
+     addToShopPush8->setFixedSize(QSize(100,30));
+     addToShopPush8->setStyleSheet("*{background-color:#91c3c1; border:0.5px solid #0e5b56; border-radius: 15px; font-size: 12px;} *:hover{background: '#568c89';}");
+     QHBoxLayout * addLayout8 = new QHBoxLayout;
+     addLayout8->addWidget(addToShopPush8);
+     addLayout8->setAlignment(Qt::AlignLeft);
+     connect(addToShopPush8,&QPushButton::clicked,this,[this]{employeeAddProductToShopSlt(employeeStockBeverageTable,employeeBeverageTable);});
+
+     employeeStockBeverageTable = new QTableWidget;
+     employeeStockBeverageTable->setEditTriggers(QAbstractItemView::NoEditTriggers);  // disable in-place editing
+     employeeStockBeverageTable->setSelectionBehavior(QAbstractItemView::SelectRows);  // only rows can be selected, not columns or sells
+     employeeStockBeverageTable->setSelectionMode(QAbstractItemView::SingleSelection);  // disable selection of multiple rows
+     employeeStockBeverageTable->setColumnCount(5);  // assign the number of columns in the table
+     QStringList s8;
+     s8 << tr("Name") << tr("Manufacturer") << tr("Price") << tr("Expiry Date") << tr("Amount");
+     employeeStockBeverageTable->setHorizontalHeaderLabels(s8);
+
+     QVBoxLayout *l8 = new QVBoxLayout;
+     l8->addLayout(searchLayout8);
+     l8->addWidget(employeeStockBeverageTable);
+     l8->addLayout(addLayout8);
+     QGroupBox * gBox8 = new QGroupBox;
+     gBox8->setLayout(l8);
+
+
+     //---------------- Snack table --------------------
+
+     emsearchLe9 = new QLineEdit;
+     emsearchLe9->setPlaceholderText(tr("Search by Name"));
+     QPushButton * searchPush9 = new QPushButton("Search");
+     searchPush9->setFixedSize(QSize(100,30));
+     searchPush9->setStyleSheet("*{background-color:#fcde73; border:0.5px solid #f3b828; border-radius: 15px; font-size: 12px;} *:hover{background: '#dba624';}");
+     connect(searchPush9, &QPushButton::clicked, this, [this]{searchSlt(employeeStockSnackTable, emsearchLe9);});
+     QHBoxLayout * searchLayout9 = new QHBoxLayout;
+     searchLayout9->addWidget(emsearchLe9);
+     searchLayout9->addWidget(searchPush9);
+     QPushButton * addToShopPush9 = new QPushButton("Add to Shop");
+     addToShopPush9->setFixedSize(QSize(100,30));
+     addToShopPush9->setStyleSheet("*{background-color:#91c3c1; border:0.5px solid #0e5b56; border-radius: 15px; font-size: 12px;} *:hover{background: '#568c89';}");
+     QHBoxLayout * addLayout9 = new QHBoxLayout;
+     addLayout9->addWidget(addToShopPush9);
+     addLayout9->setAlignment(Qt::AlignLeft);
+     connect(addToShopPush9,&QPushButton::clicked,this,[this]{employeeAddProductToShopSlt(employeeStockSnackTable,employeeSnackTable);});
+
+     employeeStockSnackTable = new QTableWidget;
+     employeeStockSnackTable->setEditTriggers(QAbstractItemView::NoEditTriggers);  // disable in-place editing
+     employeeStockSnackTable->setSelectionBehavior(QAbstractItemView::SelectRows);  // only rows can be selected, not columns or sells
+     employeeStockSnackTable->setSelectionMode(QAbstractItemView::SingleSelection);  // disable selection of multiple rows
+     employeeStockSnackTable->setColumnCount(5);  // assign the number of columns in the table
+     QStringList s9;
+     s9 << tr("Name") << tr("Manufacturer") << tr("Price") << tr("Expiry Date") << tr("Amount");
+     employeeStockSnackTable->setHorizontalHeaderLabels(s9);
+
+     QVBoxLayout *l9 = new QVBoxLayout;
+     l9->addLayout(searchLayout9);
+     l9->addWidget(employeeStockSnackTable);
+     l9->addLayout(addLayout9);
+     QGroupBox * gBox9 = new QGroupBox;
+     gBox9->setLayout(l9);
+
+
+     //------------------- None-Food table ------------------
+
+     emsearchLe10 = new QLineEdit;
+     emsearchLe10->setPlaceholderText(tr("Search by Name"));
+     QPushButton * searchPush10 = new QPushButton("Search");
+     searchPush10->setFixedSize(QSize(100,30));
+     searchPush10->setStyleSheet("*{background-color:#fcde73; border:0.5px solid #f3b828; border-radius: 15px; font-size: 12px;} *:hover{background: '#dba624';}");
+     connect(searchPush10, &QPushButton::clicked, this, [this]{searchSlt(employeeStockNoneFoodTable, emsearchLe10);});
+     QHBoxLayout * searchLayout10 = new QHBoxLayout;
+     searchLayout10->addWidget(emsearchLe10);
+     searchLayout10->addWidget(searchPush10);
+     QPushButton * addToShopPush10 = new QPushButton("Add to Shop");
+     addToShopPush10->setFixedSize(QSize(100,30));
+     addToShopPush10->setStyleSheet("*{background-color:#91c3c1; border:0.5px solid #0e5b56; border-radius: 15px; font-size: 12px;} *:hover{background: '#568c89';}");
+     QHBoxLayout * addLayout10 = new QHBoxLayout;
+     addLayout10->addWidget(addToShopPush10);
+     addLayout10->setAlignment(Qt::AlignLeft);
+     connect(addToShopPush10,&QPushButton::clicked,this,[this]{employeeAddProductToShopSlt(employeeStockNoneFoodTable, employeeNoneFoodTable);});
+
+     employeeStockNoneFoodTable = new QTableWidget;
+     employeeStockNoneFoodTable->setEditTriggers(QAbstractItemView::NoEditTriggers);  // disable in-place editing
+     employeeStockNoneFoodTable->setSelectionBehavior(QAbstractItemView::SelectRows);  // only rows can be selected, not columns or sells
+     employeeStockNoneFoodTable->setSelectionMode(QAbstractItemView::SingleSelection);  // disable selection of multiple rows
+     employeeStockNoneFoodTable->setColumnCount(5);  // assign the number of columns in the table
+     QStringList s10;
+     s10 << tr("Name") << tr("Manufacturer") << tr("Price") << tr("Expiry Date") << tr("Amount");
+     employeeStockNoneFoodTable->setHorizontalHeaderLabels(s10);
+
+     QVBoxLayout *l10 = new QVBoxLayout;
+     l10->addLayout(searchLayout10);
+     l10->addWidget(employeeStockNoneFoodTable);
+     l10->addLayout(addLayout10);
+     QGroupBox * gBox10 = new QGroupBox;
+     gBox10->setLayout(l10);
+
+
+     //---------------- Category tab ---------------
+     employeeStockCategoryTab = new QTabWidget;
+     employeeStockCategoryTab->addTab(gBox6, "Vegatable and Fruit");
+     employeeStockCategoryTab->addTab(gBox7,"Dairy");
+     employeeStockCategoryTab->addTab(gBox8,"Beverage");
+     employeeStockCategoryTab->addTab(gBox9,"Snack");
+     employeeStockCategoryTab->addTab(gBox10, "None-Food");
+     employeeStockCategoryTab->tabBar()->setIconSize(QSize(20,20));
+
+
+     employeeStockAddProductToStock = new QPushButton("Add Product to Stock");
+     employeeStockAddProductToStock->setFixedSize(QSize(150,30));
+     employeeStockAddProductToStock->setStyleSheet("*{background-color:#91c3c1; border:0.5px solid #0e5b56; border-radius: 15px; font-size: 12px;} *:hover{background: '#568c89';}");
+     QHBoxLayout *h2 = new QHBoxLayout;
+     h2->addWidget(employeeStockAddProductToStock);
+     h2->setAlignment(Qt::AlignLeft);
+     QVBoxLayout *v2 = new QVBoxLayout;
+     v2->addWidget(employeeStockCategoryTab);
+     v2->addLayout(h2);
+
+     QGroupBox *g2 = new QGroupBox;
+     g2->setLayout(v2);
+
+     //---------------- Display Stock -------------
+
+     display_stock_product(employeeStockVandFTable, "Vegetable and Fruit");
+     display_stock_product(employeeStockDairyTable, "Dairy");
+     display_stock_product(employeeStockBeverageTable, "Beverage");
+     display_stock_product(employeeStockSnackTable, "Snack");
+     display_stock_product(employeeStockNoneFoodTable, "None-Food");
+
+     //------------- Invoices ------------
+
+     Invoices = new QToolBox;
+
+     //------------- Main tab ------------
+
+     managerTab = new QTabWidget;
+     managerTab->addTab(empGroup, "Employees");
+     managerTab->addTab(gg, "Shop");
+     managerTab->addTab(g2, QIcon(":/warehouse.png"),"Stock");
+     managerTab->addTab(Invoices, QIcon(":/receipt.png"),"Receipt");
+     managerTab->tabBar()->setIconSize(QSize(25,25));
+
+     load_invoices();
+
+
+     this->setCentralWidget(managerTab);
 }
 void MainWindow::display_employees(QTableWidget *table)
 {
@@ -1095,7 +1592,7 @@ void MainWindow::add_purchase_to_history(int payment, int discount, int payout)
     customerCartTable->setHorizontalHeaderLabels(s);
 }
 
-void MainWindow::employee_load_invoices()
+void MainWindow::load_invoices()
 {
     QFile f("database/invoices.json");
     f.open(QIODevice::ReadOnly);
@@ -1188,7 +1685,7 @@ void MainWindow::employee_load_invoices()
         QGroupBox * g = new QGroupBox;
         g->setLayout(l);
 
-        employeeInvoices->insertItem(employeeInvoices->count(), g, "Invoice " + QString::number(employeeInvoices->count()+1));
+        Invoices->insertItem(Invoices->count(), g, "Invoice " + QString::number(Invoices->count()+1));
 
         counter++;
     }
@@ -1300,7 +1797,9 @@ void MainWindow::display_error(QString msg)
     QMessageBox * box = new QMessageBox(QMessageBox::Critical, "Error", msg, QMessageBox::Ok);
     box->button(QMessageBox::Ok)->setIcon(QIcon(":/ok.png"));
     box->setWindowIcon(QIcon(":/store.png"));
-    box->setMinimumWidth(300);
+    box->button(QMessageBox::Ok)->setStyleSheet("*{background-color:#a1cfcd; border:0.5px solid #0e5b56; border-radius:12px; font-size: 10px;} *:hover{background: '#568c89';}");
+    box->button(QMessageBox::Ok)->setFixedSize(QSize(80,25));
+    box->button(QMessageBox::Ok)->setIconSize(QSize(15,15));
     box->show();
     connect(box,&QMessageBox::buttonClicked,box,&QMessageBox::deleteLater, Qt::QueuedConnection);
     return;
@@ -1311,7 +1810,9 @@ void MainWindow::display_info(QString msg)
     QMessageBox * box = new QMessageBox(QMessageBox::Information, "Information", msg, QMessageBox::Ok);
     box->button(QMessageBox::Ok)->setIcon(QIcon(":/ok.png"));
     box->setWindowIcon(QIcon(":/store.png"));
-    box->setFixedSize(QSize(300,200));
+    box->button(QMessageBox::Ok)->setStyleSheet("*{background-color:#a1cfcd; border:0.5px solid #0e5b56; border-radius:12px; font-size: 10px;} *:hover{background: '#568c89';}");
+    box->button(QMessageBox::Ok)->setFixedSize(QSize(80,25));
+    box->button(QMessageBox::Ok)->setIconSize(QSize(15,15));
     box->show();
     connect(box,&QMessageBox::buttonClicked,box,&QMessageBox::deleteLater, Qt::QueuedConnection);
     return;
@@ -1687,12 +2188,6 @@ void MainWindow::managerEditSalaryDialog()
     dialog->show();
 }
 
-void MainWindow::logoutActionSlt()
-{
-    this->setCentralWidget(new Home(this));
-    return;
-}
-
 void MainWindow::searchSlt(QTableWidget *sourceTable, QLineEdit* lineEdit)
 {
     QString searchTaxt = lineEdit->text();
@@ -1710,5 +2205,10 @@ void MainWindow::searchSlt(QTableWidget *sourceTable, QLineEdit* lineEdit)
     {
         display_info("no result!");
     }
+}
+
+void MainWindow::changePasswordSlt(int index)
+{
+    display_info(QString::number(index));
 }
 

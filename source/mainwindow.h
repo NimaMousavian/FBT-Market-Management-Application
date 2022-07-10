@@ -13,6 +13,7 @@
 #include "product.h"
 #include <QJsonObject>
 #include "Manager.h"
+#include <QAction>
 
 
 QT_BEGIN_NAMESPACE
@@ -46,7 +47,7 @@ public:
     void customer_increase_credit(int a =0);
     void add_purchase_to_history(int payment, int discount, int payout);
 
-    void employee_load_invoices();
+    void load_invoices();
     void customer_load_purchases();
 
     void customer_add_to_cart(QString, QString, QString, QString, QString, QString);
@@ -56,6 +57,7 @@ private:
     Ui::MainWindow *ui;
 
     QString username;
+    QAction * changePassAction;
 
     //-------------- Customer window widgets ------------
     QTabWidget * customerMaintab;
@@ -92,7 +94,7 @@ private:
     QPushButton * employeeStockAddProductToStock;
     QPushButton * employeeStockAddProductToShop;
     QPushButton * employeeStockRemoveProductFromStock;
-    QToolBox * employeeInvoices;
+    QToolBox * Invoices;
     QLineEdit * emsearchLe;
     QLineEdit * emsearchLe2;
     QLineEdit * emsearchLe3;
@@ -137,7 +139,7 @@ public slots:
     void managerAddEmployeedialog();
     void managerRemoveEmployeeDialog();
     void managerEditSalaryDialog();
-    void logoutActionSlt();
     void searchSlt(QTableWidget*, QLineEdit*);
+    void changePasswordSlt(int);
 };
 #endif // MAINWINDOW_H

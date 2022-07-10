@@ -43,7 +43,6 @@
      <string>File</string>
     </property>
     <addaction name="separator"/>
-    <addaction name="actionLogout"/>
     <addaction name="separator"/>
     <addaction name="actionExit"/>
     <addaction name="separator"/>
