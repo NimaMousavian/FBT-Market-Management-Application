@@ -58,6 +58,11 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->menubar->setVisible(false);
     ui->actionExit->setIcon(QIcon(":/exit.png"));
+    ui->actionLogout_2->setIcon(QIcon(":/logout2.png"));
+    ui->actionChange_Password->setIcon(QIcon(":/password.png"));
+    connect(ui->actionChange_Password, &QAction::triggered, this, &MainWindow::changePasswordSlt);
+    connect(ui->actionLogout_2, &QAction::triggered, this, &MainWindow::logoutSlt);
+
 
     this->setCentralWidget(new Home(this));
     this->setWindowIcon(QIcon(":/store.png"));
@@ -89,10 +94,7 @@ void MainWindow::set_customer_window_ui()
 {
     //-------------  show Actions ------------------
     ui->menubar->setVisible(true);
-    QAction * changePass = new QAction(QIcon(":/password.png"),"Change Password");
-    ui->menuAcount->addAction(changePass);
-    connect(changePass, &QAction::triggered, this, [this]{changePasswordSlt(0);});
-
+    index = 0;
 
 
 ///***********************************************************
@@ -386,9 +388,7 @@ void MainWindow::set_employee_window_ui()
 {
     //-------------  show Actions ------------------
     ui->menubar->setVisible(true);
-    QAction * changePass = new QAction(QIcon(":/password.png"),"Change Password");
-    ui->menuAcount->addAction(changePass);
-    connect(changePass, &QAction::triggered, this, [this]{changePasswordSlt(1);});
+    index = 1;
 
 /**************************************************************
  *-------------------- shop tab -------------------------------
@@ -807,7 +807,7 @@ void MainWindow::set_employee_window_ui()
     //------------- Main tab ------------
 
     employeeMaintab = new QTabWidget;
-    employeeMaintab->addTab(gg, QIcon(":/icons8-add-tag-96.png"),"Shop");
+    employeeMaintab->addTab(gg, QIcon(":cash_register.png"),"Shop");
     employeeMaintab->addTab(g2, QIcon(":/warehouse.png"),"Stock");
     employeeMaintab->addTab(Invoices, QIcon(":/receipt.png"),"Receipt");
     employeeMaintab->tabBar()->setIconSize(QSize(25,25));
@@ -831,9 +831,7 @@ void MainWindow::set_manager_window_ui()
 {
     //-------------  show Actions ------------------
     ui->menubar->setVisible(true);
-    QAction * changePass = new QAction(QIcon(":/password.png"),"Change Password");
-    ui->menuAcount->addAction(changePass);
-    connect(changePass, &QAction::triggered, this, [this]{changePasswordSlt(2);});
+    index = 2;
 
     //------------------------------------------------
     //----------------- Employees Tab ----------------
@@ -1302,7 +1300,7 @@ void MainWindow::set_manager_window_ui()
 
      managerTab = new QTabWidget;
      managerTab->addTab(empGroup, QIcon(":/users.png"),"Employees");
-     managerTab->addTab(gg, "Shop");
+     managerTab->addTab(gg, QIcon(":cash_register.png"),"Shop");
      managerTab->addTab(g2, QIcon(":/warehouse.png"),"Stock");
      managerTab->addTab(Invoices, QIcon(":/receipt.png"),"Receipt");
      managerTab->tabBar()->setIconSize(QSize(25,25));
@@ -1312,6 +1310,7 @@ void MainWindow::set_manager_window_ui()
 
      this->setCentralWidget(managerTab);
 }
+
 void MainWindow::display_employees(QTableWidget *table)
 {
     QFile employeesFile("database/employee.json");
@@ -1345,7 +1344,6 @@ void MainWindow::display_employees(QTableWidget *table)
         counter++;
     }
 }
-
 
 void MainWindow::employee_add_product_to_stock()
 {
@@ -2213,9 +2211,15 @@ void MainWindow::searchSlt(QTableWidget *sourceTable, QLineEdit* lineEdit)
     }
 }
 
-void MainWindow::changePasswordSlt(int index)
+void MainWindow::changePasswordSlt()
 {
-    changePass_dialog * dialog = new changePass_dialog(this,index);
+    changePass_dialog * dialog = new changePass_dialog(this, this->index);
     dialog->show();
+}
+
+void MainWindow::logoutSlt()
+{
+    ui->menubar->setVisible(false);
+    this->setCentralWidget(new Home(this));
 }
 

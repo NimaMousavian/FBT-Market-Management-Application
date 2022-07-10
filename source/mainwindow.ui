@@ -44,6 +44,7 @@
     </property>
     <addaction name="separator"/>
     <addaction name="separator"/>
+    <addaction name="actionLogout_2"/>
     <addaction name="actionExit"/>
     <addaction name="separator"/>
    </widget>
@@ -51,6 +52,8 @@
     <property name="title">
      <string>Acount</string>
     </property>
+    <addaction name="actionChange_Password"/>
+    <addaction name="separator"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuAcount"/>
@@ -62,6 +65,16 @@
    </property>
   </action>
   <action name="actionLogout">
+   <property name="text">
+    <string>Logout</string>
+   </property>
+  </action>
+  <action name="actionChange_Password">
+   <property name="text">
+    <string>Change Password</string>
+   </property>
+  </action>
+  <action name="actionLogout_2">
    <property name="text">
     <string>Logout</string>
    </property>

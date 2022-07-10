@@ -52,5 +52,9 @@
         <file>wallet1.png</file>
         <file>warehouse.png</file>
         <file>icons8-add-tag-96.png</file>
+        <file>icons8-logout-100.png</file>
+        <file>icons8-logout-rounded-left-64.png</file>
+        <file>logout.jpg</file>
+        <file>logout2.png</file>
     </qresource>
 </RCC>

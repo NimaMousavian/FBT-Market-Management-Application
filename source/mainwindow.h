@@ -60,6 +60,7 @@ private:
 
     QString username;
     QAction * changePassAction;
+    int index;
 
     //-------------- Customer window widgets ------------
     QTabWidget * customerMaintab;
@@ -142,6 +143,7 @@ public slots:
     void managerRemoveEmployeeDialog();
     void managerEditSalaryDialog();
     void searchSlt(QTableWidget*, QLineEdit*);
-    void changePasswordSlt(int);
+    void changePasswordSlt();
+    void logoutSlt();
 };
 #endif // MAINWINDOW_H
