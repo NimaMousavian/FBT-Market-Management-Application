@@ -14,8 +14,8 @@ customer_invoice::customer_invoice(MainWindow * mw, QString name, QString cu_ID,
     ui->setupUi(this);
 
     this->setWindowIcon(QIcon(":/store.png"));
-
     this->mainwindow = mw;
+
     ui->name_le->setText(name);
     ui->name_le->setReadOnly(true);
     ui->id_le->setText(cu_ID);
@@ -28,6 +28,31 @@ customer_invoice::customer_invoice(MainWindow * mw, QString name, QString cu_ID,
     create_table(table);
     ui->payout_spin->setReadOnly(true);
     ui->payout_spin->setValue((ui->payment_spin->value()) - (ui->discount_spin->value()));
+    //----------------- set push buttons stylesheet -------------------
+
+    ui->candel_push->setStyleSheet(
+    "*{background-color:#fcde73;"
+    "border:2px solid #fad037;"
+    "border-radius:25px;}"
+    "*:hover{background: '#fbcf34';}");
+
+    ui->purchase_push->setStyleSheet(
+    "*{background-color:#2c9f9f;"
+    "border:2px solid #117676;"
+    "border-radius:25px;}"
+    "*:hover{background: '#138585';}");
+
+    //----------------- set line edits stylesheet -------------------------
+
+    ui->name_le->setStyleSheet("background-color:#d0f2f0; border:2px solid #3850a8; border-radius:12px;");
+    ui->id_le->setStyleSheet("background-color:#d0f2f0; border:2px solid #3850a8; border-radius:12px;");
+    ui->products_table->setStyleSheet("background-color:#d0f2f0; border:2px solid #3850a8; border-radius:12px;");
+    ui->credit_spin->setStyleSheet("background-color:#f9add0; border:2px solid #ec3580; border-radius:12px;");
+    ui->discount_spin->setStyleSheet("background-color:#f9add0; border:2px solid #ec3580; border-radius:12px;");
+    ui->payment_spin->setStyleSheet("background-color:#f9add0; border:2px solid #ec3580; border-radius:12px;");
+    ui->payout_spin->setStyleSheet("background-color:#f9add0; border:2px solid #ec3580; border-radius:12px;");
+
+    this->setWindowTitle("Receipt");
 }
 
 customer_invoice::~customer_invoice()

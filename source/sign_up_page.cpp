@@ -68,8 +68,11 @@ void Sign_up_page::on_sign_push_clicked()
     QString address = ui->address_te->toPlainText();
     QString phoneNumber = ui->phoneNumber_le->text();
 
-    if (firstName.isEmpty() || lastName.isEmpty() || userName.isEmpty() || pass.isEmpty() || con_pass.isEmpty() || age == 1  || address.isEmpty() || phoneNumber.isEmpty())
-            mainwindow->display_error("Please fill out required fields.");
+    if (firstName.isEmpty() || lastName.isEmpty() || userName.isEmpty() || pass.isEmpty() || con_pass.isEmpty() || age == 1 || address.isEmpty() || phoneNumber.isEmpty())
+                mainwindow->display_error("Please fill out required fields.");
+
+    else if (pass.count() < 8)
+        mainwindow->display_error("Password must have at least 8 characters.");
 
     else if (QString::compare(pass,con_pass,Qt::CaseInsensitive))
         mainwindow->display_error("password doesn't match");
@@ -86,39 +89,11 @@ void Sign_up_page::on_sign_push_clicked()
         unique_ptr<Human> h1(c);
         h1->sign_up();
         this->close();
+        mainwindow->set_username(userName);
         mainwindow->customer_window();
-        mainwindow->display_info("Your ID Number in FBT Market is "+QString::number(c->get_customer_id()));
+        mainwindow->display_info("Welcome to FBT Market.\nYour ID Number in FBT Market is "+QString::number(c->get_customer_id()));
 
     }
-
-
-
-
-
-        //    try
-        //    {
-                //Employee em(ui->firstNmae_le->text().toStdString(), ui->lastNmae_le->text().toStdString(), ui->age_spin->value(), ui->idNumber_spin->value(), "role");
-                //Customer * cu = new Customer(ui->firstNmae_le->text().toStdString(), ui->lastNmae_le->text().toStdString(), ui->age_spin->value(), ui->idNumber_spin->value(), ui->username_le->text().toStdString(), ui->password_le->text().toStdString(),ui->phoneNumber_le->text().toStdString(), ui->city_le->text().toStdString(), ui->address_te->toPlainText().toStdString());
-        //        shared_ptr<Customer> b;
-        //        b->set_username(ui->username_le->text().toStdString());
-        //        shared_ptr<Human> user = static_pointer_cast<Customer> (b);
-                //mainwindow->display_error("signup");
-        //        this->close();
-        //        mainwindow->customer_window();
-
-                //b->sign_up();
-                //user.operator=(shared_ptr<Customer> (cu));
-                //user->sign_up();
-        //            Human * u = cu;
-        //            u->sign_up();
-        //    }
-        //    catch(...)
-        //    {
-        //        mainwindow->display_error("unknown error");
-
-        //    }
-
-
 }
 
 

@@ -53,6 +53,8 @@ public:
     void customer_add_to_cart(QString, QString, QString, QString, QString, QString);
 
     void set_username(QString);
+
+    QString get_username();
 private:
     Ui::MainWindow *ui;
 

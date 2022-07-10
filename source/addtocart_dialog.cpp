@@ -6,6 +6,7 @@
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QFile>
+#include <QMessageBox>
 
 addtocart_dialog::addtocart_dialog(QString name, QString category, QString manu, QString price, QString exp_date, MainWindow * mw, QWidget *parent) :
     QDialog(parent),
@@ -13,6 +14,9 @@ addtocart_dialog::addtocart_dialog(QString name, QString category, QString manu,
 {
     ui->setupUi(this);
     this->mainwindow = mw;
+
+    this->setWindowIcon(QIcon(":/store.png"));
+    this->setWindowTitle("Add to cart");
 
     ui->product_table->setItem(0,0, new QTableWidgetItem(name));
     ui->product_table->setItem(0,1, new QTableWidgetItem(category));
@@ -28,19 +32,19 @@ addtocart_dialog::addtocart_dialog(QString name, QString category, QString manu,
     //----------------- set push buttons stylesheet -------------------
 
     ui->addButton->setStyleSheet(
-    "*{background-color:#ced5f5;"
-    "border:2px solid #0530f2;"
-    "border-radius:15px;}"
-    "*:hover{background: '#aeb6f5';}");
+    "*{background-color:#91c3c1;"
+    "border:2px solid #0e5b56;"
+    "border-radius:12px;}"
+    "*:hover{background: '#568c89';}");
 
     ui->discardBotton->setStyleSheet(
-    "*{background-color:#ced5f5;"
-    "border:2px solid #0530f2;"
-    "border-radius:15px;}"
-    "*:hover{background: '#aeb6f5';}");
+    "*{background-color:#f1a2a2; "
+    "border-radius:12px;"
+    "border:2px solid #e24544;}"
+    "*:hover{background: '#eb7d7c';}");
 
     //----------------- set line edits stylesheet -------------------------
-    ui->amountSpinBox->setStyleSheet("background-color:#e6e8fc; border:2px solid #828ff5; border-radius:10px;");
+    ui->amountSpinBox->setStyleSheet("background-color:#a1cfcd; border:2px solid #0e5b56; border-radius:12px;");
 }
 
 addtocart_dialog::~addtocart_dialog()

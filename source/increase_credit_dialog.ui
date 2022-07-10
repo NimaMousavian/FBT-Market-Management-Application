@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>465</width>
-    <height>454</height>
+    <width>1000</width>
+    <height>725</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,15 +16,15 @@
   <widget class="QLabel" name="cardName_lable">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>110</y>
-     <width>141</width>
-     <height>31</height>
+     <x>100</x>
+     <y>250</y>
+     <width>161</width>
+     <height>51</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <pointsize>10</pointsize>
+     <pointsize>11</pointsize>
     </font>
    </property>
    <property name="text">
@@ -34,25 +34,30 @@
   <widget class="QLineEdit" name="cardName_le">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>140</y>
+     <x>100</x>
+     <y>300</y>
      <width>241</width>
-     <height>24</height>
+     <height>41</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>13</pointsize>
+    </font>
    </property>
   </widget>
   <widget class="QLabel" name="amount_lable">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>40</y>
+     <x>100</x>
+     <y>165</y>
      <width>111</width>
-     <height>16</height>
+     <height>31</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <pointsize>10</pointsize>
+     <pointsize>11</pointsize>
     </font>
    </property>
    <property name="text">
@@ -62,11 +67,16 @@
   <widget class="QDoubleSpinBox" name="amountSpinBox">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>60</y>
+     <x>100</x>
+     <y>200</y>
      <width>181</width>
-     <height>31</height>
+     <height>41</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+    </font>
    </property>
    <property name="maximum">
     <double>10000000.000000000000000</double>
@@ -75,25 +85,30 @@
   <widget class="QLineEdit" name="cardNo_le">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>220</y>
+     <x>100</x>
+     <y>390</y>
      <width>321</width>
-     <height>24</height>
+     <height>41</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>13</pointsize>
+    </font>
    </property>
   </widget>
   <widget class="QLabel" name="cardNo_lable">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>190</y>
-     <width>111</width>
-     <height>16</height>
+     <x>100</x>
+     <y>355</y>
+     <width>121</width>
+     <height>31</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <pointsize>10</pointsize>
+     <pointsize>11</pointsize>
     </font>
    </property>
    <property name="text">
@@ -103,15 +118,15 @@
   <widget class="QLabel" name="cvv_lable">
    <property name="geometry">
     <rect>
-     <x>290</x>
-     <y>270</y>
+     <x>310</x>
+     <y>450</y>
      <width>55</width>
      <height>16</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <pointsize>10</pointsize>
+     <pointsize>11</pointsize>
     </font>
    </property>
    <property name="text">
@@ -121,15 +136,15 @@
   <widget class="QLabel" name="expDate_lable">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>270</y>
+     <x>100</x>
+     <y>450</y>
      <width>141</width>
      <height>21</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <pointsize>10</pointsize>
+     <pointsize>11</pointsize>
     </font>
    </property>
    <property name="text">
@@ -139,31 +154,49 @@
   <widget class="QLineEdit" name="cvv_le">
    <property name="geometry">
     <rect>
-     <x>290</x>
-     <y>300</y>
-     <width>81</width>
-     <height>24</height>
+     <x>310</x>
+     <y>480</y>
+     <width>111</width>
+     <height>41</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>13</pointsize>
+    </font>
    </property>
   </widget>
   <widget class="QDateEdit" name="dateEdit">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>300</y>
+     <x>100</x>
+     <y>480</y>
      <width>181</width>
-     <height>31</height>
+     <height>41</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+    </font>
    </property>
   </widget>
   <widget class="QPushButton" name="payButton">
    <property name="geometry">
     <rect>
-     <x>120</x>
-     <y>380</y>
-     <width>80</width>
-     <height>31</height>
+     <x>169</x>
+     <y>580</y>
+     <width>111</width>
+     <height>51</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+    </font>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
    </property>
    <property name="text">
     <string>Pay</string>
@@ -172,17 +205,65 @@
   <widget class="QPushButton" name="discardBotton">
    <property name="geometry">
     <rect>
-     <x>230</x>
-     <y>380</y>
-     <width>80</width>
-     <height>31</height>
+     <x>310</x>
+     <y>580</y>
+     <width>111</width>
+     <height>51</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+    </font>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
    </property>
    <property name="text">
     <string>Discard</string>
    </property>
   </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>450</x>
+     <y>190</y>
+     <width>541</width>
+     <height>581</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="../images/images.qrc">:/credit.png</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>100</x>
+     <y>20</y>
+     <width>511</width>
+     <height>141</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>22</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Increase Credit By Credit Card:</string>
+   </property>
+  </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="../images/images.qrc"/>
+  <include location="../images/images.qrc"/>
+ </resources>
  <connections/>
 </ui>

@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
+    <width>414</width>
     <height>300</height>
    </rect>
   </property>
@@ -17,10 +17,15 @@
    <property name="geometry">
     <rect>
      <x>60</x>
-     <y>70</y>
-     <width>81</width>
-     <height>20</height>
+     <y>50</y>
+     <width>101</width>
+     <height>41</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+    </font>
    </property>
    <property name="text">
     <string>Employee :</string>
@@ -30,33 +35,48 @@
    <property name="geometry">
     <rect>
      <x>60</x>
-     <y>140</y>
-     <width>71</width>
-     <height>16</height>
+     <y>130</y>
+     <width>111</width>
+     <height>51</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+    </font>
+   </property>
    <property name="text">
-    <string>Finall Salary :</string>
+    <string>Final Salary :</string>
    </property>
   </widget>
   <widget class="QComboBox" name="comboBox">
    <property name="geometry">
     <rect>
-     <x>200</x>
-     <y>70</y>
-     <width>91</width>
-     <height>24</height>
+     <x>170</x>
+     <y>50</y>
+     <width>171</width>
+     <height>41</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+    </font>
    </property>
   </widget>
   <widget class="QSpinBox" name="spinBox">
    <property name="geometry">
     <rect>
-     <x>200</x>
+     <x>170</x>
      <y>140</y>
-     <width>91</width>
-     <height>25</height>
+     <width>171</width>
+     <height>41</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+    </font>
    </property>
    <property name="maximum">
     <number>10000000</number>
@@ -65,11 +85,19 @@
   <widget class="QPushButton" name="pushButton">
    <property name="geometry">
     <rect>
-     <x>60</x>
+     <x>90</x>
      <y>230</y>
-     <width>80</width>
-     <height>24</height>
+     <width>101</width>
+     <height>41</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
    </property>
    <property name="text">
     <string>Edit</string>
@@ -78,11 +106,19 @@
   <widget class="QPushButton" name="pushButton_2">
    <property name="geometry">
     <rect>
-     <x>200</x>
+     <x>210</x>
      <y>230</y>
-     <width>80</width>
-     <height>24</height>
+     <width>101</width>
+     <height>41</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
    </property>
    <property name="text">
     <string>Cancel</string>

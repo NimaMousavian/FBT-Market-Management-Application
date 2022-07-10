@@ -11,5 +11,8 @@
         <file>photo_2022-07-05_02-07-49.jpg</file>
         <file>purchase_pic.png</file>
         <file>signup_pic.png</file>
+        <file>addProduct.png</file>
+        <file>credit.png</file>
+        <file>addEmployee.png</file>
     </qresource>
 </RCC>

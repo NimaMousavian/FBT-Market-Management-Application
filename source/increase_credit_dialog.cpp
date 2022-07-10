@@ -9,31 +9,34 @@ increase_credit_dialog::increase_credit_dialog(MainWindow * mw, QWidget *parent)
     ui->setupUi(this);
     this->mainwindow = mw;
 
+    this->setWindowIcon(QIcon(":/store.png"));
+    this->setWindowTitle("Increase Credit");
+
     //----------------- set push buttons icons ------------------
 
-    ui->payButton->setIcon(QIcon(":/pay.png"));
-    ui->discardBotton->setIcon(QIcon(":/don'tPay.png"));
+//    ui->payButton->setIcon(QIcon(":/pay.png"));
+//    ui->discardBotton->setIcon(QIcon(":/don'tPay.png"));
 
     //----------------- set push buttons stylesheet -------------------
 
     ui->payButton->setStyleSheet(
-    "*{background-color:#ced5f5;"
-    "border:2px solid #0530f2;"
-    "border-radius:15px;}"
-    "*:hover{background: '#aeb6f5';}");
+    "*{background-color:#6570ae;"
+    "border:2px solid #23338b;"
+    "border-radius:25px;}"
+    "*:hover{background: '#394797';}");
 
     ui->discardBotton->setStyleSheet(
-    "*{background-color:#ced5f5;"
-    "border:2px solid #0530f2;"
-    "border-radius:15px;}"
-    "*:hover{background: '#aeb6f5';}");
+    "*{background-color:#f1a2a2; "
+    "border-radius:25px;"
+    "border:2px solid #e24544;}"
+    "*:hover{background: '#eb7d7c';}");
 
     //----------------- set line edits stylesheet -------------------------
-    ui->amountSpinBox->setStyleSheet("background-color:#e6e8fc; border:2px solid #828ff5; border-radius:10px;");
-    ui->cardName_le->setStyleSheet("background-color:#e6e8fc; border:2px solid #828ff5; border-radius:10px;");
-    ui->cardNo_le->setStyleSheet("background-color:#e6e8fc; border:2px solid #828ff5; border-radius:10px;");
-    ui->dateEdit->setStyleSheet("background-color:#e6e8fc; border:2px solid #828ff5; border-radius:10px;");
-    ui->cvv_le->setStyleSheet("background-color:#e6e8fc; border:2px solid #828ff5; border-radius:10px;");
+    ui->amountSpinBox->setStyleSheet("background-color:#a1cfcd; border:2px solid #0e5b56; border-radius:12px;");
+    ui->cardName_le->setStyleSheet("background-color:#a1cfcd; border:2px solid #0e5b56; border-radius:12px;");
+    ui->cardNo_le->setStyleSheet("background-color:#a1cfcd; border:2px solid #0e5b56; border-radius:12px;");
+    ui->dateEdit->setStyleSheet("background-color:#a1cfcd; border:2px solid #0e5b56; border-radius:12px;");
+    ui->cvv_le->setStyleSheet("background-color:#a1cfcd; border:2px solid #0e5b56; border-radius:12px;");
 
 
 }

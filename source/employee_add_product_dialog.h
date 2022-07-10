@@ -19,7 +19,7 @@ public:
 private slots:
     void on_pushButton_clicked();
 
-    void on_pushButton_2_clicked();
+    void on_cancleButton_clicked();
 
 private:
     Ui::employee_add_product_dialog *ui;

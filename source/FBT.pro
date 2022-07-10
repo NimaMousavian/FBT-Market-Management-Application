@@ -17,6 +17,7 @@ SOURCES += \
     aboutus_page.cpp \
     addtocart_dialog.cpp \
     Manager.cpp \
+    changepass_dialog.cpp \
     customer_invoice.cpp \
     employee_add_product_dialog.cpp \
     employee_signup.cpp \
@@ -37,6 +38,7 @@ HEADERS += \
     aboutus_page.h \
     addtocart_dialog.h \
     Manager.h \
+    changepass_dialog.h \
     customer_invoice.h \
     employee_add_product_dialog.h \
     employee_signup.h \
@@ -52,6 +54,7 @@ HEADERS += \
 FORMS += \
     aboutus_page.ui \
     addtocart_dialog.ui \
+    changepass_dialog.ui \
     customer_invoice.ui \
     employee_add_product_dialog.ui \
     employee_signup.ui \

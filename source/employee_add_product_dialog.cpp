@@ -12,6 +12,32 @@ employee_add_product_dialog::employee_add_product_dialog(MainWindow* mw,QWidget 
 {
     ui->setupUi(this);
     this->mainwindow = mw;
+    this->setWindowIcon(QIcon(":/store.png"));
+    this->setWindowTitle("Add Product");
+
+    //----------------- set push buttons stylesheet -------------------
+
+    ui->cancleButton->setStyleSheet(
+    "*{background-color:#f1a2a2; "
+    "border-radius:25px;"
+    "border:2px solid #e24544;}"
+    "*:hover{background: '#eb7d7c';}");
+
+    ui->pushButton->setStyleSheet(
+    "*{background-color:#6570ae;"
+    "border:2px solid #23338b;"
+    "border-radius:25px;}"
+    "*:hover{background: '#394797';}");
+
+    //----------------- set line edits stylesheet -------------------------
+
+    ui->name_le->setStyleSheet("background-color:#a1cfcd; border:2px solid #0e5b56; border-radius:12px;");
+    ui->category_combo->setStyleSheet("background-color:#a1cfcd; border:2px solid #0e5b56; border-radius:12px;");
+    ui->amount_spin->setStyleSheet("background-color:#a1cfcd; border:2px solid #0e5b56; border-radius:12px;");
+    ui->price_spin->setStyleSheet("background-color:#a1cfcd; border:2px solid #0e5b56; border-radius:12px;");
+    ui->exp_date->setStyleSheet("background-color:#a1cfcd; border:2px solid #0e5b56; border-radius:12px;");
+    ui->manu_le->setStyleSheet("background-color:#a1cfcd; border:2px solid #0e5b56; border-radius:12px;");
+
 }
 
 employee_add_product_dialog::~employee_add_product_dialog()
@@ -80,9 +106,13 @@ void employee_add_product_dialog::on_pushButton_clicked()
 }
 
 
-void employee_add_product_dialog::on_pushButton_2_clicked()
+
+
+void employee_add_product_dialog::on_cancleButton_clicked()
 {
     this->close();
     return;
 }
+
+
 

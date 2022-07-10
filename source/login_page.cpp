@@ -36,6 +36,8 @@ Login_page::Login_page(MainWindow *mw,QWidget *parent) :
     ui->username_le->setStyleSheet("background-color:#91c3c1; border:2px solid #0e5b56; border-radius:12px;");
     ui->password_le->setStyleSheet("background-color:#91c3c1; border:2px solid #0e5b56; border-radius:12px;");
     ui->comboBox->setStyleSheet("background-color:#91c3c1; border:2px solid #0e5b56; border-radius:12px;");
+
+    ui->password_le->setEchoMode(QLineEdit::Password);
 }
 
 Login_page::~Login_page()

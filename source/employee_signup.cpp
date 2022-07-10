@@ -78,6 +78,9 @@ void Employee_signup::on_sign_push_clicked()
    if (firstName.isEmpty() || lastName.isEmpty() || userName.isEmpty() || pass.isEmpty() || con_pass.isEmpty() || age == 1)
             mainwindow->display_error("Please fill out required fields.");
 
+   else if (pass.count() < 8)
+       mainwindow->display_error("Password must have at least 8 characters.");
+
    else if (QString::compare(pass,con_pass,Qt::CaseInsensitive))
        mainwindow->display_error("password doesn't match");
 
@@ -90,11 +93,10 @@ void Employee_signup::on_sign_push_clicked()
        unique_ptr<Human> h2(e);
        h2->sign_up();
        this->close();
+       mainwindow->set_username(userName);
        mainwindow->employee_window();
-        mainwindow->display_info("Your ID Number in FBT Market is "+QString::number(e->get_employee_ID()));
+       mainwindow->display_info("Your ID Number in FBT Market is "+QString::number(e->get_employee_ID()));
 
    }
-
-
 }
 

@@ -91,7 +91,7 @@
       <property name="font">
        <font>
         <family>MS Shell Dlg 2</family>
-        <pointsize>15</pointsize>
+        <pointsize>13</pointsize>
        </font>
       </property>
      </widget>
@@ -176,7 +176,7 @@
       <property name="font">
        <font>
         <family>MS Shell Dlg 2</family>
-        <pointsize>15</pointsize>
+        <pointsize>13</pointsize>
        </font>
       </property>
      </widget>
@@ -211,7 +211,7 @@
       <property name="font">
        <font>
         <family>MS Shell Dlg 2</family>
-        <pointsize>15</pointsize>
+        <pointsize>13</pointsize>
        </font>
       </property>
      </widget>
@@ -281,7 +281,7 @@
       <property name="font">
        <font>
         <family>MS Shell Dlg 2</family>
-        <pointsize>15</pointsize>
+        <pointsize>13</pointsize>
        </font>
       </property>
      </widget>
@@ -316,7 +316,7 @@
       <property name="font">
        <font>
         <family>MS Shell Dlg 2</family>
-        <pointsize>15</pointsize>
+        <pointsize>13</pointsize>
        </font>
       </property>
      </widget>
@@ -351,7 +351,7 @@
       <property name="font">
        <font>
         <family>MS Shell Dlg 2</family>
-        <pointsize>15</pointsize>
+        <pointsize>13</pointsize>
        </font>
       </property>
       <property name="styleSheet">

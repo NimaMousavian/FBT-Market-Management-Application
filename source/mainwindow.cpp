@@ -36,6 +36,7 @@
 #include "manager_edit_salary_dialog.h"
 #include <QAction>
 #include <QMenuBar>
+#include "changepass_dialog.h"
 
 using namespace std;
 
@@ -806,7 +807,7 @@ void MainWindow::set_employee_window_ui()
     //------------- Main tab ------------
 
     employeeMaintab = new QTabWidget;
-    employeeMaintab->addTab(gg, "Shop");
+    employeeMaintab->addTab(gg, QIcon(":/icons8-add-tag-96.png"),"Shop");
     employeeMaintab->addTab(g2, QIcon(":/warehouse.png"),"Stock");
     employeeMaintab->addTab(Invoices, QIcon(":/receipt.png"),"Receipt");
     employeeMaintab->tabBar()->setIconSize(QSize(25,25));
@@ -848,14 +849,14 @@ void MainWindow::set_manager_window_ui()
     employeeTable->setHorizontalHeaderLabels(tablehead);
     display_employees(employeeTable);
 
-    addEmp = new QPushButton("Add Employee");
-    addEmp->setFixedSize(QSize(100,30));
+    addEmp = new QPushButton(QIcon(":/user_add.png"),"Add Employee");
+    addEmp->setFixedSize(QSize(120,30));
     addEmp->setStyleSheet("*{background-color:#91c3c1; border:0.5px solid #0e5b56; border-radius: 15px; font-size: 12px;} *:hover{background: '#568c89';}");
-    removeEmp = new QPushButton("Remove Employees");
-    removeEmp->setFixedSize(QSize(120,30));
+    removeEmp = new QPushButton(QIcon(":/user_remove.png"),"Remove Employees");
+    removeEmp->setFixedSize(QSize(150,30));
     removeEmp->setStyleSheet("*{background-color:#f1a2a2; border:0.5px solid #e24544; border-radius: 15px; font-size: 12px;} *:hover{background: '#eb7d7c';}");
-    editSalary = new QPushButton("Edit Salaries");
-    editSalary->setFixedSize(QSize(100,30));
+    editSalary = new QPushButton(QIcon(":/user_edit.png"),"Edit Salaries");
+    editSalary->setFixedSize(QSize(120,30));
     editSalary->setStyleSheet("*{background-color:#fcde73; border:0.5px solid #f3b828; border-radius: 15px; font-size: 12px;} *:hover{background: '#dba624';}");
     editPushbuttons = new QHBoxLayout;
     editPushbuttons->addWidget(addEmp);
@@ -1300,7 +1301,7 @@ void MainWindow::set_manager_window_ui()
      //------------- Main tab ------------
 
      managerTab = new QTabWidget;
-     managerTab->addTab(empGroup, "Employees");
+     managerTab->addTab(empGroup, QIcon(":/users.png"),"Employees");
      managerTab->addTab(gg, "Shop");
      managerTab->addTab(g2, QIcon(":/warehouse.png"),"Stock");
      managerTab->addTab(Invoices, QIcon(":/receipt.png"),"Receipt");
@@ -1792,6 +1793,11 @@ void MainWindow::set_username(QString u)
     return;
 }
 
+QString MainWindow::get_username()
+{
+    return this->username;
+}
+
 void MainWindow::display_error(QString msg)
 {
     QMessageBox * box = new QMessageBox(QMessageBox::Critical, "Error", msg, QMessageBox::Ok);
@@ -2209,6 +2215,7 @@ void MainWindow::searchSlt(QTableWidget *sourceTable, QLineEdit* lineEdit)
 
 void MainWindow::changePasswordSlt(int index)
 {
-    display_info(QString::number(index));
+    changePass_dialog * dialog = new changePass_dialog(this,index);
+    dialog->show();
 }
 
