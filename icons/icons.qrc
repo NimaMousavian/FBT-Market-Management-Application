@@ -56,5 +56,7 @@
         <file>icons8-logout-rounded-left-64.png</file>
         <file>logout.jpg</file>
         <file>logout2.png</file>
+        <file>store.ico</file>
+        <file>Resource.rc</file>
     </qresource>
 </RCC>

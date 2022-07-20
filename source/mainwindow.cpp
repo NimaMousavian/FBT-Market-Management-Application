@@ -48,7 +48,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
     mkdir("database");
-    mkdir("datebase/customers");
+    mkdir("database/customers");
 
     FBTManager = new Manager("Mamad", "Admini", 31, "FBT_Admin", "1234");
     unique_ptr<Human> h4(FBTManager);
@@ -1659,9 +1659,9 @@ void MainWindow::load_invoices()
         product->setEditTriggers(QAbstractItemView::NoEditTriggers);  // disable in-place editing
         product->setSelectionBehavior(QAbstractItemView::SelectRows);  // only rows can be selected, not columns or sells
         product->setSelectionMode(QAbstractItemView::SingleSelection);  // disable selection of multiple rows
-        product->setColumnCount(5);  // assign the number of columns in the table
+        product->setColumnCount(6);  // assign the number of columns in the table
         QStringList s6;
-        s6 << tr("Name") << tr("Category") << tr("Manufacturer") << tr("Price") << tr("Expiry Date") ;
+        s6 << tr("Name") << tr("Category") << tr("Manufacturer") << tr("Price") << tr("Expiry Date") << tr("Amount");
         product->setHorizontalHeaderLabels(s6);
 
         foreach (QJsonValue y, x["Products"].toArray())
@@ -1672,6 +1672,7 @@ void MainWindow::load_invoices()
             product->setItem(product->rowCount()-1,2, new QTableWidgetItem(y["Manufacturer"].toString()));
             product->setItem(product->rowCount()-1,3, new QTableWidgetItem(QString::number(y["Price"].toInt())));
             product->setItem(product->rowCount()-1,4, new QTableWidgetItem(y["Expiry date"].toString()));
+            product->setItem(product->rowCount()-1,5, new QTableWidgetItem(QString::number(y["Amount"].toInt())));
         }
 
         QVBoxLayout * l = new QVBoxLayout;
